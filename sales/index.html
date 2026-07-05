@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>Russell Cole — Revenue Operator Who Builds the Product</title>
+  <meta name="description" content="Revenue operator with eight years in agtech: customer discovery, ~$1M raised, an acquisition, and cross-border GTM.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://russellcolevop.github.io/sales/">
+  <meta property="og:title" content="Russell Cole — Revenue Operator Who Builds the Product">
+  <meta property="og:description" content="Revenue operator with eight years in agtech: customer discovery, ~$1M raised, an acquisition, and cross-border GTM.">
+  <meta property="og:image" content="https://russellcolevop.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Russell Cole — Revenue Operator Who Builds the Product">
+  <meta name="twitter:description" content="Revenue operator with eight years in agtech: customer discovery, ~$1M raised, an acquisition, and cross-border GTM.">
+  <meta name="twitter:image" content="https://russellcolevop.github.io/assets/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+
+  <!-- Google Fonts: Inter + Source Serif 4 — async, non-render-blocking -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=optional" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=optional"></noscript>
+
+  <!-- Tailwind CSS CDN -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'warm-bg': '#F8F5F0',
+            'near-black': '#1A1A1A',
+            'mid-gray': '#6B6B6B',
+            'light-gray': '#D4CFC8',
+            'accent': '#8B2E1A',
+            'accent-hover': '#6F2414',
+          },
+          fontFamily: {
+            sans: ['Archivo', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['"Source Serif 4"', 'Georgia', '"Times New Roman"', 'serif'],
+          },
+          maxWidth: {
+            'content': '720px',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- JSON-LD Person Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Russell Cole",
+    "jobTitle": "Builder. Operator. AI-native.",
+    "email": "russellcolevop@gmail.com",
+    "telephone": "+16478247898",
+    "affiliation": { "@type": "Organization", "name": "Parallel Human" },
+    "url": "https://russellcolevop.github.io",
+    "alumniOf": [
+      { "@type": "Organization", "name": "EMILI" },
+      { "@type": "Organization", "name": "AgXactly Crop Insights" }
+    ],
+    "knowsAbout": ["agtech", "artificial intelligence", "founder operations", "CRM automation", "venture building", "SaaS development", "product operations"],
+    "sameAs": ["https://www.linkedin.com/in/russellcole/"]
+  }
+  </script>
+
+  <style>
+    body {
+      background-color: #F8F5F0;
+      color: #1A1A1A;
+      font-family: 'Archivo', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain)' opacity='0.035'/%3E%3C/svg%3E");
+    }
+    [data-fade] { opacity: 1; }
+    [data-fade].fade-hidden {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    [data-fade].fade-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      [data-fade].fade-hidden,
+      [data-fade].fade-visible {
+        opacity: 1; transform: none; transition: none;
+      }
+    }
+    :focus-visible {
+      outline: 2px solid #8B2E1A;
+      outline-offset: 3px;
+    }
+    /* Card expand */
+    .card-body { transition: grid-template-rows 250ms ease; }
+    .card-chevron { transition: transform 250ms ease, color 150ms ease; }
+    .card--open .card-chevron { transform: rotate(180deg); }
+    .card--open { border-color: #8B2E1A; }
+    @media (prefers-reduced-motion: reduce) {
+      .card-body { transition: none; }
+      .card-chevron { transition: none; }
+    }
+    /* QR code responsive sizing — 200px mobile, 160px desktop */
+    #qr-contact canvas, #qr-contact img { display: block; width: 200px !important; height: 200px !important; }
+    @media (min-width: 640px) {
+      #qr-contact canvas, #qr-contact img { width: 160px !important; height: 160px !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <!-- Availability banner -->
+  <div id="agv-banner" role="banner" aria-label="Current availability notice" class="bg-near-black text-warm-bg text-sm px-4 py-3 flex items-center justify-between gap-4">
+    <p id="banner-text" class="flex-1 text-center leading-relaxed">Open to senior commercial and operating roles. If you are scaling revenue, send a note.</p>
+    <button id="banner-dismiss" aria-label="Dismiss notice" class="flex-shrink-0 text-warm-bg opacity-60 hover:opacity-100 transition-opacity text-lg leading-none">&#215;</button>
+  </div>
+
+  <script>
+    (function() {
+      var banner = document.getElementById('agv-banner');
+      var dismissBtn = document.getElementById('banner-dismiss');
+      if (localStorage.getItem('agv-banner-dismissed') === '1') { banner.style.display = 'none'; return; }
+      dismissBtn.addEventListener('click', function() {
+        banner.style.display = 'none';
+        localStorage.setItem('agv-banner-dismissed', '1');
+      });
+    })();
+  </script>
+
+  <!-- HERO -->
+  <header class="px-6 pt-16 pb-16 md:pt-24 md:pb-24">
+    <div class="max-w-content mx-auto">
+      <div class="flex flex-col sm:flex-row sm:items-start sm:gap-10 mb-0">
+        <div
+          class="mb-8 sm:mb-0 sm:flex-shrink-0 flex-shrink-0 rounded-full bg-[#E0DAD2] w-[120px] h-[120px] sm:w-[160px] sm:h-[160px]"
+          style="background-image:url('../assets/russell-headshot-zoom.jpg');background-size:cover;background-position:center top;box-shadow:0 0 0 4px #F8F5F0, 0 0 0 5.5px #8B2E1A, 0 6px 24px rgba(0,0,0,0.12);"
+          role="img" aria-label="Russell Cole"></div>
+        <div class="flex-1">
+          <h1 class="font-serif text-5xl md:text-6xl font-semibold text-near-black leading-tight tracking-tight mb-4">Russell Cole</h1>
+          <p class="font-serif text-xl md:text-2xl text-near-black leading-snug mb-3">Revenue operator who builds the product too.</p>
+          <p class="font-sans text-base text-mid-gray leading-relaxed mb-8 max-w-lg">I have carried a number my whole career: from cold calls to multimillion-dollar enterprise deals at a $10B distributor, to founder-led GTM that took AgXactly to $45K MRR with the largest leafy-greens growers in the US. I sell it, and I build the machine behind it.</p>
+          <a href="mailto:russellcolevop@gmail.com" class="inline-block bg-accent text-warm-bg font-sans font-medium text-sm px-6 py-3 rounded-sm hover:bg-accent-hover transition-colors" aria-label="Email Russell Cole at russellcolevop@gmail.com">russellcolevop@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- FEATURED credential block -->
+    <section class="px-6 pb-14 md:pb-20" aria-label="Featured credential">
+      <div class="max-w-content mx-auto">
+        <article class="rounded-xl border border-light-gray border-l-4 border-l-accent bg-accent/5 p-6 md:p-8" data-fade>
+          <p class="font-sans text-xs font-semibold uppercase tracking-widest text-accent mb-2">Operating proof</p>
+          <h2 class="font-serif text-xl md:text-2xl font-semibold text-near-black leading-snug mb-3">Kept a revenue-bearing business running through a full platform change.</h2>
+          <p class="font-sans text-sm text-near-black leading-relaxed mb-3">GroomBook is a live grooming-business platform with a paying customer. I rebuilt it on a new stack and moved the business over with no downtime and no data loss, so the customer never felt the change. The migration ran as a reversible, gated process with a rollback path at every step.</p>
+          <p class="font-sans text-sm text-mid-gray leading-relaxed">That is how I sell and operate: protect the customer, de-risk the change, and ship.</p>
+          <div class="mt-5 pt-5 border-t border-accent/20 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-5" role="list" aria-label="Proof points">
+            <div role="listitem">
+              <p class="font-serif text-2xl font-semibold leading-none text-accent">$45K</p>
+              <p class="font-sans text-xs uppercase tracking-widest text-mid-gray mt-1.5">MRR at peak — AgXactly</p>
+            </div>
+            <div role="listitem">
+              <p class="font-serif text-2xl font-semibold leading-none text-accent">$400K+</p>
+              <p class="font-sans text-xs uppercase tracking-widest text-mid-gray mt-1.5">OGS revenue, 18 months</p>
+            </div>
+            <div role="listitem">
+              <p class="font-serif text-2xl font-semibold leading-none text-accent">$1M+</p>
+              <p class="font-sans text-xs uppercase tracking-widest text-mid-gray mt-1.5">Raised while selling</p>
+            </div>
+            <div role="listitem">
+              <p class="font-serif text-2xl font-semibold leading-none text-accent">Millions</p>
+              <p class="font-sans text-xs uppercase tracking-widest text-mid-gray mt-1.5">Enterprise contracts</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="operate-heading" class="px-6 py-14 md:py-20 border-t border-light-gray">
+      <div class="max-w-content mx-auto">
+        <h2 id="operate-heading" class="font-serif text-2xl md:text-3xl font-semibold text-near-black tracking-tight mb-6" data-fade>How I operate</h2>
+        <ul class="space-y-3" data-fade>
+          <li class="flex gap-4">
+            <span class="mt-2.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-accent"></span>
+            <p class="font-sans text-base md:text-lg text-near-black leading-relaxed">Revenue-first. From cold calls to enterprise deals, the lesson never changed: people buy their problem getting smaller.</p>
+          </li>
+          <li class="flex gap-4">
+            <span class="mt-2.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-accent"></span>
+            <p class="font-sans text-base md:text-lg text-near-black leading-relaxed">I can sell what I build and build what I sell. Demos, scoping, and delivery come from the same person.</p>
+          </li>
+          <li class="flex gap-4">
+            <span class="mt-2.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-accent"></span>
+            <p class="font-sans text-base md:text-lg text-near-black leading-relaxed">Team-first with energy to burn: I lead with empathy and conviction and fight for the deal to the end.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PULL QUOTE -->
+    <section class="px-6 py-12 md:py-16 border-t border-light-gray" aria-label="In my own words">
+      <div class="max-w-content mx-auto">
+        <blockquote class="border-l-4 border-accent pl-6 md:pl-8" data-fade>
+          <p class="font-serif text-xl md:text-2xl italic text-near-black leading-snug">&ldquo;I started out cold calling windows and doors. The lesson never changed: nobody buys a product, they buy their problem getting smaller. The difference is now I build the product too.&rdquo;</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- SELECTED WORK -->
+    <section aria-labelledby="work-heading" class="px-6 py-14 md:py-20 border-t border-light-gray">
+      <div class="max-w-content mx-auto">
+        <h2 id="work-heading" class="font-serif text-2xl md:text-3xl font-semibold text-near-black tracking-tight mb-3" data-fade>Selected work</h2>
+        <p class="font-sans text-sm text-mid-gray mb-8" data-fade>Tap any item for detail.</p>
+        <div class="grid grid-cols-1 gap-3" data-fade>
+
+          <article class="card-expandable rounded-xl border border-light-gray transition-all hover:shadow-sm">
+            <button class="w-full text-left px-5 pt-5 pb-4 cursor-pointer group" aria-expanded="false" id="work-btn-0" aria-controls="work-body-0" type="button">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-sans font-semibold text-near-black text-base mb-1 group-hover:text-accent transition-colors">Founder-led GTM — AgXactly</h3>
+                  <p class="font-sans text-sm text-mid-gray leading-relaxed">CEO and head of GTM: triple-digit month-over-month growth in year one, topping out at $45K MRR.</p>
+                </div>
+                <svg class="card-chevron flex-shrink-0 mt-0.5 text-light-gray group-hover:text-accent" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </button>
+            <div id="work-body-0" class="card-body grid" style="grid-template-rows: 0fr;" role="region" aria-labelledby="work-btn-0">
+              <div class="overflow-hidden">
+                <div class="px-5 pb-5">
+                  <p class="font-sans text-sm text-near-black leading-relaxed">Sold to the largest leafy-greens growers in the US — Taylor Farms, Church Brothers, Braga Fresh, Earthbound Farms — while raising roughly $1M and running business operations and investor relations. Acquired by Nighthawk Ag.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-expandable rounded-xl border border-light-gray transition-all hover:shadow-sm">
+            <button class="w-full text-left px-5 pt-5 pb-4 cursor-pointer group" aria-expanded="false" id="work-btn-1" aria-controls="work-body-1" type="button">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-sans font-semibold text-near-black text-base mb-1 group-hover:text-accent transition-colors">OrganicGrow Solutions</h3>
+                  <p class="font-sans text-sm text-mid-gray leading-relaxed">$400K+ gross revenue in the first 18 months, sold to enterprise growers in Canada.</p>
+                </div>
+                <svg class="card-chevron flex-shrink-0 mt-0.5 text-light-gray group-hover:text-accent" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </button>
+            <div id="work-body-1" class="card-body grid" style="grid-template-rows: 0fr;" role="region" aria-labelledby="work-btn-1">
+              <div class="overflow-hidden">
+                <div class="px-5 pb-5">
+                  <p class="font-sans text-sm text-near-black leading-relaxed">Built the company while selling it: product development, lab testing, and organic certifications in parallel with enterprise deals, plus $150K+ raised.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-expandable rounded-xl border border-light-gray transition-all hover:shadow-sm">
+            <button class="w-full text-left px-5 pt-5 pb-4 cursor-pointer group" aria-expanded="false" id="work-btn-2" aria-controls="work-body-2" type="button">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-sans font-semibold text-near-black text-base mb-1 group-hover:text-accent transition-colors">Enterprise sales career</h3>
+                  <p class="font-sans text-sm text-mid-gray leading-relaxed">Top sales associate on nearly every team, from cold-call telemarketing to multimillion-dollar enterprise contracts.</p>
+                </div>
+                <svg class="card-chevron flex-shrink-0 mt-0.5 text-light-gray group-hover:text-accent" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </button>
+            <div id="work-body-2" class="card-body grid" style="grid-template-rows: 0fr;" role="region" aria-labelledby="work-btn-2">
+              <div class="overflow-hidden">
+                <div class="px-5 pb-5">
+                  <p class="font-sans text-sm text-near-black leading-relaxed">At Veritiv, a $10B distributor, sold multimillion-dollar packaging systems into pharma and logistics and opened new sectors with offerings the company didn't yet have. At CogecoPeer1, generated millions in telecom and cloud contracts inside and outside. VP of Sales at a cybersecurity firm, leading multimillion-dollar red-team and code-audit engagements.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-expandable rounded-xl border border-light-gray transition-all hover:shadow-sm">
+            <button class="w-full text-left px-5 pt-5 pb-4 cursor-pointer group" aria-expanded="false" id="work-btn-3" aria-controls="work-body-3" type="button">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-sans font-semibold text-near-black text-base mb-1 group-hover:text-accent transition-colors">GTM consulting</h3>
+                  <p class="font-sans text-sm text-mid-gray leading-relaxed">North American go-to-market for startups and scaleups landing or expanding across Canada and the US.</p>
+                </div>
+                <svg class="card-chevron flex-shrink-0 mt-0.5 text-light-gray group-hover:text-accent" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </button>
+            <div id="work-body-3" class="card-body grid" style="grid-template-rows: 0fr;" role="region" aria-labelledby="work-btn-3">
+              <div class="overflow-hidden">
+                <div class="px-5 pb-5">
+                  <p class="font-sans text-sm text-near-black leading-relaxed">Consulted several startups and scaleups on GTM with success. Continent-wide network of ecosystem hubs and direct buyer relationships in agtech, plus the cross-border corporate mechanics from running Canadian and US structures.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT I AM OPEN TO -->
+    <section aria-labelledby="open-heading" class="px-6 py-14 md:py-20 border-t border-light-gray">
+      <div class="max-w-content mx-auto">
+        <h2 id="open-heading" class="font-serif text-2xl md:text-3xl font-semibold text-near-black tracking-tight mb-3" data-fade>What I am open to</h2>
+        <p class="font-sans text-base text-mid-gray leading-relaxed mb-8" data-fade>Open to senior commercial and operating roles, GTM leadership, and partnerships. Still consulting, still shipping.</p>
+        <div class="grid grid-cols-1 gap-3" data-fade>
+
+          <article class="card-expandable rounded-xl border border-light-gray transition-all hover:shadow-sm">
+            <button
+              class="w-full text-left px-5 pt-5 pb-4 cursor-pointer group"
+              aria-expanded="false"
+              id="card-btn-0"
+              aria-controls="card-body-0"
+              type="button"
+            >
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-sans font-semibold text-near-black text-base mb-1 group-hover:text-accent transition-colors">GTM consulting</h3>
+                  <p class="font-sans text-sm text-mid-gray leading-relaxed">North American go-to-market for agtech companies landing or expanding across Canada and the US.</p>
+                </div>
+                <svg class="card-chevron flex-shrink-0 mt-0.5 text-light-gray group-hover:text-accent" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </button>
+            <div id="card-body-0" class="card-body grid" style="grid-template-rows: 0fr;" role="region" aria-labelledby="card-btn-0">
+              <div class="overflow-hidden">
+                <div class="px-5 pb-5">
+                  <p class="font-sans text-sm text-near-black leading-relaxed mb-4">
+                    I founded and operated startups under both Canadian federal and US C-corp structures, so the cross-border mechanics are familiar. I bring a continent-wide network of agtech ecosystem hubs and direct buyer relationships in livestock and horticulture. Best fit: companies coming into North America that want to land and expand quickly.
+                  </p>
+                  <a
+                    href="mailto:russellcolevop@gmail.com?subject=Re%3A%20GTM%20consulting"
+                    class="card-mailto inline-flex items-center gap-1.5 text-accent text-sm font-medium hover:underline focus-visible:underline"
+                    tabindex="-1"
+                    aria-label="Reach out about GTM consulting"
+                  >Reach out about this <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-expandable rounded-xl border border-light-gray transition-all hover:shadow-sm">
+            <button
+              class="w-full text-left px-5 pt-5 pb-4 cursor-pointer group"
+              aria-expanded="false"
+              id="card-btn-1"
+              aria-controls="card-body-1"
+              type="button"
+            >
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-sans font-semibold text-near-black text-base mb-1 group-hover:text-accent transition-colors">Senior commercial operator</h3>
+                  <p class="font-sans text-sm text-mid-gray leading-relaxed">VP Sales, founding GM, or senior operating partner. Brought in by the founder, the board, or an investor.</p>
+                </div>
+                <svg class="card-chevron flex-shrink-0 mt-0.5 text-light-gray group-hover:text-accent" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </button>
+            <div id="card-body-1" class="card-body grid" style="grid-template-rows: 0fr;" role="region" aria-labelledby="card-btn-1">
+              <div class="overflow-hidden">
+                <div class="px-5 pb-5">
+                  <p class="font-sans text-sm text-near-black leading-relaxed mb-4">
+                    Pipeline ownership, customer discovery, and the systems that make revenue repeatable — CRM, automation, and reporting built by the same person who carries the number. Best fit: companies that need the commercial seat filled by someone who also builds the machine behind it.
+                  </p>
+                  <a
+                    href="mailto:russellcolevop@gmail.com?subject=Re%3A%20Senior%20commercial%20operator"
+                    class="card-mailto inline-flex items-center gap-1.5 text-accent text-sm font-medium hover:underline focus-visible:underline"
+                    tabindex="-1"
+                    aria-label="Reach out about Senior commercial operator"
+                  >Reach out about this <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-expandable rounded-xl border border-light-gray transition-all hover:shadow-sm">
+            <button
+              class="w-full text-left px-5 pt-5 pb-4 cursor-pointer group"
+              aria-expanded="false"
+              id="card-btn-2"
+              aria-controls="card-body-2"
+              type="button"
+            >
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-sans font-semibold text-near-black text-base mb-1 group-hover:text-accent transition-colors">Operating leader (CEO or GM)</h3>
+                  <p class="font-sans text-sm text-mid-gray leading-relaxed">Take the wheel as CEO or GM at an agtech company. Full ownership and AI-native operations.</p>
+                </div>
+                <svg class="card-chevron flex-shrink-0 mt-0.5 text-light-gray group-hover:text-accent" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </button>
+            <div id="card-body-2" class="card-body grid" style="grid-template-rows: 0fr;" role="region" aria-labelledby="card-btn-2">
+              <div class="overflow-hidden">
+                <div class="px-5 pb-5">
+                  <p class="font-sans text-sm text-near-black leading-relaxed mb-4">
+                    Step into the top seat. Full lifecycle ownership of product, commercial, and operations, with output scaling through AI-native flows rather than headcount. Best fit: companies whose CEO or GM role is open or being redefined, where the next leader needs founder DNA and a commercial spine.
+                  </p>
+                  <a
+                    href="mailto:russellcolevop@gmail.com?subject=Re%3A%20Operating%20leader%20role"
+                    class="card-mailto inline-flex items-center gap-1.5 text-accent text-sm font-medium hover:underline focus-visible:underline"
+                    tabindex="-1"
+                    aria-label="Reach out about Operating leader (CEO or GM)"
+                  >Reach out about this <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="background-heading" class="px-6 py-14 md:py-20 border-t border-light-gray">
+      <div class="max-w-content mx-auto">
+        <h2 id="background-heading" class="font-serif text-2xl md:text-3xl font-semibold text-near-black tracking-tight mb-6" data-fade>Background</h2>
+        <p class="font-sans text-base md:text-lg text-near-black leading-relaxed mb-5" data-fade>Russell Cole. The arc runs from cold-call telemarketing to enterprise sales at Veritiv, a $10B distributor, where I sold multimillion-dollar packaging systems into pharma and logistics. Then millions in telecom and cloud contracts at CogecoPeer1, and a VP of Sales seat in cybersecurity. Top associate on nearly every team along the way.</p>
+        <p class="font-sans text-base md:text-lg text-near-black leading-relaxed" data-fade>Then founder revenue. AgXactly grew triple-digit month-over-month in year one to $45K MRR with the largest US leafy-greens growers, raised roughly $1M, and was acquired by Nighthawk Ag. OrganicGrow Solutions did $400K+ gross in its first 18 months with enterprise growers in Canada. Through Parallel Human Labs I now build the product and revenue systems behind the motion, including live platforms like GroomBook.</p>
+      </div>
+    </section>
+
+<section aria-labelledby="contact-heading" class="px-6 py-8 md:py-20 border-t border-light-gray">
+      <div class="max-w-content mx-auto">
+        <h2 id="contact-heading" class="font-serif text-2xl md:text-3xl font-semibold text-near-black tracking-tight mb-4 sm:mb-6" data-fade>Get in touch</h2>
+        <div class="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-6" data-fade>
+
+          <!-- Buttons + subtext -->
+          <div class="flex-1">
+            <div class="flex flex-wrap items-stretch gap-3 mb-3 sm:mb-4">
+              <a
+                href="mailto:russellcolevop@gmail.com"
+                class="w-full sm:w-auto inline-flex items-center justify-center bg-accent text-warm-bg font-sans font-medium text-sm px-6 py-3 rounded-sm hover:bg-accent-hover transition-colors min-h-[44px]"
+                aria-label="Email russellcolevop@gmail.com"
+              >russellcolevop@gmail.com</a>
+              <a
+                href="../russell.vcf"
+                download="russell-cole.vcf"
+                class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 border border-accent text-accent font-sans font-medium text-sm px-5 min-h-[48px] sm:min-h-0 sm:py-3 rounded-sm hover:bg-accent hover:text-warm-bg transition-colors"
+                aria-label="Save Russell Cole as a phone contact"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <line x1="19" y1="8" x2="19" y2="14"/>
+                  <line x1="22" y1="11" x2="16" y2="11"/>
+                </svg>
+                Save to phone
+              </a>
+              <a
+                href="https://www.linkedin.com/in/russellcole/"
+                aria-label="Russell Cole on LinkedIn"
+                class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-accent text-warm-bg font-sans font-medium text-sm px-5 min-h-[48px] sm:min-h-0 sm:py-3 rounded-sm hover:bg-accent-hover transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+            <p class="font-sans text-sm text-mid-gray">
+              Best for: intro calls, potential roles, project conversations.
+            </p>
+          </div>
+
+          <!-- QR code — full width on mobile, auto on sm+ -->
+          <div class="w-full sm:w-auto flex flex-col items-center gap-2 flex-shrink-0 border-t border-light-gray pt-4 sm:border-0 sm:pt-0">
+            <div
+              id="qr-contact"
+              class="border border-light-gray rounded-sm overflow-hidden bg-white p-1.5"
+              aria-label="QR code, scan to save Russell Cole as a contact"
+              role="img"
+            ></div>
+            <p class="font-sans text-xs text-mid-gray tracking-wide">Scan to save</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<footer class="px-6 py-7 border-t border-light-gray">
+    <div class="max-w-content mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs text-mid-gray font-sans">
+      <p>Built and shipped in under an hour. AI-native operating in practice.</p>
+      <a href="https://github.com/russellcolevop/russellcolevop.github.io" class="hover:text-accent transition-colors underline underline-offset-2">Source on GitHub</a>
+    </div>
+  </footer>
+
+<!-- QR code library + generation -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script>
+    (function() {
+      var el = document.getElementById('qr-contact');
+      if (!el || typeof QRCode === 'undefined') return;
+      new QRCode(el, {
+        text: "BEGIN:VCARD\r\nVERSION:3.0\r\nFN:Russell Cole\r\nN:Cole;Russell;;;\r\nORG:Parallel Human\r\nTITLE:Builder. Operator. AI-native.\r\nEMAIL;TYPE=INTERNET:russellcolevop@gmail.com\r\nTEL;TYPE=CELL:+16478247898\r\nURL:https://russellcolevop.github.io\r\nEND:VCARD",
+        width: 240,
+        height: 240,
+        colorDark: '#1A1A1A',
+        colorLight: '#FFFFFF',
+        correctLevel: QRCode.CorrectLevel.L
+      });
+    })();
+  </script>
+
+  <!-- Scroll fade-in (respects prefers-reduced-motion) -->
+  <script>
+    (function() {
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+      var fadeEls = document.querySelectorAll('[data-fade]');
+      fadeEls.forEach(function(el) { el.classList.add('fade-hidden'); });
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('fade-hidden');
+            entry.target.classList.add('fade-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      fadeEls.forEach(function(el) { observer.observe(el); });
+    })();
+  </script>
+
+  <!-- Card expand interaction -->
+  <script>
+    (function() {
+      var cards = document.querySelectorAll('.card-expandable');
+      function setCardState(card, open) {
+        var btn = card.querySelector('button');
+        var body = card.querySelector('.card-body');
+        var mailtos = card.querySelectorAll('.card-mailto');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        body.style.gridTemplateRows = open ? '1fr' : '0fr';
+        card.classList.toggle('card--open', open);
+        mailtos.forEach(function(a) {
+          a.setAttribute('tabindex', open ? '0' : '-1');
+        });
+      }
+      cards.forEach(function(card) {
+        var btn = card.querySelector('button');
+        btn.addEventListener('click', function() {
+          var isOpen = btn.getAttribute('aria-expanded') === 'true';
+          cards.forEach(function(c) { setCardState(c, false); });
+          if (!isOpen) setCardState(card, true);
+        });
+      });
+    })();
+  </script>
+
+
+</body>
+</html>

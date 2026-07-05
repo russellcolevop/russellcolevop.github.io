@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>Russell Cole — Profiles</title>
+  <meta name="description" content="Launcher for Russell Cole's audience-tailored profiles.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://russellcolevop.github.io/hub/">
+  <meta property="og:title" content="Russell Cole — Profiles">
+  <meta property="og:description" content="Launcher for Russell Cole's audience-tailored profiles.">
+  <meta property="og:image" content="https://russellcolevop.github.io/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Russell Cole — Profiles">
+  <meta name="twitter:description" content="Launcher for Russell Cole's audience-tailored profiles.">
+  <meta name="twitter:image" content="https://russellcolevop.github.io/assets/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Google Fonts: Inter + Source Serif 4 — async, non-render-blocking -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=optional" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=optional"></noscript>
+
+  <!-- Tailwind CSS CDN -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'warm-bg': '#F8F5F0',
+            'near-black': '#1A1A1A',
+            'mid-gray': '#6B6B6B',
+            'light-gray': '#D4CFC8',
+            'accent': '#2E6F4E',
+            'accent-hover': '#235539',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['"Source Serif 4"', 'Georgia', '"Times New Roman"', 'serif'],
+          },
+          maxWidth: {
+            'content': '720px',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- JSON-LD Person Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Russell Cole",
+    "jobTitle": "Builder. Operator. AI-native.",
+    "email": "russellcolevop@gmail.com",
+    "telephone": "+16478247898",
+    "affiliation": { "@type": "Organization", "name": "Parallel Human" },
+    "url": "https://russellcolevop.github.io",
+    "alumniOf": [
+      { "@type": "Organization", "name": "EMILI" },
+      { "@type": "Organization", "name": "AgXactly Crop Insights" }
+    ],
+    "knowsAbout": ["agtech", "artificial intelligence", "founder operations", "CRM automation", "venture building", "SaaS development", "product operations"],
+    "sameAs": ["https://www.linkedin.com/in/russellcole/"]
+  }
+  </script>
+
+  <style>
+    body {
+      background-color: #F8F5F0;
+      color: #1A1A1A;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain)' opacity='0.035'/%3E%3C/svg%3E");
+    }
+    [data-fade] { opacity: 1; }
+    [data-fade].fade-hidden {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    [data-fade].fade-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      [data-fade].fade-hidden,
+      [data-fade].fade-visible {
+        opacity: 1; transform: none; transition: none;
+      }
+    }
+    :focus-visible {
+      outline: 2px solid #2E6F4E;
+      outline-offset: 3px;
+    }
+    /* Card expand */
+    .card-body { transition: grid-template-rows 250ms ease; }
+    .card-chevron { transition: transform 250ms ease, color 150ms ease; }
+    .card--open .card-chevron { transform: rotate(180deg); }
+    .card--open { border-color: #2E6F4E; }
+    @media (prefers-reduced-motion: reduce) {
+      .card-body { transition: none; }
+      .card-chevron { transition: none; }
+    }
+    /* QR code responsive sizing — 200px mobile, 160px desktop */
+    #qr-contact canvas, #qr-contact img { display: block; width: 200px !important; height: 200px !important; }
+    @media (min-width: 640px) {
+      #qr-contact canvas, #qr-contact img { width: 160px !important; height: 160px !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <main class="px-6 py-16 md:py-24">
+    <div class="max-w-content mx-auto">
+      <h1 class="font-serif text-4xl md:text-5xl font-semibold text-near-black tracking-tight mb-2">Russell Cole</h1>
+      <p class="font-sans text-base text-mid-gray mb-10">Pick the version that fits the reader.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="../achievements/" class="block rounded-xl border border-light-gray border-l-4 pl-5 pr-4 py-5 hover:shadow-sm transition-shadow" style="border-left-color:#1A1A1A">
+          <h2 class="font-serif text-xl font-semibold text-near-black mb-1" style="color:#1A1A1A">Achievements board</h2>
+          <p class="font-sans text-sm text-mid-gray leading-relaxed mb-2">Every achievement in one place, tagged by audience. The full brag board.</p>
+          <span class="font-sans text-xs uppercase tracking-widest" style="color:#1A1A1A">Open profile &rarr;</span>
+        </a>
+        <a href="../" class="block rounded-xl border border-light-gray border-l-4 pl-5 pr-4 py-5 hover:shadow-sm transition-shadow" style="border-left-color:#2E6F4E">
+          <h2 class="font-serif text-xl font-semibold text-near-black mb-1" style="color:#2E6F4E">Overview — start here</h2>
+          <p class="font-sans text-sm text-mid-gray leading-relaxed mb-2">General profile. Agtech founder, AI-native product operator, builder of useful systems.</p>
+          <span class="font-sans text-xs uppercase tracking-widest" style="color:#2E6F4E">Open profile &rarr;</span>
+        </a>
+        <a href="../dev/" class="block rounded-xl border border-light-gray border-l-4 pl-5 pr-4 py-5 hover:shadow-sm transition-shadow" style="border-left-color:#1F5A8A">
+          <h2 class="font-serif text-xl font-semibold text-near-black mb-1" style="color:#1F5A8A">Engineering hiring managers</h2>
+          <p class="font-sans text-sm text-mid-gray leading-relaxed mb-2">AI-native product engineer. I ship live software, end to end.</p>
+          <span class="font-sans text-xs uppercase tracking-widest" style="color:#1F5A8A">Open profile &rarr;</span>
+        </a>
+        <a href="../sales/" class="block rounded-xl border border-light-gray border-l-4 pl-5 pr-4 py-5 hover:shadow-sm transition-shadow" style="border-left-color:#8B2E1A">
+          <h2 class="font-serif text-xl font-semibold text-near-black mb-1" style="color:#8B2E1A">Sales & commercial roles</h2>
+          <p class="font-sans text-sm text-mid-gray leading-relaxed mb-2">Revenue operator who builds the product too.</p>
+          <span class="font-sans text-xs uppercase tracking-widest" style="color:#8B2E1A">Open profile &rarr;</span>
+        </a>
+        <a href="../founders/" class="block rounded-xl border border-light-gray border-l-4 pl-5 pr-4 py-5 hover:shadow-sm transition-shadow" style="border-left-color:#5B3A8B">
+          <h2 class="font-serif text-xl font-semibold text-near-black mb-1" style="color:#5B3A8B">Co-founders & founding teams</h2>
+          <p class="font-sans text-sm text-mid-gray leading-relaxed mb-2">Technical co-founder who has run the full arc.</p>
+          <span class="font-sans text-xs uppercase tracking-widest" style="color:#5B3A8B">Open profile &rarr;</span>
+        </a>
+        <a href="../investors/" class="block rounded-xl border border-light-gray border-l-4 pl-5 pr-4 py-5 hover:shadow-sm transition-shadow" style="border-left-color:#8A6D0B">
+          <h2 class="font-serif text-xl font-semibold text-near-black mb-1" style="color:#8A6D0B">Investors</h2>
+          <p class="font-sans text-sm text-mid-gray leading-relaxed mb-2">Founder-operator building AI-native product systems.</p>
+          <span class="font-sans text-xs uppercase tracking-widest" style="color:#8A6D0B">Open profile &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

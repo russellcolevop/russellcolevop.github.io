@@ -1,0 +1,479 @@
+{
+  "_comment": "Source-of-truth content for the audience profile pages. Edited by hand today; designed to be written by the KoyaOS consulting loop later. build-profiles.py renders one static page per entry. The root general page is hand-maintained separately (see PROFILES.md).",
+  "_schema": {
+    "slug": "URL path segment, e.g. 'dev' -> /dev/",
+    "accent": "primary brand hex, used for buttons, links, card borders, focus",
+    "accent_hover": "darker hover hex",
+    "work_cards": "ordered list of {title, sub, body} achievement cards",
+    "open_cards": "ids of shared role cards lifted from index.html (0-6)",
+    "achievements": "master board: {title, blurb, audiences[], metric?, link?} rendered at /achievements/. link makes the title open an external URL."
+  },
+  "achievements": [
+    {
+      "title": "Ramara Hub — live civic information platform, built AI-native",
+      "blurb": "Built and shipped a neutral, source-backed civic information hub for the Township of Ramara, Ontario, live in production at ramarahub.ca. Residents ask questions in plain language and get answers that never guess, each linked to an official source, alongside researched issue briefs, a searchable archive of public township documents, and council and budget references. Stood up solo in a weekend through AI-assisted, agent-driven content and code workflows on a static GitHub Pages front end with a Supabase backend, with resident data tools like a budget viewer and project tracker in development.",
+      "audiences": [
+        "dev",
+        "founders",
+        "investors",
+        "general"
+      ],
+      "metric": "live at ramarahub.ca · built in a weekend · 74 sourced answers · 7 issue briefs",
+      "link": "https://ramarahub.ca"
+    },
+    {
+      "title": "GroomBook — live production SaaS, re-platformed with zero downtime",
+      "blurb": "Rebuilt a revenue-bearing grooming platform onto Next.js and Supabase and cut the live business over with no data loss, via a reversible, gated runbook. Then shipped an in-app AI assistant the owner runs by voice and text, where every booking, payment, or message is confirmed before it saves, and deployed a full visual redesign across every screen, all to her live production app, behind the same gated pipeline. Directed an AI agent dev team (Claude + Codex) under human-gated releases, with a CI quality gate, cross-tenant isolation tests, row-level-security hardening, and error monitoring.",
+      "audiences": [
+        "dev",
+        "founders",
+        "investors",
+        "general"
+      ],
+      "metric": "0 rows lost · 1,754-test CI gate · 137 clients, 737 appts live · voice AI assistant + full redesign shipped to production"
+    },
+    {
+      "title": "Auction Advisor — real-time auction-intelligence platform",
+      "blurb": "Conceived and architected a platform that grounds a live auction catalog of more than 22,000 items against retail prices to score deal quality, with real-time finals and full bid-trail capture. Built solo through AI-assisted engineering; diagnosed and recovered a production data-loss incident and re-established a durable system of record.",
+      "audiences": [
+        "dev",
+        "founders",
+        "investors"
+      ],
+      "metric": "22,000+ items · high-confidence comps on more than half · in daily use"
+    },
+    {
+      "title": "AgXactly — founder, ~$1M raised, exit to Nighthawk Ag",
+      "blurb": "Founded and led an agtech precision-data company as CEO and head of GTM. Triple-digit month-over-month growth in year one to $45K MRR, selling to the largest US leafy-greens growers (Taylor Farms, Church Brothers, Braga Fresh, Earthbound Farms). Acquired by Nighthawk Ag.",
+      "audiences": [
+        "sales",
+        "founders",
+        "investors",
+        "general"
+      ],
+      "metric": "$45K MRR · ~$1M raised · 1 exit"
+    },
+    {
+      "title": "OrganicGrow Solutions — $400K+ revenue in 18 months",
+      "blurb": "Built the company while selling it: soil-amendment products, lab testing, and organic certifications in parallel with enterprise grower deals in Canada.",
+      "audiences": [
+        "sales",
+        "investors",
+        "founders"
+      ],
+      "metric": "$400K+ gross revenue · $150K+ raised"
+    },
+    {
+      "title": "Vesta.AI — first company, first failure, the lesson",
+      "blurb": "Raised $50K from Jack Astor's corporate group on the strength of the pitch. The venture failed when the technical cofounder couldn't build what he claimed, which is why I became the technical builder myself.",
+      "audiences": [
+        "founders",
+        "investors"
+      ],
+      "metric": "$50K raised"
+    },
+    {
+      "title": "Enterprise sales career — cold call to multimillion-dollar deals",
+      "blurb": "Top sales associate across teams: multimillion-dollar packaging systems into pharma and logistics at Veritiv (a $10B distributor), millions in telecom and cloud contracts at CogecoPeer1, and a VP of Sales seat in cybersecurity leading red-team and code-audit engagements.",
+      "audiences": [
+        "sales"
+      ],
+      "metric": "Millions in enterprise contracts"
+    },
+    {
+      "title": "AIVA Network — CRM & automation backbone for a federal agtech ecosystem",
+      "blurb": "Ecosystem Manager and systems architect for one of Canada's largest federally funded agtech ecosystems. Built startup intake, evaluation, routing, and operating workflows in Airtable.",
+      "audiences": [
+        "general",
+        "sales"
+      ]
+    },
+    {
+      "title": "KoyaOS — multi-venture operating system",
+      "blurb": "Information architecture and build of my own multi-venture operating system: personas, opportunity tracking, source-backed artifacts, decision logs, and agent workflows that compound across ventures.",
+      "audiences": [
+        "dev",
+        "investors",
+        "general"
+      ]
+    },
+    {
+      "title": "Parallel Human Labs — products shipped end to end",
+      "blurb": "My studio. Fantasy Strategy Engine, Signal Engine, ChildcareOS, and a Unity board game carried from blank page toward production, each with the same discipline: workflow research, IA, implementation, QA, iteration.",
+      "audiences": [
+        "general",
+        "dev"
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "slug": "dev",
+      "audience": "Engineering hiring managers",
+      "accent": "#1F5A8A",
+      "accent_hover": "#184868",
+      "fonts": {
+        "heading": "JetBrains Mono",
+        "body": "Inter",
+        "url": "family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700"
+      },
+      "title": "Russell Cole — AI-Native Product Engineer",
+      "description": "AI-native product engineer. I ship live software end to end, including a zero-data-loss re-platform of a revenue-bearing app onto Next.js and Supabase.",
+      "banner": "Building Koya OS and Parallel Human Labs products. If your team needs someone who ships, send a note.",
+      "tagline": "AI-native product engineer. I ship live software, end to end.",
+      "intro": "I take products from blank page to running system: workflow research, architecture, implementation, QA, and the unglamorous work of migrating live data without breaking anything.",
+      "migration": {
+        "kicker": "Engineering credential",
+        "title": "Re-platformed a live, revenue-bearing app with verified no data loss.",
+        "body1": "I rebuilt GroomBook, a live grooming-business platform with a paying customer, from a single-file static app onto a modern stack — Next.js, React, TypeScript, and Supabase (Postgres) on Vercel — then cut production over with no data loss, confirmed by identical row counts before and after.",
+        "body2": "The cutover ran from a written runbook as a reversible, gated process: backups, drift checks, an atomic migration, an eight-point verifier, RLS hardening, and a rollback path I never needed."
+      },
+      "work_label": "Selected work",
+      "work_cards": [
+        {
+          "title": "Ramara Hub — live civic platform, AI-native build",
+          "sub": "Founder and builder of a source-backed civic information hub for a township, live in production at ramarahub.ca.",
+          "body": "A plain-language answer engine over a sourced knowledge base of 74 entries across 12 categories that never guesses and links every claim to an official source, plus 7 researched issue briefs and a searchable archive of public township documents. Static GitHub Pages front end with a Supabase backend, built solo through AI-assisted, agent-driven content and code workflows, with resident data tools like a budget viewer and project tracker in development. Live at <a href=\"https://ramarahub.ca\" class=\"text-accent font-medium hover:underline\">ramarahub.ca</a>."
+        },
+        {
+          "title": "Directing an AI agent dev team",
+          "sub": "Claude + Codex agents under a written safety doctrine, with human-gated releases, operating a production SaaS with a live daily-use customer.",
+          "body": "The process behind the GroomBook re-platform above: a CI quality gate running typecheck, lint, a 1,754-test suite, and a cross-tenant isolation gate on every change; v1's critical database hole (open access rules, exposed key) closed with server-side auth and RLS hardening; Sentry error monitoring wired in; every feature shipped in gated slices behind kill-switches, with explicit human approval to go live."
+        },
+        {
+          "title": "Auction Advisor",
+          "sub": "I'm the founder and product architect of a real-time auction-intelligence platform on Next.js and Postgres/Prisma, built through AI-assisted engineering.",
+          "body": "Architected a retail-comp research pipeline that matches a live auction catalog of more than 22,000 items against current retail prices with source-quality tiering, confidence scoring, currency normalization, and a carry-forward cache, reaching high-confidence comps on more than half the catalog. Built a real-time finals-and-bidder capture system that records winning bids and full bid trails as lots close, correctly handling the platform's two-minute soft-close, validated against live auction state before the data is trusted. Diagnosed and recovered a production data-loss incident and re-established a durable system of record."
+        },
+        {
+          "title": "AgXactly analytics platform",
+          "sub": "As founder and CEO, I oversaw the dev buildout of a farmer-facing data analytics platform.",
+          "body": "Crop-population measurement, IPM strategy support, and supply-chain models projecting outputs from field data. Owned product direction and stepped in on engineering decisions when needed."
+        }
+      ],
+      "open_intro": "Open to engineering and product-build work where I own outcomes end to end. Still consulting, still shipping.",
+      "open_cards": [
+        {
+          "title": "End-to-end build partner",
+          "subject": "Build partner",
+          "sub": "SaaS, platforms, web apps, or the CRM and automation backbones underneath them. Architecture through to maintenance.",
+          "body": "Greenfield builds and inherited stacks: product teardown, data model review, code surface mapping, QA loops, rebuild-versus-renovate planning, and ongoing maintenance. The GroomBook re-platform above is the working example. Best fit: teams that need someone to carry a system from idea or legacy state to running software."
+        },
+        {
+          "title": "Embedded AI-native consultant",
+          "subject": "AI-native consultant",
+          "sub": "Inside a product or engineering org that wants AI in the workflow without losing senior judgment.",
+          "body": "I run my own studio AI-native. AI supports specs, tickets, implementation, QA, and documentation, with human judgment controlling architecture, security, and acceptance. Best fit: teams that want the leverage of agents with discipline underneath — tight context, scoped tasks, review gates, browser QA."
+        },
+        {
+          "title": "Senior product or technical lead",
+          "subject": "Senior product/technical lead",
+          "sub": "Head of Product, product/technical lead, or interim CTO. Brought in by the founder, the board, or an investor.",
+          "body": "A senior seat is open and the company knows it can't stay that way. The work underneath: understand the vision, map the workflow, build the system, ship the work, and help the team execute. Best fit: founders or investors who need embedded senior product and technical support."
+        }
+      ],
+      "quote": "It was live customer data, so nobody gets to be casual. Rehearse the cutover, gate every step, keep the rollback ready. Boring is what good engineering looks like.",
+      "operate": [
+        "I'm AI-native by default: output at the speed and quality of a small senior team, with my judgment owning architecture, security, and acceptance.",
+        "I'm disciplined with live systems: written runbooks, review gates, browser QA, and reversible cutovers when real data is on the line.",
+        "I inherit existing software comfortably: I audit the flow, code surface, data model, and QA gaps before I touch the architecture."
+      ],
+      "background": [
+        "Russell Cole. Eight years in agtech, where founder work turned into hands-on product building. Founded AgXactly Crop Insights for crop scouting and supply-chain modelling; it raised roughly $1M and was acquired by Nighthawk Ag. Earlier ventures include Vesta.AI for restaurant smart-speaker ordering and OrganicGrow Solutions for soil amendments.",
+        "Through Parallel Human Labs, I now build AI-native product systems end to end, including GroomBook (rebuilt on Next.js and Supabase and cut over with no data loss), Koya OS, ChildcareOS, and Signal Engine. Also built the CRM and automation stack for the AIVA Network, one of Canada's largest federally funded agtech ecosystems. The pattern is consistent: understand the real workflow, map the product and data model, build the right system, ship it, test it, and keep improving it."
+      ]
+    },
+    {
+      "slug": "sales",
+      "audience": "Sales & commercial roles",
+      "accent": "#8B2E1A",
+      "accent_hover": "#6F2414",
+      "fonts": {
+        "heading": "Source Serif 4",
+        "body": "Archivo",
+        "url": "family=Archivo:wght@400;500;600&family=Source+Serif+4:wght@400;600"
+      },
+      "title": "Russell Cole — Revenue Operator Who Builds the Product",
+      "description": "Revenue operator with eight years in agtech: customer discovery, ~$1M raised, an acquisition, and cross-border GTM.",
+      "banner": "Open to senior commercial and operating roles. If you are scaling revenue, send a note.",
+      "tagline": "Revenue operator who builds the product too.",
+      "intro": "I have carried a number my whole career: from cold calls to multimillion-dollar enterprise deals at a $10B distributor, to founder-led GTM that took AgXactly to $45K MRR with the largest leafy-greens growers in the US. I sell it, and I build the machine behind it.",
+      "stats": [
+        {
+          "n": "$45K",
+          "label": "MRR at peak — AgXactly"
+        },
+        {
+          "n": "$400K+",
+          "label": "OGS revenue, 18 months"
+        },
+        {
+          "n": "$1M+",
+          "label": "Raised while selling"
+        },
+        {
+          "n": "Millions",
+          "label": "Enterprise contracts"
+        }
+      ],
+      "migration": {
+        "kicker": "Operating proof",
+        "title": "Kept a revenue-bearing business running through a full platform change.",
+        "body1": "GroomBook is a live grooming-business platform with a paying customer. I rebuilt it on a new stack and moved the business over with no downtime and no data loss, so the customer never felt the change. The migration ran as a reversible, gated process with a rollback path at every step.",
+        "body2": "That is how I sell and operate: protect the customer, de-risk the change, and ship."
+      },
+      "work_label": "Selected work",
+      "work_cards": [
+        {
+          "title": "Founder-led GTM — AgXactly",
+          "sub": "CEO and head of GTM: triple-digit month-over-month growth in year one, topping out at $45K MRR.",
+          "body": "Sold to the largest leafy-greens growers in the US — Taylor Farms, Church Brothers, Braga Fresh, Earthbound Farms — while raising roughly $1M and running business operations and investor relations. Acquired by Nighthawk Ag."
+        },
+        {
+          "title": "OrganicGrow Solutions",
+          "sub": "$400K+ gross revenue in the first 18 months, sold to enterprise growers in Canada.",
+          "body": "Built the company while selling it: product development, lab testing, and organic certifications in parallel with enterprise deals, plus $150K+ raised."
+        },
+        {
+          "title": "Enterprise sales career",
+          "sub": "Top sales associate on nearly every team, from cold-call telemarketing to multimillion-dollar enterprise contracts.",
+          "body": "At Veritiv, a $10B distributor, sold multimillion-dollar packaging systems into pharma and logistics and opened new sectors with offerings the company didn't yet have. At CogecoPeer1, generated millions in telecom and cloud contracts inside and outside. VP of Sales at a cybersecurity firm, leading multimillion-dollar red-team and code-audit engagements."
+        },
+        {
+          "title": "GTM consulting",
+          "sub": "North American go-to-market for startups and scaleups landing or expanding across Canada and the US.",
+          "body": "Consulted several startups and scaleups on GTM with success. Continent-wide network of ecosystem hubs and direct buyer relationships in agtech, plus the cross-border corporate mechanics from running Canadian and US structures."
+        }
+      ],
+      "open_intro": "Open to senior commercial and operating roles, GTM leadership, and partnerships. Still consulting, still shipping.",
+      "open_cards": [
+        {
+          "title": "GTM consulting",
+          "subject": "GTM consulting",
+          "sub": "North American go-to-market for agtech companies landing or expanding across Canada and the US.",
+          "body": "I founded and operated startups under both Canadian federal and US C-corp structures, so the cross-border mechanics are familiar. I bring a continent-wide network of agtech ecosystem hubs and direct buyer relationships in livestock and horticulture. Best fit: companies coming into North America that want to land and expand quickly."
+        },
+        {
+          "title": "Senior commercial operator",
+          "subject": "Senior commercial operator",
+          "sub": "VP Sales, founding GM, or senior operating partner. Brought in by the founder, the board, or an investor.",
+          "body": "Pipeline ownership, customer discovery, and the systems that make revenue repeatable — CRM, automation, and reporting built by the same person who carries the number. Best fit: companies that need the commercial seat filled by someone who also builds the machine behind it."
+        },
+        {
+          "title": "Operating leader (CEO or GM)",
+          "subject": "Operating leader role",
+          "sub": "Take the wheel as CEO or GM at an agtech company. Full ownership and AI-native operations.",
+          "body": "Step into the top seat. Full lifecycle ownership of product, commercial, and operations, with output scaling through AI-native flows rather than headcount. Best fit: companies whose CEO or GM role is open or being redefined, where the next leader needs founder DNA and a commercial spine."
+        }
+      ],
+      "quote": "I started out cold calling windows and doors. The lesson never changed: nobody buys a product, they buy their problem getting smaller. The difference is now I build the product too.",
+      "operate": [
+        "Revenue-first. From cold calls to enterprise deals, the lesson never changed: people buy their problem getting smaller.",
+        "I can sell what I build and build what I sell. Demos, scoping, and delivery come from the same person.",
+        "Team-first with energy to burn: I lead with empathy and conviction and fight for the deal to the end."
+      ],
+      "background": [
+        "Russell Cole. The arc runs from cold-call telemarketing to enterprise sales at Veritiv, a $10B distributor, where I sold multimillion-dollar packaging systems into pharma and logistics. Then millions in telecom and cloud contracts at CogecoPeer1, and a VP of Sales seat in cybersecurity. Top associate on nearly every team along the way.",
+        "Then founder revenue. AgXactly grew triple-digit month-over-month in year one to $45K MRR with the largest US leafy-greens growers, raised roughly $1M, and was acquired by Nighthawk Ag. OrganicGrow Solutions did $400K+ gross in its first 18 months with enterprise growers in Canada. Through Parallel Human Labs I now build the product and revenue systems behind the motion, including live platforms like GroomBook."
+      ]
+    },
+    {
+      "slug": "founders",
+      "audience": "Co-founders & founding teams",
+      "accent": "#5B3A8B",
+      "accent_hover": "#472D6E",
+      "fonts": {
+        "heading": "Fraunces",
+        "body": "Inter",
+        "url": "family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600"
+      },
+      "title": "Russell Cole — Technical Co-Founder, Full-Arc Operator",
+      "description": "Technical co-founder who has founded, raised ~$1M, shipped, and exited. I take products from idea to live software and keep them running.",
+      "banner": "Open to co-founder and founding-team conversations. If you are building something hard, send a note.",
+      "tagline": "Technical co-founder who has run the full arc.",
+      "intro": "Founded, raised roughly $1M, shipped, and exited to Nighthawk Ag. I take a product from idea to live software and keep it running, without a team to hide behind.",
+      "stats": [
+        {
+          "n": "4",
+          "label": "Companies founded"
+        },
+        {
+          "n": "$1.2M+",
+          "label": "Capital raised"
+        },
+        {
+          "n": "1",
+          "label": "Exit — Nighthawk Ag"
+        },
+        {
+          "n": "10+",
+          "label": "Largest team led"
+        }
+      ],
+      "migration": {
+        "kicker": "What I can do solo",
+        "title": "Took a live product to a new stack with no downtime and no data loss.",
+        "body1": "GroomBook is a real, revenue-bearing product. I rebuilt it onto a new stack and cut the business over myself, no data loss and no downtime, using a reversible, gated cutover with rollback at every step. This is the rare founder skill: re-platforming a live business without breaking it.",
+        "body2": "I can do the same for a company we build together: own the product, the data, and the cutover end to end."
+      },
+      "work_label": "Selected work",
+      "work_cards": [
+        {
+          "title": "Ramara Hub — civic platform shipped solo",
+          "sub": "Conceived, built, and shipped a live civic information hub for the Township of Ramara, in production at ramarahub.ca.",
+          "body": "A neutral, source-backed answer engine for residents that never guesses, with researched issue briefs, a searchable archive of public township documents, and council and budget references. Built solo through AI-assisted, agent-driven workflows on a static front end with a Supabase backend, with resident data tools in development. Live at <a href=\"https://ramarahub.ca\" class=\"text-accent font-medium hover:underline\">ramarahub.ca</a>."
+        },
+        {
+          "title": "Founder, ~$1M raised — AgXactly",
+          "sub": "Founded and led an agtech precision-data company, customer discovery through acquisition.",
+          "body": "Raised roughly $1M and exited to Nighthawk Ag. Built and ran Canadian and US corporate structures."
+        },
+        {
+          "title": "Auction Advisor — built solo, AI-assisted",
+          "sub": "I conceived and led a multi-sided auction-intelligence product, directing AI agents to ship a validated real-time system in a compressed timeframe.",
+          "body": "Owned product, architecture, and the cost-versus-quality tradeoffs end to end: a retail-comp pipeline grounding a live catalog of more than 22,000 items against real prices, and a real-time finals and bidder-trail capture system that handles the platform's soft-close extensions. When a sync incident evicted the working repo, I diagnosed it, reconciled divergent branches, and re-established a durable system of record. This is what building beginnings myself looks like now."
+        },
+        {
+          "title": "Vesta.AI — why I build myself",
+          "sub": "First startup: raised $50K from Jack Astor's corporate group on a deck.",
+          "body": "It failed when the technical cofounder couldn't deliver what he claimed. I decided that would never happen again, so I became the builder. The GroomBook re-platform above is the proof."
+        },
+        {
+          "title": "Parallel Human Labs",
+          "sub": "My studio: products and operating systems built end to end.",
+          "body": "Koya OS, ChildcareOS, Signal Engine, and Fantasy Strategy Engine carried from blank page toward production, each with the same discipline I bring to a venture."
+        }
+      ],
+      "open_intro": "Open to co-founder and founding-team roles where I own the product and the build. Still consulting, still shipping.",
+      "open_cards": [
+        {
+          "title": "Co-founder (product and build)",
+          "subject": "Co-founder conversation",
+          "sub": "The technical-side partner who owns product, data, and delivery while you own your half.",
+          "body": "I take the product from idea to live software and keep it running: workflow research, architecture, implementation, QA, and the cutovers nobody wants to own. I have run the full arc before — raise, build, ship, exit. Best fit: a founder with deep domain knowledge who needs the build side covered end to end."
+        },
+        {
+          "title": "Founding operator (CEO or GM)",
+          "subject": "Founding operator role",
+          "sub": "Take the operating seat in a company we build or run together. Full ownership, AI-native operations.",
+          "body": "Full lifecycle ownership of product, commercial, and operations, with output scaling through AI-native flows rather than headcount. Best fit: founding teams or backers who need the seat filled by someone with founder DNA and a builder's instinct."
+        },
+        {
+          "title": "End-to-end build partner",
+          "subject": "Build partner",
+          "sub": "Not ready for a co-founder commitment? Start with a build engagement and see how we work.",
+          "body": "Architecture through to maintenance on the product and the systems around it. Greenfield or inherited stack. A contained first project is a low-risk way to test the working relationship before any equity conversation. Best fit: founders who want proof before partnership."
+        }
+      ],
+      "quote": "Vesta was my first company and my first failure. Holding the bag taught me more than any win since. I promised myself I'd never be the founder who couldn't build, and I kept it.",
+      "operate": [
+        "Founder-first. I build, ship, and own outcomes end to end.",
+        "Empathetic, convicted leadership: I build the beginnings myself, build the team around them, and fight to the end.",
+        "AI-native by default: I output at the speed and quality of a small senior team."
+      ],
+      "background": [
+        "Russell Cole. Multiple companies founded: Vesta.AI for restaurant smart-speaker ordering, OrganicGrow Solutions for soil amendments, AgXactly Crop Insights for crop scouting and supply-chain modelling, and the Parallel Human Labs products. AgXactly raised roughly $1M and was acquired by Nighthawk Ag. Teams ranged from solo builds to ten people plus consultants and fractional operators, with advisory boards and a formal company board.",
+        "Through Parallel Human Labs, I now build AI-native product systems end to end, including Koya OS, GroomBook, ChildcareOS, and Signal Engine, and built the CRM and automation stack for the AIVA Network. The pattern is consistent: understand the real workflow, map the product and data model, build the right system, ship it, test it, and keep improving it."
+      ]
+    },
+    {
+      "slug": "investors",
+      "audience": "Investors",
+      "accent": "#8A6D0B",
+      "accent_hover": "#6E5709",
+      "fonts": {
+        "heading": "Playfair Display",
+        "body": "Source Sans 3",
+        "url": "family=Source+Sans+3:wght@400;500;600&family=Playfair+Display:wght@400;600;700"
+      },
+      "title": "Russell Cole — Founder-Operator, AI-Native Product Systems",
+      "description": "Founder-operator with multiple agtech raises and an acquisition, building AI-native product systems end to end.",
+      "banner": "Building Koya OS and Parallel Human Labs products. Open to operator and investor-side conversations.",
+      "tagline": "Founder-operator building AI-native product systems.",
+      "intro": "Three funded ventures, $1.2M+ raised, one exit. I read early-stage product, GTM, and teams from the operator's side of the table, and I build the products myself.",
+      "stats": [
+        {
+          "n": "$1.2M+",
+          "label": "Raised across ventures"
+        },
+        {
+          "n": "3",
+          "label": "Ventures funded"
+        },
+        {
+          "n": "1",
+          "label": "Exit — Nighthawk Ag"
+        },
+        {
+          "n": "$45K",
+          "label": "MRR at peak"
+        }
+      ],
+      "migration": {
+        "kicker": "Execution signal",
+        "title": "De-risked re-platforming of a live revenue app, with a clear v2 path.",
+        "body1": "GroomBook is a live, revenue-bearing product. I moved it onto a new stack with zero downtime and no data loss, run as a reversible, gated cutover, the kind of execution discipline that protects revenue while the product evolves.",
+        "body2": "This is one founder running an engineering org's process: CI with a 1,754-test suite, security hardening, and monitoring behind every release, with v2 extending toward enterprise use."
+      },
+      "work_label": "Selected work",
+      "work_cards": [
+        {
+          "title": "Ramara Hub — a third live product",
+          "sub": "Founder and builder of a civic-information platform live in production at ramarahub.ca, built AI-native.",
+          "body": "The leverage thesis again: directing AI agents to ship a real, public product solo. A source-backed answer engine for township residents that never guesses, with researched issue briefs and a searchable archive of public documents, on a static front end with a Supabase backend. Live and in use at <a href=\"https://ramarahub.ca\" class=\"text-accent font-medium hover:underline\">ramarahub.ca</a>, with resident data tools in development."
+        },
+        {
+          "title": "Founder, ~$1M raised — AgXactly",
+          "sub": "Agtech precision-data company; triple-digit month-over-month growth in year one to $45K MRR.",
+          "body": "Raised roughly $1M, sold to the largest US leafy-greens growers — Taylor Farms, Church Brothers, Braga Fresh, Earthbound Farms — and exited to Nighthawk Ag."
+        },
+        {
+          "title": "OrganicGrow Solutions",
+          "sub": "$150K+ raised; $400K+ gross revenue in the first 18 months.",
+          "body": "Built products, lab testing, and organic certifications while landing enterprise growers in Canada. Revenue and fundraising ran in parallel."
+        },
+        {
+          "title": "Vesta.AI — the expensive lesson",
+          "sub": "$50K raised from Jack Astor's corporate group on the strength of the pitch.",
+          "body": "The venture failed when the technical cofounder couldn't build what he claimed. That failure is why I became the technical builder myself. The de-risked GroomBook re-platform above is the direct result."
+        },
+        {
+          "title": "Auction Advisor — a second live product",
+          "sub": "I'm the founder and architect of an auction-intelligence platform, shipped through AI-assisted engineering and in real daily use.",
+          "body": "The same leverage thesis, a second time: directing AI agents to ship a validated, real-time data system solo. It grounds a live auction catalog of more than 22,000 items against retail prices to score deal quality, reaching high-confidence comps on more than half the catalog, and captures complete bid trails and final-sale analytics. In genuine daily use, on my own purchases."
+        }
+      ],
+      "open_intro": "Open to investor-side operating roles, diligence partnerships, and operator-in-residence seats. Still consulting, still shipping.",
+      "open_cards": [
+        {
+          "title": "Investor-side operator",
+          "subject": "Investor-side operator",
+          "sub": "Analyst, due diligence partner, or operator-in-residence at a VC, PE, or DD firm.",
+          "body": "I've raised multiple rounds across agtech ventures, so the diligence pipeline is familiar from the other side. Eight years inside the North American agtech network lets me separate signal from noise on early-stage product, GTM, and teams. Best fit: firms that want a practitioner in the room."
+        },
+        {
+          "title": "Operating leader for a portfolio company",
+          "subject": "Portfolio operating leader",
+          "sub": "CEO, GM, or senior operating partner placed into a portfolio company that needs execution.",
+          "body": "Full lifecycle ownership of product, commercial, and operations, with output scaling through AI-native flows rather than headcount. Best fit: a portfolio company whose top seat is open or being redefined, where the board wants founder DNA and a builder's instinct."
+        },
+        {
+          "title": "Ecosystem or program lead",
+          "subject": "Ecosystem or program lead",
+          "sub": "Accelerator, university program, or government innovation initiative scaling agtech founders.",
+          "body": "I was most recently Ecosystem Manager for the AIVA Network, one of Canada's federally funded agtech innovation hubs, owning startup outreach, evaluation, pilot routing, and the Airtable system underneath it. Best fit: programs that need an operator who can run the surface and build the rails."
+        }
+      ],
+      "quote": "I've raised, sold, exited, and failed. What I bring to the table isn't theory about the early stage. It's receipts.",
+      "operate": [
+        "Operator's lens: eight years inside North American agtech gives me real pattern recognition on early-stage product, GTM, and teams.",
+        "I've raised multiple rounds, so I know the diligence pipeline from the other side of the table.",
+        "I build the products myself, at the speed and quality of a small senior team."
+      ],
+      "background": [
+        "Russell Cole. Eight years in agtech across the full arc: founded Vesta.AI, OrganicGrow Solutions, and AgXactly Crop Insights, raising $1.2M+ across the three. AgXactly was acquired by Nighthawk Ag, so raises and a sale process are familiar from the founder's side of the table.",
+        "Built the CRM and automation stack for the AIVA Network, one of Canada's largest federally funded agtech ecosystems, and now run Parallel Human Labs, shipping AI-native products end to end: Koya OS, GroomBook, ChildcareOS, and Signal Engine. I read early-stage product, GTM, and teams as a practitioner, not an analyst."
+      ]
+    }
+  ]
+}
