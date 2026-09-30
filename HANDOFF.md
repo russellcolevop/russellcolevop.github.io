@@ -16,6 +16,9 @@ Ontario-based and available full-time. Private financial pressure and travel pla
 Root, engineering, sales, founder, investor/portfolio, achievements and hub pages refreshed.
 Stonewise added as a live installable care-companion web app, September 30.
 Native iPhone release remains planned; no clinical validation or personal health claims.
+AI-building positioning now spans research, design, development and operations,
+with ownership through maintenance and no traditional software-engineering training.
+PFK copy explains custom contracts, rosters, salary caps, fees, authentication and chat.
 AI practice names Claude Code, Cowork, Codex, MCP, local transcription, browser workflows,
 Agent Reach and the bounded Jev pilot, with testing and release accountability.
 Current production, private releases, external beta, local tooling, prototypes and retired
