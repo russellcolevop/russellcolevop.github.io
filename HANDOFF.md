@@ -14,6 +14,8 @@ Concrete tools and build evidence support the statement; no population percentil
 Ontario-based and available full-time. Private financial pressure and travel plans excluded.
 
 Root, engineering, sales, founder, investor/portfolio, achievements and hub pages refreshed.
+Stonewise added as a live installable care-companion web app, September 30.
+Native iPhone release remains planned; no clinical validation or personal health claims.
 AI practice names Claude Code, Cowork, Codex, MCP, local transcription, browser workflows,
 Agent Reach and the bounded Jev pilot, with testing and release accountability.
 Current production, private releases, external beta, local tooling, prototypes and retired

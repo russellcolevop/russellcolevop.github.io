@@ -24,6 +24,20 @@
       "link": "https://getfuwari.com"
     },
     {
+      "id": "stonewise",
+      "title": "Stonewise: live kidney-stone care companion",
+      "blurb": "Built Stonewise as an installable web app for organizing kidney-stone care: hydration logging and pacing, meal tracking, lab-result trends, daily plans, and backup and restore. AI-assisted report and meal input asks the user to check extracted information before saving. The web app is live; a native iPhone app remains planned. Designed for personal organization and evidence-aware decision support.",
+      "audiences": [
+        "general",
+        "dev",
+        "sales",
+        "founders",
+        "investors"
+      ],
+      "metric": "Live installable web app | native iPhone app planned",
+      "link": "https://stonewise.pages.dev"
+    },
+    {
       "id": "childcareos",
       "title": "ChildCareOS: private operations platform",
       "blurb": "Built a private web platform for childcare operations, covering administration, educator and parent workflows, messaging, and access controls. The private web release is deployed. Physical acceptance and the parent mobile release remain separate milestones. Public demonstrations use synthetic data.",
@@ -284,6 +298,7 @@
       ],
       "work_ids": [
         "fuwari",
+        "stonewise",
         "childcareos",
         "signal",
         "pfk",
@@ -348,6 +363,7 @@
         "agxactly",
         "aiva",
         "fuwari",
+        "stonewise",
         "corbel",
         "signal",
         "fi",
@@ -405,6 +421,7 @@
       ],
       "work_ids": [
         "fuwari",
+        "stonewise",
         "childcareos",
         "pfk",
         "signal",
@@ -469,6 +486,7 @@
         "aiva",
         "fi",
         "fuwari",
+        "stonewise",
         "childcareos",
         "signal",
         "pfk",
