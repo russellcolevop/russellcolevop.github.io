@@ -16,8 +16,7 @@ publish on main and verify all live paths. Do not submit applications or contact
 
 Lead: “I work at the edge of what is possible with AI, and turn it into working products.”
 The requested top-0.01% idea is expressed as positioning, not an unsupported percentile.
-No benchmark establishes a population rank. No money pressure or private travel plans
-are published. Full-time availability is Russell-confirmed.
+No benchmark establishes a population rank. Full-time availability is Russell-confirmed. Public copy uses professional information only.
 
 Just under US$1M raised and the highest cumulative judge-rated pitch score at program
 end are direct Russell confirmations on September 30. Cohort location/year stay omitted
@@ -68,7 +67,7 @@ Added canonical URLs and corrected contact-card title. Missing agent-rule pointe
 
 Unsupported superiority: use concrete work instead of population rank. Stale product
 status: distinguish private, beta, local, prototype and historical work. Privacy: only
-public role/product facts; exclude confidential customers and personal financial state.
+public role/product facts; exclude confidential information.
 Renderer regression: structural, reproducibility, browser and interaction checks.
 Publication: normal main push authorized by this task and global standing rules;
 rollback by reverting this scoped release, never rewriting history.
@@ -80,7 +79,7 @@ about 6.7 GiB swap, 43% memory free). No active process or other-owner job was s
 
 ## Verification results
 
-Local browser acceptance passed all seven routes at 1440px and 390px: no horizontal overflow, expandable cards open/close, relative links HTTP 200, zero page errors. Root mobile, engineering desktop and social image were visually inspected. Five generated pages were byte-identical after rerunning the generator. Independent review and final live readback pending. Structural checks passed for
+Local browser acceptance passed all seven routes at 1440px and 390px: no horizontal overflow, expandable cards open/close, relative links HTTP 200, zero page errors. Root mobile, engineering desktop and social image were visually inspected. Five generated pages were byte-identical after rerunning the generator. Independent review passed after remediation; final live readback follows deployment. Structural checks passed for
 all seven pages: unique IDs, valid ARIA references, canonical and social metadata,
 valid JSON-LD, and no em dashes. Generator ran successfully. No stale test/live-backend
 counts, funding aggregates, or percentile claims remain on those surfaces.
@@ -93,3 +92,24 @@ Voice/claim checks: direct wording, no em dashes or unsupported superiority perc
 source/status boundaries preserved. No private customer or family information included.
 
 Git recovery: empty index.lock dated September 28 had no lsof owner or active Git process. Preserved its bytes at _reports/2026-09-30-recovered-index-lock.empty before resuming normal Git. Fresh independent rereview: 0 Critical / 0 Important / 0 Minor.
+
+## Live release verified
+
+Content commit cccbdedf34f1082903ed07b49f3d5707049f4ed1 reached origin/main.
+GitHub Pages run 36741061885 completed successfully. Live byte readback matches
+all seven HTML pages and the new PNG exactly; SHA-256 evidence is in
+2026-09-30-browser/live-byte-readback.json. Live browser acceptance passed
+desktop/mobile rendering, card interactions, local links including favicon resources,
+metadata and zero page errors; live-checks.json and live screenshots retained.
+
+OpenGraph.xyz scanned the live URL and its LinkedIn preview was visually inspected:
+https://www.opengraph.xyz/url/https%3A%2F%2Frussellcolevop.github.io%2F
+The updated title, portrait graphic and destination display correctly. Inspector
+reported zero errors, a clean image fetch and 1200x630 PNG dimensions. Three
+non-blocking marketing suggestions remain: no image CTA, 134-character description
+may truncate, and optional og:site_name omitted. No account/profile modification
+or public social post was made by this preview check.
+
+Final specialist review: 0 Critical / 0 Important / 0 Minor after all fixes.
+This release updates only the profiles hosted on Russell site, not LinkedIn accounts.
+Application corrections separately reached RussellLabs main at 2dcc3e1d.

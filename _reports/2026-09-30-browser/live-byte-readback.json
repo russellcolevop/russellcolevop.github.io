@@ -1,0 +1,42 @@
+[
+  {
+    "route": "/",
+    "http": 200,
+    "sha256": "c8bc1eb36d96bf53ea09cea2e10bb82eb5f2e8e9b93136bf5e22d1d9f8d40d9e"
+  },
+  {
+    "route": "/dev/",
+    "http": 200,
+    "sha256": "fa507228208fb85920431045d297d6df7ff7faef9eb5d437aa59f09f9f4ed718"
+  },
+  {
+    "route": "/sales/",
+    "http": 200,
+    "sha256": "c66cb2c4b7b552355d242be705b8a0ba8cf309591550713d11dac43387824d58"
+  },
+  {
+    "route": "/founders/",
+    "http": 200,
+    "sha256": "d2c81d87f794e194aabd59c732d8831116b80bd48d421abe862cb2f09ea8f79f"
+  },
+  {
+    "route": "/investors/",
+    "http": 200,
+    "sha256": "4c45a765a7fab5913cb0bb9c37da094b4c0403dbcee4cfd9c3c4aa5a9310e8e2"
+  },
+  {
+    "route": "/achievements/",
+    "http": 200,
+    "sha256": "81dcf849df50bc8a923209c1320d0093ea5f3c7e63066df4fd3521fc88bd8b9d"
+  },
+  {
+    "route": "/hub/",
+    "http": 200,
+    "sha256": "9099b2fb28f255980de9b3884052817b8f116af36c6bcef0c1258380b4b2b12f"
+  },
+  {
+    "route": "/assets/og-profile-20260930.png",
+    "http": 200,
+    "sha256": "36f6ab1fedfbacf8eef9f6344de4d278157aac3e93b82e1767fdb514fc426782"
+  }
+]
