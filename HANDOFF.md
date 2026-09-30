@@ -11,7 +11,7 @@ Pushing main deploys GitHub Pages from the repository root. No custom domain.
 
 “I work at the edge of what is possible with AI, and turn it into working products.”
 Concrete tools and build evidence support the statement; no population percentile claimed.
-Ontario-based and available full-time. Private financial pressure and travel plans excluded.
+Ontario-based and available full-time.
 
 Root, engineering, sales, founder, investor/portfolio, achievements and hub pages refreshed.
 Stonewise added as a live installable care-companion web app, September 30.
@@ -38,7 +38,8 @@ Cohort year/location omitted pending conflicting historical records.
 ## Evidence and release
 
 Claim sources, acceptance checks, review and release evidence:
-_reports/2026-09-30-profile-refresh.md.
+_reports/2026-09-30-profile-refresh.md and
+_reports/2026-09-30-application-site-sync.md.
 Browser runner: _reports/verify-profile-pages.cjs, optional --live.
 Seven routes verified at desktop/mobile sizes, links, card interactions and social metadata.
 Independent Deep review and final live readback are recorded in the dated report.

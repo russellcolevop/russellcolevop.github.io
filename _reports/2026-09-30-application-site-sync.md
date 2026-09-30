@@ -13,4 +13,6 @@ Independent reviewer approved: 0 Critical / 0 Important / 0 Minor.
 Generated output reproducible; all seven routes passed local desktop/mobile,
 card interactions, links/resources and metadata with zero page errors.
 Metadata/share image unchanged from the earlier reviewed live preview.
-Live-content readback pending deployment.
+GitHub Pages run 36771345436 succeeded for content commit b95ede4.
+All seven live HTML pages returned HTTP 200 and matched reviewed source bytes
+exactly; SHA-256 evidence: 2026-09-30-final-sync-live.json.

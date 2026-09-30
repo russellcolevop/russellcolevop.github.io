@@ -1,0 +1,37 @@
+[
+  {
+    "route": "/",
+    "status": 200,
+    "sha256": "06329c7c4a850d8d121f50bcf8d7dda26045a03cfb49c1cda265052441d17e98"
+  },
+  {
+    "route": "/dev/",
+    "status": 200,
+    "sha256": "1fc254971728748a6c0e2af7e27a8493c720fbe6de4e7b5d7a192dd8858d4852"
+  },
+  {
+    "route": "/sales/",
+    "status": 200,
+    "sha256": "55845daa779ff63f216eee250946c8d2eea68dafaf1050c1e6dfbef5449d3cf5"
+  },
+  {
+    "route": "/founders/",
+    "status": 200,
+    "sha256": "1e5b355ad62fa477b0a49ceb7873c69529d72c2b666e3cec0054fa27a2262f8d"
+  },
+  {
+    "route": "/investors/",
+    "status": 200,
+    "sha256": "d102657469b4919175cc3e9b097bec1abd4c23cd63f003a868907988e7b9c44d"
+  },
+  {
+    "route": "/achievements/",
+    "status": 200,
+    "sha256": "bbecb222fabbff850a3345b377ae0e5597302a38dc7ebb4cf5e66d9380310443"
+  },
+  {
+    "route": "/hub/",
+    "status": 200,
+    "sha256": "9c2baf8e8fd551e0eae5fd397fd51e685fa482bbf34bc9d3f46395af42ddd036"
+  }
+]
