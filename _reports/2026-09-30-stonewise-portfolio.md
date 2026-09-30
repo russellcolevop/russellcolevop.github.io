@@ -16,4 +16,6 @@ sizes with no overflow or page errors, card open/close and relative resource lin
 passed. Achievements mobile rendering visually inspected. Prior share metadata
 and image unchanged; previous live social-preview acceptance remains applicable.
 Independent specialist review: 0 Critical / 0 Important / 0 Minor.
-Final live readback follows publication.
+Live readback passed: all six changed public HTML pages return HTTP 200, contain
+Stonewise and match local bytes exactly. Evidence: 2026-09-30-stonewise-live-readback.json.
+Content release: da72632, GitHub Pages run 36742947152.

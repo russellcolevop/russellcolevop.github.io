@@ -1,0 +1,38 @@
+[
+  {
+    "route": "/",
+    "status": 200,
+    "sha256": "4630c04cdff1f0df71213b86ea4cc4a7afac30a2bdd186bf8ab9dd243e1f850b",
+    "stonewise": true
+  },
+  {
+    "route": "/dev/",
+    "status": 200,
+    "sha256": "b1054ec9546a03d3bb7cdeed3116375e27c01ab8cf1fac2bfb31391bbea7f6fa",
+    "stonewise": true
+  },
+  {
+    "route": "/sales/",
+    "status": 200,
+    "sha256": "ee9c1e0b7d9fd50570c4c581d91ee3b762bd195310e5358c0d98b595b549e540",
+    "stonewise": true
+  },
+  {
+    "route": "/founders/",
+    "status": 200,
+    "sha256": "cd113beab395a3bc5d536be5039a2fe1d10bb27fde2ae31595b32ba38e39fe8c",
+    "stonewise": true
+  },
+  {
+    "route": "/investors/",
+    "status": 200,
+    "sha256": "526f4f2f9333594ba5c36f76d46424eefdaa388b6b287e89fedc9fce73f400c9",
+    "stonewise": true
+  },
+  {
+    "route": "/achievements/",
+    "status": 200,
+    "sha256": "e6d9b232b847b2e086c4de28108f6c07188f720c3a93009eb837eb1deede3fb5",
+    "stonewise": true
+  }
+]
