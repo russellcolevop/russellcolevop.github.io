@@ -1,0 +1,82 @@
+{
+  "pages": [
+    {
+      "route": "/",
+      "status": 200,
+      "overflow": false,
+      "metadata": {
+        "title": "Russell Cole | AI-Native Builder and Founder-Operator",
+        "description": "AI-native builder and founder-operator. Live software, MCP tools, startup ecosystem work, and verified delivery with Claude and Codex.",
+        "canonical": "https://russellcolevop.github.io/",
+        "image": "https://russellcolevop.github.io/assets/og-profile-20260930.png"
+      }
+    },
+    {
+      "route": "/dev/",
+      "status": 200,
+      "overflow": false,
+      "metadata": {
+        "title": "Russell Cole | AI-Native Systems Builder",
+        "description": "I carry the work from customer workflow and product architecture to code, browser verification, release, and maintenance. My proof includes live Fuwari software, a private ChildCareOS release, and local MCP tools.",
+        "canonical": "https://russellcolevop.github.io/dev/",
+        "image": "https://russellcolevop.github.io/assets/og-profile-20260930.png"
+      }
+    },
+    {
+      "route": "/sales/",
+      "status": 200,
+      "overflow": false,
+      "metadata": {
+        "title": "Russell Cole | Revenue and AI Operating Lead",
+        "description": "Founder-led fundraising and commercial work meet hands-on AI implementation. I can learn the customer problem, shape the offer, build the workflow, and carry the delivery.",
+        "canonical": "https://russellcolevop.github.io/sales/",
+        "image": "https://russellcolevop.github.io/assets/og-profile-20260930.png"
+      }
+    },
+    {
+      "route": "/founders/",
+      "status": 200,
+      "overflow": false,
+      "metadata": {
+        "title": "Russell Cole | Founder and AI Product Builder",
+        "description": "I have raised capital, built businesses, been acquired, and experienced failure. I now build and verify software with AI agents across the product and operating workflow.",
+        "canonical": "https://russellcolevop.github.io/founders/",
+        "image": "https://russellcolevop.github.io/assets/og-profile-20260930.png"
+      }
+    },
+    {
+      "route": "/investors/",
+      "status": 200,
+      "overflow": false,
+      "metadata": {
+        "title": "Russell Cole | Portfolio Support and AI-Native Operations",
+        "description": "I bring founder-side fundraising, startup ecosystem work, FI alumni and mentoring experience, and hands-on AI product delivery to portfolio support, diligence, and operating roles.",
+        "canonical": "https://russellcolevop.github.io/investors/",
+        "image": "https://russellcolevop.github.io/assets/og-profile-20260930.png"
+      }
+    },
+    {
+      "route": "/achievements/",
+      "status": 200,
+      "overflow": false,
+      "metadata": {
+        "title": "Russell Cole : Achievements",
+        "description": "The full board of Russell Cole's work and achievements, tagged by audience.",
+        "canonical": "https://russellcolevop.github.io/achievements/",
+        "image": "https://russellcolevop.github.io/assets/og-profile-20260930.png"
+      }
+    },
+    {
+      "route": "/hub/",
+      "status": 200,
+      "overflow": false,
+      "metadata": {
+        "title": "Russell Cole : Profiles",
+        "description": "AI, product, commercial, founder, and portfolio-support profiles for Russell Cole.",
+        "canonical": "https://russellcolevop.github.io/hub/",
+        "image": "https://russellcolevop.github.io/assets/og-profile-20260930.png"
+      }
+    }
+  ],
+  "pageErrors": []
+}

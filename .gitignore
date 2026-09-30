@@ -3,3 +3,5 @@ private/
 
 .gstack/
 _to_delete/
+
+__pycache__/

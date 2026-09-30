@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+from html import escape
 from string import Template
 from urllib.parse import quote
 
@@ -18,14 +19,6 @@ SITE_URL = "https://russellcolevop.github.io"
 EMAIL = "russellcolevop@gmail.com"
 GENERATED_PAGES = ("dev", "founders", "investors", "sales")
 
-DEFAULT_STATS = {
-    "dev": [
-        {"n": "137", "label": "Clients moved"},
-        {"n": "737", "label": "Appointments"},
-        {"n": "0", "label": "Rows lost"},
-        {"n": "19&#8202;&#8594;&#8202;6", "label": "Security lints"},
-    ]
-}
 
 AUDIENCES = {
     "general": {"label": "General", "color": "#2E6F4E"},
@@ -72,6 +65,22 @@ def render_background(paragraphs: list[str]) -> str:
             f'        <p class="font-sans text-base md:text-lg text-near-black leading-relaxed{margin}" data-fade>{paragraph}</p>'
         )
     return "\n".join(rendered)
+
+
+def render_ai_practice(practice: dict) -> str:
+    cards = "\n".join(
+        '<article class="mb-6"><h3 class="font-sans font-semibold text-near-black mb-2">'
+        + escape(section['title']) + '</h3><p class="font-sans text-sm md:text-base text-mid-gray leading-relaxed">'
+        + escape(section['body']) + '</p></article>'
+        for section in practice['sections']
+    )
+    return (
+        '<section aria-labelledby="ai-practice-heading" class="px-6 py-14 md:py-20 border-t border-light-gray">'
+        '<div class="max-w-content mx-auto" data-fade>'
+        '<h2 id="ai-practice-heading" class="font-serif text-2xl md:text-3xl font-semibold text-near-black tracking-tight mb-4">'
+        + escape(practice['title']) + '</h2><p class="font-sans text-base text-near-black leading-relaxed mb-8">'
+        + escape(practice['intro']) + '</p>' + cards + '</div></section>'
+    )
 
 
 def render_work_card(card: dict[str, str], index: int) -> str:
@@ -151,6 +160,7 @@ PROFILE_TEMPLATE = Template(
   <meta name="robots" content="noindex, nofollow">
 
   <title>$title</title>
+  <link rel="canonical" href="$site_url/$slug/">
   <meta name="description" content="$description">
 
   <!-- Open Graph -->
@@ -158,7 +168,7 @@ PROFILE_TEMPLATE = Template(
   <meta property="og:url" content="$site_url/$slug/">
   <meta property="og:title" content="$title">
   <meta property="og:description" content="$description">
-  <meta property="og:image" content="$site_url/assets/og-image.png">
+  <meta property="og:image" content="$site_url/assets/og-profile-20260930.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -166,12 +176,12 @@ PROFILE_TEMPLATE = Template(
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="$title">
   <meta name="twitter:description" content="$description">
-  <meta name="twitter:image" content="$site_url/assets/og-image.png">
+  <meta name="twitter:image" content="$site_url/assets/og-profile-20260930.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 
-  <!-- Google Fonts: Inter + Source Serif 4 — async, non-render-blocking -->
+  <!-- Google Fonts: Inter + Source Serif 4 : async, non-render-blocking -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?$fonts_url&display=optional" onload="this.onload=null;this.rel='stylesheet'">
@@ -210,16 +220,15 @@ PROFILE_TEMPLATE = Template(
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Russell Cole",
-    "jobTitle": "Builder. Operator. AI-native.",
+    "jobTitle": "AI-Native Builder and Founder-Operator",
     "email": "russellcolevop@gmail.com",
     "telephone": "+16478247898",
     "affiliation": { "@type": "Organization", "name": "Parallel Human" },
     "url": "https://russellcolevop.github.io",
     "alumniOf": [
-      { "@type": "Organization", "name": "EMILI" },
-      { "@type": "Organization", "name": "AgXactly Crop Insights" }
+      { "@type": "Organization", "name": "Founder Institute" }
     ],
-    "knowsAbout": ["agtech", "artificial intelligence", "founder operations", "CRM automation", "venture building", "SaaS development", "product operations"],
+    "knowsAbout": ["agtech", "artificial intelligence", "founder operations", "CRM automation", "venture building", "SaaS development", "product operations", "AI agent workflows", "MCP tools", "software verification", "startup ecosystem support"],
     "sameAs": ["https://www.linkedin.com/in/russellcole/"]
   }
   </script>
@@ -261,7 +270,7 @@ PROFILE_TEMPLATE = Template(
       .card-body { transition: none; }
       .card-chevron { transition: none; }
     }
-    /* QR code responsive sizing — 200px mobile, 160px desktop */
+    /* QR code responsive sizing : 200px mobile, 160px desktop */
     #qr-contact canvas, #qr-contact img { display: block; width: 200px !important; height: 200px !important; }
     @media (min-width: 640px) {
       #qr-contact canvas, #qr-contact img { width: 160px !important; height: 160px !important; }
@@ -316,9 +325,7 @@ PROFILE_TEMPLATE = Template(
           <h2 class="font-serif text-xl md:text-2xl font-semibold text-near-black leading-snug mb-3">$migration_title</h2>
           <p class="font-sans text-sm text-near-black leading-relaxed mb-3">$migration_body1</p>
           <p class="font-sans text-sm text-mid-gray leading-relaxed">$migration_body2</p>
-          <div class="mt-5 pt-5 border-t border-accent/20 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-5" role="list" aria-label="Proof points">
-$stats
-          </div>
+$stats_block
         </article>
       </div>
     </section>
@@ -331,6 +338,8 @@ $operate_items
         </ul>
       </div>
     </section>
+
+    $ai_practice
 
     <!-- PULL QUOTE -->
     <section class="px-6 py-12 md:py-16 border-t border-light-gray" aria-label="In my own words">
@@ -417,7 +426,7 @@ $background
             </p>
           </div>
 
-          <!-- QR code — full width on mobile, auto on sm+ -->
+          <!-- QR code : full width on mobile, auto on sm+ -->
           <div class="w-full sm:w-auto flex flex-col items-center gap-2 flex-shrink-0 border-t border-light-gray pt-4 sm:border-0 sm:pt-0">
             <div
               id="qr-contact"
@@ -436,7 +445,7 @@ $background
 
 <footer class="px-6 py-7 border-t border-light-gray">
     <div class="max-w-content mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs text-mid-gray font-sans">
-      <p>Built and shipped in under an hour. AI-native operating in practice.</p>
+      <p>Updated September 2026. Built and maintained with AI, verified by me.</p>
       <a href="https://github.com/russellcolevop/russellcolevop.github.io" class="hover:text-accent transition-colors underline underline-offset-2">Source on GitHub</a>
     </div>
   </footer>
@@ -448,7 +457,7 @@ $background
       var el = document.getElementById('qr-contact');
       if (!el || typeof QRCode === 'undefined') return;
       new QRCode(el, {
-        text: "BEGIN:VCARD\\r\\nVERSION:3.0\\r\\nFN:Russell Cole\\r\\nN:Cole;Russell;;;\\r\\nORG:Parallel Human\\r\\nTITLE:Builder. Operator. AI-native.\\r\\nEMAIL;TYPE=INTERNET:$email\\r\\nTEL;TYPE=CELL:+16478247898\\r\\nURL:https://russellcolevop.github.io\\r\\nEND:VCARD",
+        text: "BEGIN:VCARD\\r\\nVERSION:3.0\\r\\nFN:Russell Cole\\r\\nN:Cole;Russell;;;\\r\\nORG:Parallel Human\\r\\nTITLE:AI-Native Builder and Founder-Operator\\r\\nEMAIL;TYPE=INTERNET:$email\\r\\nTEL;TYPE=CELL:+16478247898\\r\\nURL:https://russellcolevop.github.io\\r\\nEND:VCARD",
         width: 240,
         height: 240,
         colorDark: '#1A1A1A',
@@ -511,9 +520,9 @@ $background
 )
 
 
-def render_profile(profile: dict) -> str:
+def render_profile(profile: dict, practice: dict | None = None) -> str:
     migration = profile["migration"]
-    stats = profile.get("stats", DEFAULT_STATS.get(profile["slug"], []))
+    stats = profile.get("stats", [])
     return PROFILE_TEMPLATE.substitute(
         site_url=SITE_URL,
         email=EMAIL,
@@ -532,7 +541,7 @@ def render_profile(profile: dict) -> str:
         migration_title=migration["title"],
         migration_body1=migration["body1"],
         migration_body2=migration["body2"],
-        stats=render_stats(stats),
+        stats_block=('<div class="mt-5 pt-5 border-t border-accent/20 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-5" role="list" aria-label="Proof points">' + render_stats(stats) + '</div>') if stats else "",
         operate_items=render_operate(profile["operate"]),
         quote=profile["quote"],
         work_label=profile["work_label"],
@@ -546,6 +555,7 @@ def render_profile(profile: dict) -> str:
             for index, card in enumerate(profile.get("open_cards", []))
         ),
         background=render_background(profile["background"]),
+        ai_practice=render_ai_practice(practice) if practice else "",
     )
 
 
@@ -601,28 +611,29 @@ ACHIEVEMENTS_TEMPLATE = Template(
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
 
-  <title>Russell Cole — Achievements</title>
+  <title>Russell Cole : Achievements</title>
+  <link rel="canonical" href="$site_url/achievements/">
   <meta name="description" content="The full board of Russell Cole's work and achievements, tagged by audience.">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="$site_url/achievements/">
-  <meta property="og:title" content="Russell Cole — Achievements">
+  <meta property="og:title" content="Russell Cole : Achievements">
   <meta property="og:description" content="The full board of Russell Cole's work and achievements, tagged by audience.">
-  <meta property="og:image" content="$site_url/assets/og-image.png">
+  <meta property="og:image" content="$site_url/assets/og-profile-20260930.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Russell Cole — Achievements">
+  <meta name="twitter:title" content="Russell Cole : Achievements">
   <meta name="twitter:description" content="The full board of Russell Cole's work and achievements, tagged by audience.">
-  <meta name="twitter:image" content="$site_url/assets/og-image.png">
+  <meta name="twitter:image" content="$site_url/assets/og-profile-20260930.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 
-  <!-- Google Fonts: Inter + Source Serif 4 — async, non-render-blocking -->
+  <!-- Google Fonts: Inter + Source Serif 4 : async, non-render-blocking -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=optional" onload="this.onload=null;this.rel='stylesheet'">
@@ -661,16 +672,15 @@ ACHIEVEMENTS_TEMPLATE = Template(
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Russell Cole",
-    "jobTitle": "Builder. Operator. AI-native.",
+    "jobTitle": "AI-Native Builder and Founder-Operator",
     "email": "russellcolevop@gmail.com",
     "telephone": "+16478247898",
     "affiliation": { "@type": "Organization", "name": "Parallel Human" },
     "url": "https://russellcolevop.github.io",
     "alumniOf": [
-      { "@type": "Organization", "name": "EMILI" },
-      { "@type": "Organization", "name": "AgXactly Crop Insights" }
+      { "@type": "Organization", "name": "Founder Institute" }
     ],
-    "knowsAbout": ["agtech", "artificial intelligence", "founder operations", "CRM automation", "venture building", "SaaS development", "product operations"],
+    "knowsAbout": ["agtech", "artificial intelligence", "founder operations", "CRM automation", "venture building", "SaaS development", "product operations", "AI agent workflows", "MCP tools", "software verification", "startup ecosystem support"],
     "sameAs": ["https://www.linkedin.com/in/russellcole/"]
   }
   </script>
@@ -712,7 +722,7 @@ ACHIEVEMENTS_TEMPLATE = Template(
       .card-body { transition: none; }
       .card-chevron { transition: none; }
     }
-    /* QR code responsive sizing — 200px mobile, 160px desktop */
+    /* QR code responsive sizing : 200px mobile, 160px desktop */
     #qr-contact canvas, #qr-contact img { display: block; width: 200px !important; height: 200px !important; }
     @media (min-width: 640px) {
       #qr-contact canvas, #qr-contact img { width: 160px !important; height: 160px !important; }
@@ -773,9 +783,15 @@ def main() -> int:
     output_dir = Path(args.output_dir)
     data = json.loads(profiles_path.read_text())
     profiles_by_slug = {profile["slug"]: profile for profile in data["profiles"]}
+    achievements_by_id = {item['id']: item for item in data['achievements']}
 
     for slug in GENERATED_PAGES:
-        write_page(output_dir, f"{slug}/index.html", render_profile(profiles_by_slug[slug]))
+        profile = dict(profiles_by_slug[slug])
+        profile['work_cards'] = [
+            {'title': item['title'], 'sub': item.get('metric', ''), 'body': item['blurb']}
+            for item in (achievements_by_id[key] for key in profile['work_ids'])
+        ]
+        write_page(output_dir, f"{slug}/index.html", render_profile(profile, data['ai_practice']))
     write_page(output_dir, "achievements/index.html", render_achievements(data))
 
     return 0
