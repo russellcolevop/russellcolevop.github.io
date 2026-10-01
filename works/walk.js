@@ -247,7 +247,7 @@ export async function createWalk({ root, motion, hooks }) {
     const box = $('#wc-body'); box.textContent = ''; box.append(cardNode(h));
     card = { h }; h.el.classList.add('on'); cardEl.hidden = false;
     if (isPhone()) { body.append(cardEl); sheet.classList.add('has-card'); setSheet('open'); panTo(h.b, h.p - 0.25 * cam.fov); }   // phone: the card sits in the drawer; lift the object above it
-    else placeCard();
+    else { const r = h.el.getBoundingClientRect(), vr = view.getBoundingClientRect(); if (r.left < vr.left || r.right > vr.right) panTo(h.b, P); placeCard(); }   // half off-screen: bring it in, the card follows
     const t = box.querySelector('h3'); t.tabIndex = -1; t.focus({ preventScroll: true });
   }
   function closeCard(ret) {                                                // ret: give focus back to the hotspot (x, Escape)
