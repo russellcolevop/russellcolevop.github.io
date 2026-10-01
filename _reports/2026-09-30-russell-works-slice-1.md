@@ -32,7 +32,7 @@ Scope: everything under `works/`. Root, hub, profiles, `profiles.json`, `build-p
 - OS-level `prefers-reduced-motion` emulation: not available in this browser pane. The same code path was exercised through the Motion toggle. Inline head script reads the media query; not exercised with the OS flag on.
 - Safari, real iPhone, Pixel: none. Frame pacing and GPU memory unmeasured; no continuous loop exists at rest.
 - Screenshots are downscaled in this tool, so fine visual detail (figure stylization, plate softness at zoom) was judged at reduced size.
-- Live Pages readback: see HANDOFF.md for the result after push.
+- Live Pages readback after push of b37244d: /works/ 200 after about 20 s, works.js, tour3d.js, vendor three and img/russell.webp 200, page text present. Live tour not re-driven in a browser.
 
 ## Stand-ins and honest limits
 | Item | Stand-in |
