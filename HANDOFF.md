@@ -1,12 +1,13 @@
-push-state: main ahead 0 / behind 0 / dirty 0 after Russell Works slice 2 push; recheck before writing
+push-state: main ahead 0 / behind 0 / dirty 0 after the Russell Works walkthrough push; recheck before writing
 visible-at: https://russellcolevop.github.io/ and https://russellcolevop.github.io/works/ (unlisted, noindex)
-needs-russell: confirm the Harrison Lapides portrait is the right person (generation report: identity pending); review /works/ in Safari and on a phone; approve or edit the Walt Duflock quote; decide whether MaryAnn card discloses the McLennan family tie; confirm the Cronk/Content Studio copy
+needs-russell: open /works/ on a phone and in Safari (drag, Use motion, doorways) and tell me what feels wrong; run Lighthouse and VoiceOver; confirm the Harrison Lapides portrait is the right person (generation report: identity pending); review /works/ in Safari and on a phone; approve or edit the Walt Duflock quote; decide whether MaryAnn card discloses the McLennan family tie; confirm the Cronk/Content Studio copy
 
 # Russell Cole personal site
 
 Updated September 30, 2026. Public job-search portfolio and audience profiles.
 Pushing main deploys GitHub Pages from the repository root. No custom domain.
 
+- October 1 (later): /works/ tour is now a 360 walkthrough (see below); the one-page version is unchanged.
 - October 1: phones now default to the 3D tour when WebGL2 is available and Save-Data is off; the one-page version remains the fallback and the toggle. Russell saw only the landing page on his phone and asked for the tour.
 
 ## Current positioning
@@ -47,20 +48,24 @@ Seven routes verified at desktop/mobile sizes, links, card interactions and soci
 Independent Deep review and final live readback are recorded in the dated report.
 Rollback uses a scoped revert, never rewritten history.
 
-## Russell Works (/works/), slices 1 and 2
+## Russell Works (/works/): one-page version plus 360 walkthrough
 
-Unlisted résumé experience in `works/`: one-page version (default for no-WebGL, Save-Data, screen readers)
-plus a Three.js tour (elevator, reception, AI workshop, Fuwari, reference wall); phones default to the tour
-when WebGL2 is available. Slice 2 (October 1) replaced every stand-in plate with the finished 2560 px artwork
-(phones: the 1600 x 1200 plates), hand-split each tour room into background, middle and foreground layers with
-scroll parallax, added Russell's greeting and bench poses, the seven reference likenesses on the eight floor
-marks (eighth mark empty), the building-model prop, and the other seven rooms as one-page-only sections.
-Images are rebuilt by `works/tools/build_images.py` (see its header; source art is read from RussellLabs).
-Still stand-ins: Content Studio uses the Product plate; Fuwari screen is the public demo capture on a drawn
-monitor prop; Rachael Rose, Samantha and MaryAnn are generic figures. Three.js 0.180.0 pinned in `works/vendor/`.
+Unlisted résumé experience in `works/`. One-page version (default for no-WebGL, Save-Data, screen readers) is
+unchanged. The tour is a walkthrough: `walk.js` (Three.js 0.180.0 pinned in `works/vendor/`) puts the camera inside
+one panorama per room (12 rooms: elevator, reception, curriculum, customers, product, workshop, operations,
+ventures, gallery, references, achievements, contact). Eight rooms are full 360 spheres; reception, operations,
+gallery and contact are 270 degree strips (`cyl-*`) with the view clamped to the strip and a 3 degree edge fade.
+`works/rooms.json` holds every hotspot bearing and pitch (read from where the doorway actually is in each image,
+not the compass text), sprite placement (Russell, seven reference figures on the floor marks), sheet copy and mini-map
+dots; tune it without touching code. Panoramas are WebP in `works/pano/` (phone 4096 wide, desktop 8192 only when
+devicePixelRatio x width > 2048), rebuilt by `works/tools/build_panos.py <design package>/assets/panoramas`.
+Phone: full-screen canvas, bottom drawer sheet; desktop: sheet 380 px on the right. Hash is the room, Back and Forward work.
 Plan: RussellLabs/job-search-2026/3d-resume-concept-2026-09-30/ (NARRATIVE-v2.md wins). Evidence:
-_reports/2026-09-30-russell-works-slice-1.md and _reports/2026-10-01-russell-works-slice-2.md. Do not link
-/works/ from root until Lighthouse, VoiceOver and device checks pass and Russell approves.
+_reports/2026-10-01-russell-works-walkthrough.md (current), earlier slices in the same folder.
+The old plates-and-parallax tour, its layer images and `build_images.py` were removed; the one-page images are
+the last build and have no rebuild tool now. Content Studio exists only on the one-page version (no panorama).
+Still stand-ins: Rachael Rose, Samantha and MaryAnn figures are generic; Harrison's portrait identity pending.
+Do not link /works/ from root until Lighthouse, VoiceOver and device checks pass and Russell approves.
 
 ## Related work
 

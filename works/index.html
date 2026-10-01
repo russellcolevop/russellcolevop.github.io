@@ -60,7 +60,7 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
         <p id="tour-status" class="tour-status" role="status" hidden></p>
       </div>
       <figure class="poster-fig hero-fig">
-        <picture><source media="(max-width:759px)" srcset="img/reception-phone.webp" width="1600" height="1200"><img class="poster" src="img/reception.webp" width="2560" height="1440" fetchpriority="high" decoding="async" alt="A courtyard reception with a limestone plinth holding a model of the building, a timber desk at right, and an olive tree in the open courtyard."></picture>
+        <picture><source media="(max-width:759px)" srcset="img/reception-phone.webp" width="1600" height="1200"><img class="poster" src="img/reception.webp" width="2560" height="1440" loading="lazy" decoding="async" alt="A courtyard reception with a limestone plinth holding a model of the building, a timber desk at right, and an olive tree in the open courtyard."></picture>
         <figcaption>Concept rendering of a fictional place. Not premises, and not a photograph.</figcaption>
       </figure>
     </div>
@@ -400,26 +400,46 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
 
 </main>
 
-<aside class="stage" id="stage" aria-label="Illustrated scene">
-  <div class="frame" id="frame">
-  <canvas id="gl" aria-hidden="true"></canvas>
-  <div class="hotspots">
-    <ul class="hs" id="hs-bench" data-room="workshop" aria-label="Bench positions" hidden>
-      <li><button type="button" class="pin" data-i="1" data-x="460" data-y="836" data-px="250" data-py="648" data-depth="1" aria-label="Position 1, Source">1</button></li>
-      <li><button type="button" class="pin" data-i="2" data-x="810" data-y="828" data-px="481" data-py="650" data-depth="1" aria-label="Position 2, Spec">2</button></li>
-      <li><button type="button" class="pin" data-i="3" data-x="1144" data-y="824" data-px="669" data-py="645" data-depth="1" aria-label="Position 3, Bounded task">3</button></li>
-      <li><button type="button" class="pin" data-i="4" data-x="1480" data-y="696" data-px="881" data-py="578" data-depth="1" aria-label="Position 4, Change">4</button></li>
-      <li><button type="button" class="pin" data-i="5" data-x="1724" data-y="732" data-px="1053" data-py="595" data-depth="1" aria-label="Position 5, Check">5</button></li>
-      <li><button type="button" class="pin" data-i="6" data-x="2170" data-y="828" data-px="1344" data-py="658" data-depth="1" aria-label="Position 6, Release">6</button></li>
-    </ul>
-    <ul class="hs" id="hs-wall" data-room="wall" aria-label="Reference figures" hidden></ul>
-    <ul class="hs" id="hs-fuwari" data-room="fuwari" aria-label="Fuwari exhibit" hidden>
-      <li><a class="pill" data-x="670" data-y="1070" data-px="500" data-py="835" data-depth="1" href="https://getfuwari.com/#demo" target="_blank" rel="noopener">Open the public demo<span class="sr"> (opens in a new tab)</span></a></li>
-    </ul>
-  </div>
+
 </div>
-  <p class="stage-cap">Concept rendering of a fictional place, with stylized figures. Not premises, and not photographs.</p>
-</aside>
+
+<div id="walk" class="walk">
+  <header class="wbar">
+    <a class="wbrand" href="#reception" id="w-brand">Russell Cole</a>
+    <nav class="wnav" aria-label="Walkthrough">
+      <button type="button" class="chip" id="w-rooms" aria-haspopup="dialog">Rooms</button>
+      <a class="chip" href="../">R&eacute;sum&eacute;</a>
+      <button type="button" class="chip" id="w-contact">Contact</button>
+      <button type="button" class="chip chip-solid" id="w-page">One-page<span class="lg"> version</span></button>
+    </nav>
+  </header>
+  <div class="wmain">
+    <div class="wview" id="wview">
+      <canvas id="gl" aria-hidden="true"></canvas>
+      <div class="whs" id="whs"></div>
+      <button type="button" class="chip wmotion" id="w-motion" hidden>Use motion</button>
+      <div class="wfade" id="wfade" aria-hidden="true"></div>
+      <p class="whint" id="whint" aria-hidden="true">Drag to look around. Tap the glowing doorway to walk.</p>
+      <p class="wnotice" id="wnotice" role="status" hidden>The visual tour is still loading. <a href="?view=page" id="w-notice-page">Open the one-page version</a>, which is ready now.</p>
+      <p class="wcap">Concept rendering of a fictional place, with stylized figures. Not premises, and not photographs.</p>
+    </div>
+    <section class="wsheet" id="wsheet" aria-labelledby="ws-h">
+      <button type="button" class="wgrab" id="ws-grab" aria-expanded="false" aria-controls="ws-body"><span class="sr">Show or hide the reading panel</span></button>
+      <div class="ws-head"><p class="ws-eyebrow" id="ws-eyebrow"></p><h2 id="ws-h" tabindex="-1"></h2></div>
+      <div class="ws-body" id="ws-body"></div>
+    </section>
+  </div>
+  <div class="wmap" id="wmap" role="dialog" aria-modal="true" aria-labelledby="wm-h" hidden>
+    <div class="wmap-in">
+      <div class="wmap-top"><h2 id="wm-h">Rooms</h2><button type="button" class="chip" id="wm-close">Close</button></div>
+      <div class="wmap-grid">
+        <div class="wmap-model" id="wm-model"><img src="img/building-model.webp" width="900" height="552" alt="A model of the building: a courtyard with an olive tree and rooms around it." loading="lazy"></div>
+        <ol class="wmap-list" id="wm-list"></ol>
+      </div>
+      <p class="fine">Dots on the model are approximate.</p>
+    </div>
+  </div>
+  <p class="sr" id="wlive" role="status" aria-live="polite"></p>
 </div>
 
 <footer class="foot">
