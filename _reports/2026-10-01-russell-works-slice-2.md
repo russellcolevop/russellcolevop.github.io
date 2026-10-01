@@ -63,3 +63,8 @@ Transfer, first room. Summed from the built files after the final encode (HTML, 
 - Plates are Lanczos-upscaled from 1672 px natives (per the generation report), so fine detail at Fuwari zoom is soft.
 - Resume PDFs still do not exist. Content Studio, Eight entrance pages, rigged Russell, folio pose (ventures room) are later slices.
 - Tour is still five rooms; the other rooms are one-page only.
+
+## Live readback (after push of d80e7d1)
+- https://russellcolevop.github.io/works/ and these files returned 200: img/reception.webp, reception-fg.webp, russell-greeting.webp, ref-cronk.webp, layers.json, elevator-bg.webp, contact.webp, tour3d.js.
+- Desktop tour, first room, Resource Timing on the live URL: 879,675 bytes transferred (gzip on, 22 files). Largest: reception.webp 217 KB, elevator-bg.webp 151 KB, three.core 102 KB gzip.
+- Phone tour: the live read was served partly from cache (151 KB), so it is not a clean number. The clean figure remains the 0.66 MB gzip estimate above; measure on a real phone with an empty cache.
