@@ -1,6 +1,6 @@
-push-state: main ahead 0 / behind 0 / dirty 0 after scoped release; recheck before writing
-visible-at: https://russellcolevop.github.io/
-needs-russell: none
+push-state: main ahead 0 / behind 0 / dirty 0 after Russell Works slice 1 push; recheck before writing
+visible-at: https://russellcolevop.github.io/ and https://russellcolevop.github.io/works/ (unlinked, noindex)
+needs-russell: review /works/ in Safari and on a phone; approve or edit the Walt Duflock quote; decide whether MaryAnn card discloses the McLennan family tie; generate the 2560 px room plates
 
 # Russell Cole personal site
 
@@ -44,6 +44,15 @@ Browser runner: _reports/verify-profile-pages.cjs, optional --live.
 Seven routes verified at desktop/mobile sizes, links, card interactions and social metadata.
 Independent Deep review and final live readback are recorded in the dated report.
 Rollback uses a scoped revert, never rewritten history.
+
+## Russell Works (/works/), slice 1, September 30
+
+Unlisted résumé experience in `works/`: one-page version (default on phones, no-WebGL, screen readers)
+plus a Three.js tour on desktop (elevator, reception, AI workshop, Fuwari, reference wall). Rendered
+concept plates are stand-ins; Three.js 0.180.0 is vendored with hashes (`works/vendor/THREE-PIN.txt`).
+Plan: RussellLabs/job-search-2026/3d-resume-concept-2026-09-30/ (NARRATIVE-v2.md wins). Evidence and
+remaining checks: _reports/2026-09-30-russell-works-slice-1.md. Do not link /works/ from root until
+Lighthouse, VoiceOver and device checks pass and Russell approves.
 
 ## Related work
 

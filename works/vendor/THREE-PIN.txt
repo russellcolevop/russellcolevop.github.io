@@ -1,0 +1,7 @@
+three 0.180.0 (MIT, see LICENSE). Build files copied unmodified from the npm tarball.
+Source: https://registry.npmjs.org/three/-/three-0.180.0.tgz
+Tarball sha1 (matches the npm registry dist.shasum): b930cabfb524f6d36bf63e874b4d866888b50487
+Registry integrity: sha512-o+qycAMZrh+TsE01GqWUxUIKR1AL0S8pq7zDkYOQw8GqfX8b8VoCKYUoHbhiX5j+7hr8XsuHDVU6+gkQJQKg9w==
+sha384 three.module.min.js 1b6d38707f32886441b0878e7746b20579fb3120ee7f45f94e8eb5e31b7ed9bd40a6a354c405a7fd7a8bf178a56aec9d
+sha384 three.core.min.js   01ad76b40cb1201249005bb7a8ff0555008c33453925019d9aef4f961cb0e2445d99a8c4ccdc3c8c284dcc3aa012ef71
+Loaded only by ../tour3d.js. No CDN. Upgrade by replacing both files together.

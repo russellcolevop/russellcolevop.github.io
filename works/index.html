@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Russell Works</title>
+<meta name="description" content="Russell Cole: what I built got paid for, and the clients came back. A guided tour and a one-page résumé.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://russellcolevop.github.io/works/">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<script>
+/* Runs before first paint: motion preference, mode, WebGL capability. No network. */
+(function(d){var h=d.documentElement,q=new URLSearchParams(location.search),m=null,gl=false;
+try{m=localStorage.getItem('rw-motion')}catch(e){}
+var os=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var motion=m==='off'?false:m==='on'?true:!os;
+h.classList.add('js');if(!motion)h.classList.add('reduce');
+try{gl=!!d.createElement('canvas').getContext('webgl2')}catch(e){}
+var save=navigator.connection&&navigator.connection.saveData;
+var v=q.get('view'),tour=gl&&(v==='tour'||(v!=='page'&&innerWidth>=760&&!save));
+h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
+})(document);
+</script>
+<link rel="stylesheet" href="works.css">
+</head>
+<body>
+<a class="skip" href="#contact">Skip to résumé and contact</a>
+<a class="skip skip2" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    
+    <symbol id="fig" viewBox="0 0 100 200"><ellipse cx="50" cy="193" rx="30" ry="4.5" fill="#182C34" opacity=".2"/><path d="M38 112L36.5 186H48L50 132L52 186H63.5L62 112Z" fill="#2c3a40"/><ellipse cx="42" cy="187.5" rx="8.5" ry="3.4" fill="#182327"/><ellipse cx="58" cy="187.5" rx="8.5" ry="3.4" fill="#182327"/><path d="M33 45Q50 38 67 45L72 80 71 120H29L28 80Z" fill="currentColor"/><path d="M33 46L23 84 24.5 112H31L33 84 38 60Z" fill="currentColor"/><path d="M67 46L77 84 75.5 112H69L67 84 62 60Z" fill="currentColor"/><path d="M43 41L50 62 57 41Z" fill="#f4f0e7"/><rect x="45.5" y="33" width="9" height="10" rx="3" fill="#cdbf9f"/><ellipse cx="50" cy="23" rx="11.5" ry="13.5" fill="#d7caa9"/><circle cx="27.5" cy="114" r="4.2" fill="#cdbf9f"/><circle cx="72.5" cy="114" r="4.2" fill="#cdbf9f"/><path d="M38 22C38 11 44 8 50 8s12 3 12 14c-3-6-7-8-12-8s-9 2-12 8z" fill="#2b2420"/></symbol>
+  </defs>
+</svg>
+
+<header class="bar">
+  <a class="brand" href="#reception">Russell Cole</a>
+  <nav class="nav" aria-label="Sections">
+    <a href="#ai">How I work</a>
+    <a href="#cases">Cases</a>
+    <a href="#references">References</a>
+    <a href="../" class="nav-resume">Résumé</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="ctl">
+    <button type="button" id="view-toggle" class="chip">Enable 3D</button>
+    <button type="button" id="motion" class="chip">Motion: on</button>
+  </div>
+</header>
+
+<div class="layout">
+<main id="main">
+
+  <section id="reception" class="room" data-room="reception" aria-labelledby="h-reception">
+    <div class="wrap hero">
+      <div class="hero-text">
+        <p class="eyebrow">Russell Works &middot; Founder, operator and AI builder</p>
+        <h1 id="h-reception">What I built got paid for, and the clients came back.</h1>
+        <p class="lede">Not classically trained. Twenty years beside builders with a sales engineer&rsquo;s instinct for where the revenue is. Since May 2026 I build too, so I can raise profit with fewer people: product, marketing automation, deployment, operations. The work below got paid for, and the clients came back.</p>
+        <p class="greet"><span aria-hidden="true">&ldquo;</span>Welcome. Three ways in.<span aria-hidden="true">&rdquo;</span></p>
+        <nav class="doors" aria-label="Three ways in">
+          <a class="door door-tour" id="door-tour" href="?view=tour"><b>Take the tour</b><span>The guided route, room by room.</span></a>
+          <a class="door" id="door-page" href="?view=page" aria-current="page"><b>The one-page version</b><span>Thesis, career, four cases, references, contact.</span></a>
+          <a class="door" href="#contact"><b>Downloads and contact</b><span>Contact card, email, LinkedIn.</span></a>
+        </nav>
+        <p id="tour-status" class="tour-status" role="status" hidden></p>
+      </div>
+      <figure class="poster-fig hero-fig">
+        <picture><img class="poster" src="img/reception-m.webp" width="1024" height="768" loading="lazy" alt="A courtyard reception with a limestone plinth holding a model of the building, and Russell standing behind a timber desk, smiling."></picture>
+        <figcaption>Concept rendering of a fictional place and a stylized likeness. Not premises, and not a photograph.</figcaption>
+      </figure>
+    </div>
+
+    <div class="wrap">
+      <h2 class="mini" id="h-strip">Career, in order</h2>
+      <p class="hint">Select a stop for what is on record.</p>
+      <ol class="strip" aria-labelledby="h-strip">
+        <li><button type="button" aria-expanded="false" aria-controls="ev1">Enterprise sales</button><p id="ev1" class="ev" hidden>Infrastructure, cloud, telecom and cybersecurity. No revenue, quota or team-size figures are claimed.</p></li>
+        <li><button type="button" aria-expanded="false" aria-controls="ev2">OrganicGrow, Vesta.AI</button><p id="ev2" class="ev" hidden>Earlier ventures. Vesta.AI was a restaurant voice-ordering venture; its failed technical delivery is why I build and verify what I sell.</p></li>
+        <li><button type="button" aria-expanded="false" aria-controls="ev3">AgXactly: founded, acquired</button><p id="ev3" class="ev" hidden>Founder and CEO. Raised just under US$1M, then acquired by Nighthawk Ag. <a href="#agxactly">See the case</a>.</p></li>
+        <li><button type="button" aria-expanded="false" aria-controls="ev4">Nighthawk</button><p id="ev4" class="ev" hidden>Product and growth in the combined business, through its later wind-down.</p></li>
+        <li><button type="button" aria-expanded="false" aria-controls="ev5">EMILI</button><p id="ev5" class="ev" hidden>Ecosystem Manager, AIVA Network: startup outreach, evaluation, pilot routing and Airtable workflows.</p></li>
+        <li class="turn"><button type="button" aria-expanded="false" aria-controls="ev6">May 4, 2026: all in on AI</button><p id="ev6" class="ev" hidden>From this date I build as well as sell, with AI doing the heavy lifting and me owning testing and release.</p></li>
+        <li><button type="button" aria-expanded="false" aria-controls="ev7">Fuwari, Corbel, Playing for Keeps, Stonewise, ChildCareOS, Signal Engine, KoyaOS, Ramara</button><p id="ev7" class="ev" hidden>Fuwari: live web product, iPhone external beta. Corbel: active consulting practice. Playing for Keeps: live league platform. Stonewise: live web app, iOS internal testing. ChildCareOS: private web release. Signal Engine: local tool with MCP integration. Ramara Hub: live static information site. KoyaOS: my repository-based method for running venture work.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="ai" class="room" data-room="workshop" aria-labelledby="h-ai">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">How I work</p>
+        <h2 id="h-ai">AI helps me build. I own the result.</h2>
+        <p>Research, specification, implementation, checks, release and maintenance stay connected. I direct Claude Code, Codex and MCP-connected tools, and I verify and release what they produce.</p>
+        <ol class="bench" id="bench">
+          <li data-i="1"><b>Source</b> Start from the real record: the customer&rsquo;s day, the rules, the existing data.</li>
+          <li data-i="2"><b>Spec</b> Write down what done means before anything is built.</li>
+          <li data-i="3"><b>Bounded task</b> Hand the agent a task small enough to inspect.</li>
+          <li data-i="4"><b>Change</b> Read what actually changed, not what was described.</li>
+          <li data-i="5"><b>Check</b> Run the tests, then try it by hand.</li>
+          <li data-i="6"><b>Release</b> Ship it, then keep it running.</li>
+        </ol>
+        <p class="fine">The bench illustrates the method. It is not an artifact from a particular product.</p>
+      </div>
+      <figure class="poster-fig">
+        <picture><img class="poster" src="img/workshop-m.webp" width="1024" height="768" loading="lazy" alt="A long timber workbench in a daylit workshop with an open book, drawings, a sample tray, a laptop, an instrument stand and a notebook laid out in a row."></picture>
+        <figcaption>Concept rendering of a fictional workshop.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="cases" class="room" aria-labelledby="h-cases">
+    <div class="wrap">
+      <p class="eyebrow">Four cases</p>
+      <h2 id="h-cases">Different problems. The same responsibility to make it work.</h2>
+    </div>
+
+    <article id="fuwari" class="case room" data-room="fuwari" aria-labelledby="h-fuwari">
+      <div class="wrap split">
+        <div>
+          <p class="badge">Live web product &middot; iPhone external beta</p>
+          <h3 id="h-fuwari">Fuwari</h3>
+          <p class="money">Paid, live customer software, in daily use.</p>
+          <p class="pull">I built and operate grooming software around the way a working business schedules, communicates and gets paid.</p>
+          <dl>
+            <dt>The problem</dt><dd>Scheduling, client communication and financial follow-through were scattered across tools and informal records.</dd>
+            <dt>My part</dt><dd>Observed the workflow, shaped the product, built and re-platformed the customer web app, extended the native iPhone surface, and own testing, release and maintenance.</dd>
+            <dt>What I built</dt><dd>A Next.js and Supabase web app: scheduling, messaging, financial workflows and AI assistance. AI tools help with implementation and review. I verify.</dd>
+            <dt>Where it stands</dt><dd>Live customer web software. The iPhone app is in an external beta group and is not on the public App Store.</dd>
+          </dl>
+          <p><a class="btn" href="https://getfuwari.com/#demo" rel="noopener" target="_blank">Try the public demo<span class="sr"> (opens in a new tab)</span></a></p>
+        </div>
+        <figure class="demo" id="fuwari-demo">
+          <img src="img/fuwari-public-demo.jpg" width="1280" height="720" loading="lazy" alt="Fuwari's public sample-shop demo: a grooming schedule with made-up clients.">
+          <figcaption>Capture of the public sample-shop demo at getfuwari.com, September 30, 2026. Made-up clients. A website demo, not a production account or the native app.</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <article id="corbel" class="case room" data-room="gallery" aria-labelledby="h-corbel">
+      <div class="wrap split">
+        <div>
+          <p class="badge">Active consulting practice</p>
+          <h3 id="h-corbel">Corbel</h3>
+          <p class="money">Paid engagements.</p>
+          <p class="pull">I work inside business workflows, then build and maintain useful systems around them.</p>
+          <dl>
+            <dt>The problem</dt><dd>Tools, records, handoffs and repetitive work that never connect into usable operations.</dd>
+            <dt>My part</dt><dd>Discovery, systems review, CRM and workflow design, software implementation, documentation and ongoing operation.</dd>
+            <dt>What I built</dt><dd>Client-specific systems and reusable clean-room methods.</dd>
+            <dt>Where it stands</dt><dd>Active practice with a public site. Client deliverables stay private.</dd>
+          </dl>
+          <p><a class="btn btn-quiet" href="https://corbelops.com" rel="noopener" target="_blank">Visit Corbel<span class="sr"> (opens in a new tab)</span></a></p>
+        </div>
+        <figure class="poster-fig"><picture><img class="poster" src="img/gallery-m.webp" width="1024" height="768" loading="lazy" alt="A long gallery table with blank display screens, a model and a small dog figurine, in a colonnade open to a courtyard."></picture><figcaption>Concept rendering of a fictional gallery.</figcaption></figure>
+      </div>
+    </article>
+
+    <article id="agxactly" class="case room" data-room="gallery" aria-labelledby="h-agx">
+      <div class="wrap">
+        <p class="badge">Historical venture &middot; acquired; combined business later wound down</p>
+        <h3 id="h-agx">AgXactly</h3>
+        <p class="money">Raised just under US$1M.</p>
+        <p class="pull">I founded AgXactly, raised just under US$1M and led it through acquisition by Nighthawk Ag. I continued in the combined business before it later wound down.</p>
+        <dl>
+          <dt>The problem</dt><dd>Growers needed useful information about crop counts and field conditions, not disconnected data collection.</dd>
+          <dt>My part</dt><dd>Founder and CEO: customer discovery, commercial work, fundraising, partnerships and leadership through the acquisition.</dd>
+          <dt>What I built</dt><dd>A cross-border agricultural data business with aerial imagery and crop and field insights.</dd>
+          <dt>Where it stands</dt><dd>Acquired by Nighthawk Ag. The combined business later wound down. I report it that way.</dd>
+        </dl>
+        <p class="links"><a href="https://fi.co/insight/agxactly-aerial-informatics-for-row-crop-insights" rel="noopener" target="_blank">Founder Institute feature<span class="sr"> (opens in a new tab)</span></a> <a href="https://fi.co/50-CANADA" rel="noopener" target="_blank">Founder Institute Canadian growth list<span class="sr"> (opens in a new tab)</span></a></p>
+      </div>
+    </article>
+
+    <article id="pfk" class="case room" data-room="gallery" aria-labelledby="h-pfk">
+      <div class="wrap">
+        <p class="badge">Live league platform &middot; custom rules</p>
+        <h3 id="h-pfk">Playing for Keeps</h3>
+        <p class="pull">I built a fantasy-hockey platform around one league&rsquo;s custom contracts, roster rules, salary cap, fees and communication.</p>
+        <dl>
+          <dt>The problem</dt><dd>Ordinary fantasy products cannot express one league&rsquo;s contract, roster, salary-cap and fee rules as a single system.</dd>
+          <dt>My part</dt><dd>Domain decisions, architecture, AI-assisted implementation, tests, release and ongoing league operation.</dd>
+          <dt>What I built</dt><dd>Custom roster and contract logic, cap accounting, fee tracking, authentication and chat.</dd>
+          <dt>Where it stands</dt><dd>Live league platform. Member names, finances and chat stay private, so there is no public demo yet.</dd>
+        </dl>
+      </div>
+    </article>
+
+    <div class="wrap">
+      <h3 class="mini" id="h-also">Also built</h3>
+      <ul class="also" aria-labelledby="h-also">
+        <li><a href="https://stonewise.pages.dev" rel="noopener" target="_blank">Stonewise<span class="sr"> (opens in a new tab)</span></a> <span>Live web app &middot; iOS internal testing</span></li>
+        <li>ChildCareOS <span>Private web release &middot; further acceptance pending</span></li>
+        <li>Signal Engine <span>Local tool &middot; MCP integration</span></li>
+        <li><a href="https://ramarahub.ca" rel="noopener" target="_blank">Ramara Hub<span class="sr"> (opens in a new tab)</span></a> <span>Live static information site</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="references" class="room" data-room="wall" aria-labelledby="h-ref">
+    <div class="wrap">
+      <p class="eyebrow">Reference wall</p>
+      <h2 id="h-ref">Ask them.</h2>
+      <p>Seven people who have worked with me, in their words. Introductions go through me: each card opens a note to me, and I connect you. Nothing on this page contacts them directly.</p>
+      <ul class="refs" aria-label="References">
+        <li class="ref" id="ref-haddad" data-ref="haddad" tabindex="-1">
+          <svg class="fig" viewBox="0 0 100 200" aria-hidden="true" focusable="false" style="--c:#275565"><use href="#fig"/></svg>
+          <div class="ref-body">
+            <h3>Michael Haddad</h3>
+            <p class="ref-role">Fractional CFO, AgXactly</p>
+            <p class="ref-rel">Worked beside me at AgXactly for a year.</p>
+            <blockquote><p>&ldquo;He always found ways to do more with less.&rdquo;</p><footer>From a signed reference letter</footer></blockquote>
+            <a class="btn btn-quiet" href="mailto:russellcolevop@gmail.com?subject=Ask%20Russell%20for%20an%20intro%3A%20Michael%20Haddad">Ask Russell for an intro<span class="sr"> to Michael Haddad</span></a>
+          </div>
+        </li>
+        <li class="ref" id="ref-mclennan-s" data-ref="mclennan-s" tabindex="-1">
+          <svg class="fig" viewBox="0 0 100 200" aria-hidden="true" focusable="false" style="--c:#763F3D"><use href="#fig"/></svg>
+          <div class="ref-body">
+            <h3>Samantha McLennan</h3>
+            <p class="ref-role">Owner, Samantha&#x27;s Grooming</p>
+            <p class="ref-rel">Fuwari&#x27;s first customer. The shop runs on it every day.</p>
+            <blockquote><p>&ldquo;Russell built Fuwari around how my shop actually runs, and he&#x27;s brilliant at it. Booking, messages and the money side are in one place now. He explains everything in plain language, and when something needs changing he just changes it.&rdquo;</p></blockquote>
+            <a class="btn btn-quiet" href="mailto:russellcolevop@gmail.com?subject=Ask%20Russell%20for%20an%20intro%3A%20Samantha%20McLennan">Ask Russell for an intro<span class="sr"> to Samantha McLennan</span></a>
+          </div>
+        </li>
+        <li class="ref" id="ref-mclennan-m" data-ref="mclennan-m" tabindex="-1">
+          <svg class="fig" viewBox="0 0 100 200" aria-hidden="true" focusable="false" style="--c:#6E7C61"><use href="#fig"/></svg>
+          <div class="ref-body">
+            <h3>MaryAnn McLennan, RECE</h3>
+            <p class="ref-role">Executive Director, Orillia Central Preschool</p>
+            <p class="ref-rel">ChildCareOS client.</p>
+            <blockquote><p>&ldquo;Russell understood how our centres really work before he built a thing, and the questions he asked were sharper than ours. He put our data protection in writing, kept us in the loop at every step, and gave us a system that fits the way we operate. Brilliant to work with.&rdquo;</p></blockquote>
+            <a class="btn btn-quiet" href="mailto:russellcolevop@gmail.com?subject=Ask%20Russell%20for%20an%20intro%3A%20MaryAnn%20McLennan">Ask Russell for an intro<span class="sr"> to MaryAnn McLennan</span></a>
+          </div>
+        </li>
+        <li class="ref" id="ref-rose" data-ref="rose" tabindex="-1">
+          <svg class="fig" viewBox="0 0 100 200" aria-hidden="true" focusable="false" style="--c:#B98B57"><use href="#fig"/></svg>
+          <div class="ref-body">
+            <h3>Rachael Rose</h3>
+            <p class="ref-role">Founder, RR Personal Chief of Staff</p>
+            <p class="ref-rel">Corbel client.</p>
+            <blockquote><p>&ldquo;Russell turned a pile of my documents into a working client workspace in days. He gets it fast, explains it clearly, and builds exactly what I need. It lets me keep clients updated and get approvals without the back and forth. Brilliant and very valuable.&rdquo;</p></blockquote>
+            <a class="btn btn-quiet" href="mailto:russellcolevop@gmail.com?subject=Ask%20Russell%20for%20an%20intro%3A%20Rachael%20Rose">Ask Russell for an intro<span class="sr"> to Rachael Rose</span></a>
+          </div>
+        </li>
+        <li class="ref" id="ref-cronk" data-ref="cronk" tabindex="-1">
+          <svg class="fig" viewBox="0 0 100 200" aria-hidden="true" focusable="false" style="--c:#182C34"><use href="#fig"/></svg>
+          <div class="ref-body">
+            <h3>Jim Cronk</h3>
+            <p class="ref-role">Candidate for Mayor, Township of Ramara, 2026</p>
+            <p class="ref-rel">I built and run his campaign content.</p>
+            <blockquote><p>&ldquo;Russell built our campaign&#x27;s content operation from nothing: the brand, the videos, the calendar and the posting. He turned raw phone footage into finished clips in days, kept the message consistent across Facebook and Instagram, and ran the schedule so I could stay focused on talking to people. He is fast, careful about the facts, and brilliant at making a plain message land.&rdquo;</p></blockquote>
+            <a class="btn btn-quiet" href="mailto:russellcolevop@gmail.com?subject=Ask%20Russell%20for%20an%20intro%3A%20Jim%20Cronk">Ask Russell for an intro<span class="sr"> to Jim Cronk</span></a>
+          </div>
+        </li>
+        <li class="ref" id="ref-duflock" data-ref="duflock" tabindex="-1">
+          <svg class="fig" viewBox="0 0 100 200" aria-hidden="true" focusable="false" style="--c:#275565"><use href="#fig"/></svg>
+          <div class="ref-body">
+            <h3>Walt Duflock</h3>
+            <p class="ref-role">Vice President, Innovation, Western Growers</p>
+            <p class="ref-rel">Four years of agtech conversations and collaboration.</p>
+            <blockquote><p>&ldquo;He possesses a remarkable ability to identify emerging trends and translate them into practical, value-driven solutions.&rdquo;</p><footer>From a signed reference letter</footer></blockquote>
+            <a class="btn btn-quiet" href="mailto:russellcolevop@gmail.com?subject=Ask%20Russell%20for%20an%20intro%3A%20Walt%20Duflock">Ask Russell for an intro<span class="sr"> to Walt Duflock</span></a>
+          </div>
+        </li>
+        <li class="ref" id="ref-lapides" data-ref="lapides" tabindex="-1">
+          <svg class="fig" viewBox="0 0 100 200" aria-hidden="true" focusable="false" style="--c:#763F3D"><use href="#fig"/></svg>
+          <div class="ref-body">
+            <h3>Harrison Lapides</h3>
+            <p class="ref-role">Managing Partner, Red Tail Ventures</p>
+            <p class="ref-rel">Investor in AgXactly.</p>
+            <blockquote><p>&ldquo;He set a bold strategy but was quick to seek out advice.&rdquo;</p><footer>From a signed reference letter, March 20, 2024</footer></blockquote>
+            <a class="btn btn-quiet" href="mailto:russellcolevop@gmail.com?subject=Ask%20Russell%20for%20an%20intro%3A%20Harrison%20Lapides">Ask Russell for an intro<span class="sr"> to Harrison Lapides</span></a>
+          </div>
+        </li>
+      </ul>
+      <p class="fine">Figures are stylized stand-ins, not likenesses.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="room" data-room="reception2" aria-labelledby="h-contact">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h2 id="h-contact">The future employee, today.</h2>
+      <p>I built all of this to become the kind of operator companies will need next: someone who finds the customer, shapes the offer, builds the product, verifies it and keeps it running, with AI doing the heavy lifting. None of it was the destination. It was the education, and I&rsquo;m excited about where it goes from here.</p>
+      <p>I want a challenge. I want to be at the cutting edge of AI, and I&rsquo;m evaluating where to make the next move, full-time or fractional. Tell me what needs to work better.</p>
+      <p class="actions">
+        <a class="btn" href="mailto:russellcolevop@gmail.com?subject=Re%3A%20Russell%20Works">Email Russell</a>
+        <a class="btn btn-quiet" href="https://www.linkedin.com/in/russellcole/" rel="noopener" target="_blank">LinkedIn<span class="sr"> (opens in a new tab)</span></a>
+        <a class="btn btn-quiet" href="../russell.vcf" download>Contact card (.vcf)</a>
+      </p>
+      <p class="fine">Standard résumé overview: <a href="../">russellcolevop.github.io</a> &middot; <a href="../hub/">Choose a profile</a> &middot; <a href="../achievements/">Achievements</a>. Résumé PDFs are in preparation.</p>
+    </div>
+  </section>
+
+</main>
+
+<aside class="stage" id="stage" aria-label="Illustrated scene">
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <div class="hotspots">
+    <ul class="hs" id="hs-bench" data-room="workshop" aria-label="Bench positions" hidden>
+      <li><button type="button" class="pin" data-i="1" data-x="395" data-y="478" aria-label="Position 1, Source">1</button></li>
+      <li><button type="button" class="pin" data-i="2" data-x="550" data-y="490" aria-label="Position 2, Spec">2</button></li>
+      <li><button type="button" class="pin" data-i="3" data-x="730" data-y="480" aria-label="Position 3, Bounded task">3</button></li>
+      <li><button type="button" class="pin" data-i="4" data-x="920" data-y="476" aria-label="Position 4, Change">4</button></li>
+      <li><button type="button" class="pin" data-i="5" data-x="1130" data-y="488" aria-label="Position 5, Check">5</button></li>
+      <li><button type="button" class="pin" data-i="6" data-x="1290" data-y="540" aria-label="Position 6, Release">6</button></li>
+    </ul>
+    <ul class="hs" id="hs-wall" data-room="wall" aria-label="Reference figures" hidden></ul>
+    <ul class="hs" id="hs-fuwari" data-room="fuwari" aria-label="Fuwari exhibit" hidden>
+      <li><a class="pill" data-x="812" data-y="548" href="https://getfuwari.com/#demo" target="_blank" rel="noopener">Open the public demo<span class="sr"> (opens in a new tab)</span></a></li>
+    </ul>
+  </div>
+</aside>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Russell Works is a private, unlisted preview. Scenes are concept renderings of a fictional place, not premises. Figures are stylized. Product screens are labelled where they are public demos.</p>
+  </div>
+</footer>
+
+<script type="module" src="works.js"></script>
+</body>
+</html>
