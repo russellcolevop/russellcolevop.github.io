@@ -1,7 +1,7 @@
 // Russell Works walkthrough: one 360 panorama per room, drag or tilt to look, tap a doorway to walk.
 // Camera sits at the centre of an inverted sphere (full panoramas) or a partial band (the cyl-* strips, which do not wrap).
 // Hotspot bearings, sprites and copy come from rooms.json. No render loop at rest. The canvas is aria-hidden;
-// every hotspot has an equivalent button in the reading sheet.
+// every hotspot is a real button (off-view ones stay in the tab order and pan into view on focus).
 import * as THREE from './vendor/three.module.min.js';
 
 const D2R = Math.PI / 180;
@@ -10,14 +10,17 @@ const wrap = a => { a = ((a + 180) % 360 + 360) % 360 - 180; return a; };
 const dir = (b, p, r = 1) => new THREE.Vector3(Math.sin(b * D2R) * Math.cos(p * D2R), Math.sin(p * D2R), -Math.cos(b * D2R) * Math.cos(p * D2R)).multiplyScalar(r);
 const COMPASS = ['north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest'];
 const compass = y => COMPASS[Math.round(((y % 360) + 360) % 360 / 45) % 8];
+let asked = false, granted = false;   // module scope: "ask for motion at most once per session" survives stopTour and startTour
 
 export async function createWalk({ root, motion, hooks }) {
   const cfg = await (await fetch('rooms.json')).json();
   const R = cfg.rooms, ORDER = cfg.order;
+  const pristine = root.innerHTML;                                          // restored on dispose: every listener below is on static markup, so a second tour starts clean
   const $ = s => root.querySelector(s);
-  const view = $('#wview'), hsLayer = $('#whs'), fade = $('#wfade'), sheet = $('#wsheet'), body = $('#ws-body'), head = $('#ws-h'), eyebrow = $('#ws-eyebrow');
-  const live = $('#wlive'), hint = $('#whint'), grab = $('#ws-grab'), mapEl = $('#wmap');
-  const phone = innerWidth < 760;
+  const view = $('#wview'), hsLayer = $('#whs'), fade = $('#wfade'), sheet = $('#wsheet'), body = $('#ws-body'), tog = $('#ws-toggle'), rtag = $('#w-tag');
+  const live = $('#wlive'), hint = $('#whint'), mapEl = $('#wmap'), intro = $('#wintro'), cardEl = $('#wcard'), lead = $('#wlead');
+  const UI = '.wsheet,.wcard,.wintro,.wtag,.wmotion';                      // overlays: they must not start a drag, zoom or arrow-key look
+  const phone = innerWidth < 760, isPhone = () => matchMedia('(max-width:759px)').matches;
   let reduce = !motion, disposed = false;
 
   // ---------- renderer ----------
@@ -103,6 +106,7 @@ export async function createWalk({ root, motion, hooks }) {
   // ---------- sprites and hotspots ----------
   const vTmp = new THREE.Vector3(), fwd = new THREE.Vector3();
   function clearRoom() {
+    closeCard();
     props.forEach(m => { scene.remove(m); m.geometry.dispose(); m.material.dispose(); }); props = [];
     hs.forEach(h => h.el.remove()); hs = []; hsLayer.textContent = '';
   }
@@ -132,8 +136,10 @@ export async function createWalk({ root, motion, hooks }) {
     el.setAttribute('aria-label', aria);
     if (h.type === 'pin') { if (h.bench) el.textContent = h.bench; else el.classList.add('dot'); }
     const lab = document.createElement('span'); lab.className = 'hs-lab'; lab.setAttribute('aria-hidden', 'true'); lab.textContent = h.label; el.append(lab);
-    el.addEventListener('click', () => activate(h, el));
-    hsLayer.append(el); return { ...h, el };
+    const o = { ...h, el };
+    el.addEventListener('click', () => activate(o));
+    el.addEventListener('focus', () => { if (el.classList.contains('off')) panTo(o.b, o.p); });       // off-view hotspots stay tabbable
+    hsLayer.append(el); return o;
   }
   async function buildRoom(id) {
     const r = R[id];
@@ -146,7 +152,7 @@ export async function createWalk({ root, motion, hooks }) {
       for (let i = 0; i < r.wall.length; i++) {
         const [b, p] = r.marks[i], dist = 1.6 / Math.tan(-p * D2R), key = r.wall[i];
         const m = await addSprite({ img: 'ref-' + key, b, dist, crop: 0, h: 1.75 });
-        const o = mkHS({ type: 'fig', label: refName(key), ref: key }); o.sprite = m; hs.push(o);
+        const o = mkHS({ type: 'fig', label: refName(key), ref: key, b, p: p + 13 }); o.sprite = m; hs.push(o);
       }
     }
     if (id === cur) request();
@@ -177,6 +183,7 @@ export async function createWalk({ root, motion, hooks }) {
       }
       el.classList.toggle('off', !ok);
     }
+    if (card && !isPhone()) { if (card.h.el.classList.contains('off')) closeCard(); else placeCard(); }
     // preload the room behind a doorway as soon as it is in view
     if (Math.abs(Y - lastPre[0]) + Math.abs(P - lastPre[1]) > 2 || lastPre[0] === 999) {
       lastPre = [Y, P];
@@ -201,104 +208,83 @@ export async function createWalk({ root, motion, hooks }) {
   });
   ro.observe(view);
 
-  // ---------- reading sheet ----------
+  // ---------- reading peek, arrival popup, object card ----------
   const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
   function actionEl(a, quiet) {
-    if (a.href) { const x = el('a', 'btn' + (quiet ? ' btn-quiet' : ''), a.label); x.href = a.href; if (/^https?:/.test(a.href)) { x.target = '_blank'; x.rel = 'noopener'; x.append(Object.assign(el('span', 'sr', ' (opens in a new tab)'))); } return x; }
+    if (a.href) { const x = el('a', 'btn' + (quiet ? ' btn-quiet' : ''), a.label); x.href = a.href; if (a.download) x.setAttribute('download', ''); if (/^https?:/.test(a.href)) { x.target = '_blank'; x.rel = 'noopener'; x.append(Object.assign(el('span', 'sr', ' (opens in a new tab)'))); } return x; }
     const x = el('button', 'btn' + (quiet ? ' btn-quiet' : ''), a.label); x.type = 'button'; x.addEventListener('click', () => go(a.go)); return x;
   }
-  function listBtn(label, fn, cls) { const li = el('li'), b = el('button', cls, label); b.type = 'button'; b.addEventListener('click', fn); li.append(b); return li; }
-  let cardBox = null;
-  function showCard(node, mark) { cardBox.textContent = ''; cardBox.append(node); body.querySelectorAll('.ws-list .on').forEach(x => x.classList.remove('on')); if (mark) mark.classList.add('on'); openSheet(true); cardBox.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' }); }
+  const setSheet = st => { sheet.dataset.s = st; tog.setAttribute('aria-expanded', String(st === 'open')); };   // peek | open | hide
   function renderSheet(id) {
-    const r = R[id], s = r.sheet; body.textContent = ''; cardBox = el('div', 'ws-cardbox'); cardBox.setAttribute('aria-live', 'polite');
-    eyebrow.textContent = r.name; head.textContent = s.h;
-    if (s.ask) body.append(el('p', 'ws-ask', s.ask));
-    body.append(el('p', null, s.p), el('p', 'ws-proof', 'Proof: ' + s.proof));
-    const acts = el('div', 'ws-acts'); s.a.forEach((a, i) => acts.append(actionEl(a, i > 0))); body.append(acts);
-    if (s.doors) {
-      body.append(el('h3', 'ws-sub', 'Three ways in'));
-      const ul = el('ul', 'ws-list');
-      ul.append(listBtn('Take the tour: walk to the Curriculum', () => go('curriculum')), listBtn('The one-page version', () => go('#page')), listBtn('Downloads and contact', () => go('contact')));
-      body.append(ul);
-    }
-    if (s.bench) {
-      body.append(el('h3', 'ws-sub', 'The bench, in six positions'));
-      const ul = el('ul', 'ws-list');
-      document.querySelectorAll('#bench li').forEach(li => {
-        const i = li.dataset.i, b = listBtn(`${i}. ${li.querySelector('b').textContent}`, () => benchStep(i), null); b.firstChild.dataset.i = i; ul.append(b);
-      });
-      body.append(ul);
-    }
-    if (s.plinths) {
-      body.append(el('h3', 'ws-sub', 'The four plinths'));
-      const ul = el('ul', 'ws-list');
-      Object.entries(cfg.plinths).forEach(([k, c]) => { const b = listBtn(c.title, () => plinthCard(k), null); b.firstChild.dataset.k = k; ul.append(b); });
-      body.append(ul);
-    }
-    if (s.refs) {
-      body.append(el('h3', 'ws-sub', 'The seven references'));
-      const ul = el('ul', 'ws-list');
-      R.references.wall.forEach(k => { const b = listBtn(refName(k), () => refCardShow(k), null); b.firstChild.dataset.k = k; ul.append(b); });
-      body.append(ul);
-    }
-    if (s.contact) {
-      const ul = el('ul', 'ws-list');
-      [['Email Russell', 'mailto:russellcolevop@gmail.com?subject=Re%3A%20Russell%20Works'], ['LinkedIn', 'https://www.linkedin.com/in/russellcole/'], ['Contact card (.vcf)', '../russell.vcf']].forEach(([l, h]) => {
-        const li = el('li'), a = el('a', null, l); a.href = h; if (/^https?:/.test(h)) { a.target = '_blank'; a.rel = 'noopener'; } if (h.endsWith('.vcf')) a.setAttribute('download', ''); li.append(a); ul.append(li);
-      });
-      body.append(ul);
-    }
-    body.append(cardBox);
-    // equivalents for every other doorway and object in the room
-    const others = r.hotspots.filter(h => (h.go && R[h.go]) || h.href || h.go === '#map' || h.go === '#page');
-    const seen = new Set((s.a || []).map(a => a.go || a.href));
-    const extra = others.filter(h => !seen.has(h.go || h.href));
-    if (extra.length) {
-      body.append(el('h3', 'ws-sub', 'Doorways and objects in this room'));
-      const ul = el('ul', 'ws-list');
-      extra.forEach(h => {
-        if (h.href) { const li = el('li'), a = el('a', null, h.label); a.href = h.href; if (/^https?:/.test(h.href)) { a.target = '_blank'; a.rel = 'noopener'; } li.append(a); ul.append(li); }
-        else ul.append(listBtn(h.go === '#map' ? 'Building model: all rooms' : h.go === '#page' ? h.label : `Walk to ${h.label}`, () => go(h.go, h.b)));
-      });
-      body.append(ul);
-    }
+    const r = R[id], s = r.sheet;
+    if (!s) return setSheet('hide');                                       // the elevator's card is the arrival popup
+    $('#ws-eyebrow').textContent = r.name; $('#ws-t').textContent = s.h;
+    const box = $('#ws-room'); box.textContent = '';
+    const acts = el('div', 'ws-acts'); s.a.forEach((a, i) => acts.append(actionEl(a, i > 0)));
+    box.append(el('p', null, s.p), el('p', 'ws-proof', 'Proof: ' + s.proof), acts);
+    setSheet('peek');
   }
-  function benchStep(i) {
-    const li = document.querySelector(`#bench li[data-i="${i}"]`), n = el('div', 'ws-card');
-    n.append(el('h3', null, li.querySelector('b').textContent), el('p', null, li.childNodes[li.childNodes.length - 1].textContent.trim()));
-    showCard(n, body.querySelector(`.ws-list button[data-i="${i}"]`)); markPin(h => h.bench == i);
-    const h = hs.find(x => x.bench == i); if (h) panTo(h.b, h.p);
+  let card = null;                                                         // { h }: the open object card and its hotspot
+  function cardNode(h) {
+    const n = el('div', 'ws-card');
+    if (h.bench) {
+      const li = document.querySelector(`#bench li[data-i="${h.bench}"]`);
+      n.append(el('h3', null, li.querySelector('b').textContent), el('p', null, li.childNodes[li.childNodes.length - 1].textContent.trim()));
+    } else if (h.plinth) {
+      const c = cfg.plinths[h.plinth];
+      n.append(el('p', 'badge', c.badge), el('h3', null, c.title));
+      if (c.money) n.append(el('p', 'money', c.money));
+      n.append(el('p', 'pull', c.pull), el('p', null, 'Where it stands: ' + c.stands));
+      if (c.link) n.append(actionEl({ label: c.link.label, href: c.link.href }, true));
+    } else {
+      const c = refCard(h.ref).cloneNode(true);
+      c.removeAttribute('id'); c.removeAttribute('tabindex'); c.classList.remove('on'); c.querySelector('img.fig').loading = 'eager'; n.append(c);
+    }
+    return n;
   }
-  function plinthCard(k) {
-    const c = cfg.plinths[k], n = el('div', 'ws-card');
-    n.append(el('p', 'badge', c.badge), el('h3', null, c.title));
-    if (c.money) n.append(el('p', 'money', c.money));
-    n.append(el('p', 'pull', c.pull), el('p', null, 'Where it stands: ' + c.stands));
-    if (c.link) n.append(actionEl({ label: c.link.label, href: c.link.href }, true));
-    showCard(n, body.querySelector(`.ws-list button[data-k="${k}"]`)); markPin(h => h.plinth === k);
-    const h = hs.find(x => x.plinth === k); if (h) panTo(h.b, h.p);
+  function openCard(h) {
+    closeCard();
+    const box = $('#wc-body'); box.textContent = ''; box.append(cardNode(h));
+    card = { h }; h.el.classList.add('on'); cardEl.hidden = false;
+    if (isPhone()) { body.append(cardEl); sheet.classList.add('has-card'); setSheet('open'); panTo(h.b, h.p - 0.25 * cam.fov); }   // phone: the card sits in the drawer; lift the object above it
+    else placeCard();
+    const t = box.querySelector('h3'); t.tabIndex = -1; t.focus({ preventScroll: true });
   }
-  function refCardShow(k) {
-    const src = refCard(k), n = el('div', 'ws-card'), c = src.cloneNode(true);
-    c.removeAttribute('id'); c.removeAttribute('tabindex'); c.classList.remove('on'); c.querySelector('img.fig').loading = 'eager';
-    n.append(c);
-    showCard(n, body.querySelector(`.ws-list button[data-k="${k}"]`)); markPin(h => h.ref === k);
+  function closeCard(ret) {                                                // ret: give focus back to the hotspot (x, Escape)
+    if (!card) return;
+    const h = card.h, inside = cardEl.contains(document.activeElement); card = null;
+    h.el.classList.remove('on'); cardEl.hidden = true; lead.classList.remove('on');
+    if (cardEl.parentNode !== view) { view.append(cardEl); sheet.classList.remove('has-card'); setSheet('peek'); }
+    if (ret) h.el.focus({ preventScroll: true }); else if (inside) rtag.focus({ preventScroll: true });
   }
-  const markPin = fn => hs.forEach(h => h.el.classList.toggle('on', !!fn(h)));
-  function openSheet(on) { sheet.classList.toggle('open', on); grab.setAttribute('aria-expanded', String(on)); }
-  grab.addEventListener('click', () => openSheet(!sheet.classList.contains('open')));
-  let gy = null;
-  grab.addEventListener('pointerdown', e => { gy = e.clientY; });
-  grab.addEventListener('pointerup', e => { if (gy != null && Math.abs(e.clientY - gy) > 24) { openSheet(e.clientY < gy); e.preventDefault(); grab.dataset.skip = '1'; } gy = null; });
-  grab.addEventListener('click', e => { if (grab.dataset.skip) { delete grab.dataset.skip; e.stopImmediatePropagation(); } }, true);
-  sheet.addEventListener('focusin', () => { if (phone) openSheet(true); });
+  function placeCard() {                                                   // desktop: right of the hotspot (left near the edge), thin leader line, clamped to the view above the peek pill
+    const W = view.clientWidth, H = view.clientHeight, vr = view.getBoundingClientRect(), r = card.h.el.getBoundingClientRect();
+    const l = r.left - vr.left, rt = r.right - vr.left, cy = (r.top + r.bottom) / 2 - vr.top, cw = cardEl.offsetWidth, ch = cardEl.offsetHeight, gap = 36;
+    const right = rt + gap + cw + 8 <= W, x = clamp(right ? rt + gap : l - gap - cw, 8, Math.max(8, W - cw - 8)), y = clamp(cy - 28, 70, Math.max(70, H - ch - 84));
+    cardEl.style.transform = `translate(${x}px,${y}px)`;
+    const x0 = right ? rt : l, dx = (right ? x : x + cw) - x0, dy = clamp(cy, y + 12, y + ch - 12) - cy;
+    lead.style.width = Math.hypot(dx, dy) + 'px'; lead.style.transform = `translate(${x0}px,${cy}px) rotate(${Math.atan2(dy, dx)}rad)`; lead.classList.add('on');
+  }
+  $('#wc-x').addEventListener('click', () => closeCard(true));
+  const showIntro = () => { intro.classList.add('on'); $('#wi-h').focus({ preventScroll: true }); };
+  const hideIntro = () => intro.classList.remove('on');
+  intro.querySelectorAll('.wi-go').forEach(b => b.addEventListener('click', () => { askMotion(); hideIntro(); go(b.dataset.go); }));
+  $('#wi-x').addEventListener('click', () => { askMotion(); hideIntro(); rtag.focus({ preventScroll: true }); });
+  let sy = null, swipeT = 0;
+  const row = $('#ws-row');
+  row.addEventListener('pointerdown', e => { sy = e.clientY; });
+  row.addEventListener('pointercancel', () => { sy = null; });
+  row.addEventListener('pointerup', e => {                                 // swipe up reads, swipe down hides
+    const d = sy == null ? 0 : e.clientY - sy; sy = null;
+    if (Math.abs(d) > 24) { swipeT = performance.now(); setSheet(d < 0 ? 'open' : 'hide'); if (d > 0) rtag.focus({ preventScroll: true }); }
+  });
+  tog.addEventListener('click', () => { if (performance.now() - swipeT > 400) setSheet(sheet.dataset.s === 'open' ? 'peek' : 'open'); });
+  $('#ws-x').addEventListener('click', () => { setSheet('hide'); rtag.focus({ preventScroll: true }); });
+  rtag.addEventListener('click', () => { if (R[cur].sheet) setSheet(sheet.dataset.s === 'hide' ? 'peek' : 'open'); else showIntro(); });
 
   // ---------- actions ----------
-  function activate(h, elx) {
-    if (h.ref) return refCardShow(h.ref);
-    if (h.bench) return benchStep(h.bench);
-    if (h.plinth) return plinthCard(h.plinth);
+  function activate(h) {
+    if (h.ref || h.bench || h.plinth) return openCard(h);
     go(h.go || h.href, h.b);
   }
   function go(target, bearing) {
@@ -318,7 +304,7 @@ export async function createWalk({ root, motion, hooks }) {
   // ---------- walking ----------
   const wait = ms => new Promise(r => setTimeout(r, ms));
   async function show(id, face, push) {
-    const r = R[id];
+    const r = R[id], from = cur;
     const tex = await pano(id);
     if (disposed) return;
     const prev = mesh; mesh = panoMesh(r.kind, tex); scene.add(mesh);
@@ -326,14 +312,13 @@ export async function createWalk({ root, motion, hooks }) {
     cur = id;
     baseFov = r.fov || (phone ? 75 : 60); cam.fov = baseFov; cam.updateProjectionMatrix();
     await buildRoom(id);
-    const y = id === 'reception' ? 0 : face != null ? face : r.yaw;
-    setView(y, r.pitch || 0);
-    renderSheet(id); openSheet(false); sheet.scrollTop = 0;
-    $('#w-motion').hidden = !(canMotion());
+    const arrival = phone && r.yawPhone != null ? r.yawPhone : r.yaw;      // per-room arrival frame from rooms.json
+    setView(face == null || from === 'elevator' && id === 'reception' ? arrival : face, r.pitch || 0);
+    renderSheet(id); body.scrollTop = 0; $('#w-tag-t').textContent = r.name;
     if (push === 'push') history.pushState({ room: id }, '', `#${id}`); else if (push === 'replace') history.replaceState({ room: id }, '', location.search + `#${id}`);
     hint.classList.toggle('gone', id !== cfg.start || hintGone);
     live.textContent = `${r.name}. Facing ${compass(Y)}.`;
-    head.focus({ preventScroll: true });
+    if (r.sheet) { hideIntro(); tog.focus({ preventScroll: true }); } else if (!root.classList.contains('arrive')) showIntro();
     renderMap();
     request();
   }
@@ -349,18 +334,15 @@ export async function createWalk({ root, motion, hooks }) {
 
   // ---------- map dialog ----------
   function renderMap() {
-    const list = $('#wm-list'), model = $('#wm-model');
-    list.textContent = ''; model.querySelectorAll('.wmap-dot,.wmap-here').forEach(x => x.remove());
-    ORDER.forEach((id, i) => {
-      const li = el('li', id === cur ? 'here' : ''), b = el('button', null, R[id].name); b.type = 'button'; if (id === cur) b.setAttribute('aria-current', 'true');
-      b.addEventListener('click', () => walkTo(id, { face: 0, force: true })); li.append(b); list.append(li);
-      const d = el('button', 'wmap-dot' + (id === cur ? ' here' : ''), String(i + 1)); d.type = 'button'; d.setAttribute('aria-label', R[id].name + (id === cur ? ', you are here' : ''));
-      d.style.left = cfg.map[id][0] + '%'; d.style.top = cfg.map[id][1] + '%'; d.addEventListener('click', () => walkTo(id, { face: 0, force: true })); model.append(d);
-      if (id === cur) { const h = el('span', 'wmap-here', 'You are here'); h.style.left = cfg.map[id][0] + '%'; h.style.top = cfg.map[id][1] + '%'; model.append(h); }
+    const model = $('#wm-model'); model.querySelectorAll('.wmap-dot').forEach(x => x.remove());
+    ORDER.forEach(id => {
+      const [x, y, side] = cfg.map[id], here = id === cur, d = el('button', `wmap-dot${side ? ' s-' + side : ''}${here ? ' here' : ''}`);
+      d.type = 'button'; d.setAttribute('aria-label', R[id].name + (here ? ', you are here' : '')); d.append(el('i'), el('span', null, R[id].name));
+      d.style.left = x + '%'; d.style.top = y + '%'; d.addEventListener('click', () => walkTo(id, { force: true })); model.append(d);
     });
   }
   let lastFocus = null;
-  function openMap() { lastFocus = document.activeElement; mapEl.hidden = false; $('#wm-close').focus(); }
+  function openMap() { lastFocus = document.activeElement; mapEl.hidden = false; $('#wm-close').focus(); $('.wmap-dot.here').scrollIntoView({ inline: 'center', block: 'nearest' }); }   // phone: the model is wider than the screen, pan to this room
   function closeMap() { if (mapEl.hidden) return; mapEl.hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true }); }
   $('#wm-close').addEventListener('click', closeMap);
   mapEl.addEventListener('click', e => { if (e.target === mapEl) closeMap(); });
@@ -377,7 +359,7 @@ export async function createWalk({ root, motion, hooks }) {
   let drag = null, pinch = null, moved = false;
   const gone = () => { if (!hintGone) { hintGone = true; hint.classList.add('gone'); } };
   view.addEventListener('pointerdown', e => {
-    if (e.target.closest('.wmap')) return;
+    if (e.target.closest(UI)) return;
     pts.set(e.pointerId, [e.clientX, e.clientY]);
     if (pts.size === 1) { drag = { id: e.pointerId, x: e.clientX, y: e.clientY }; moved = false; }
     else if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), fov: cam.fov }; moved = true; drag = null; }
@@ -396,20 +378,25 @@ export async function createWalk({ root, motion, hooks }) {
   const up = e => { pts.delete(e.pointerId); if (pts.size < 2) pinch = null; if (!pts.size) { drag = null; view.classList.remove('drag'); } };
   view.addEventListener('pointerup', up); view.addEventListener('pointercancel', up);
   view.addEventListener('click', e => { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
-  view.addEventListener('wheel', e => { if (e.target.closest('.wmap')) return; e.preventDefault(); setFov(cam.fov * (1 + clamp(e.deltaY, -80, 80) * 0.0012)); }, { passive: false });
+  view.addEventListener('click', e => { if (sheet.dataset.s === 'open' && !e.target.closest('button,a,' + UI)) setSheet('peek'); });   // a tap on the world folds the card back to the peek
+  view.addEventListener('wheel', e => { if (e.target.closest(UI)) return; e.preventDefault(); setFov(cam.fov * (1 + clamp(e.deltaY, -80, 80) * 0.0012)); }, { passive: false });
   const onKey = e => {
-    if (e.target.closest && e.target.closest('.wsheet,.wmap,.wbar')) { if (e.key === 'Escape') closeMap(); return; }
+    if (e.key === 'Escape') {
+      if (!mapEl.hidden) closeMap(); else if (card) closeCard(true); else if (intro.classList.contains('on')) { hideIntro(); rtag.focus({ preventScroll: true }); } else if (sheet.dataset.s === 'open') setSheet('peek');
+      return;
+    }
+    if (e.target.closest && e.target.closest(UI + ',.wmap,.wbar')) return;
     const s = e.shiftKey ? 12 : 5;
     if (e.key === 'ArrowLeft') Y -= s; else if (e.key === 'ArrowRight') Y += s; else if (e.key === 'ArrowUp') P += s; else if (e.key === 'ArrowDown') P -= s;
     else if (e.key === '+' || e.key === '=') setFov(cam.fov - 5); else if (e.key === '-') setFov(cam.fov + 5);
-    else if (e.key === 'Escape') { closeMap(); return; } else return;
+    else return;
     if (sens.on) { sens.offY = Y - sens.y; sens.offP = P - sens.p; }
     gone(); e.preventDefault(); request();
   };
   document.addEventListener('keydown', onKey);
 
   // ---------- device motion ----------
-  const canMotion = () => 'DeviceOrientationEvent' in window && matchMedia('(pointer: coarse)').matches;
+  const D = window.DeviceOrientationEvent, canTilt = () => !!D && matchMedia('(pointer: coarse)').matches;   // touch devices only; desktop is unaffected
   const zee = new THREE.Vector3(0, 0, 1), eu = new THREE.Euler(), q0 = new THREE.Quaternion(), q1 = new THREE.Quaternion(-Math.sqrt(.5), 0, 0, Math.sqrt(.5)), qq = new THREE.Quaternion(), fv = new THREE.Vector3();
   function onOrient(e) {
     if (e.beta == null || e.alpha == null) return;
@@ -422,13 +409,25 @@ export async function createWalk({ root, motion, hooks }) {
     Y = sens.y + sens.offY; P = sens.p + sens.offP; request();
   }
   const mbtn = $('#w-motion');
-  mbtn.addEventListener('click', async () => {
-    if (sens.on) { sens.on = false; removeEventListener('deviceorientation', onOrient); mbtn.textContent = 'Use motion'; mbtn.setAttribute('aria-pressed', 'false'); return; }
-    try {
-      if (window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) { const r = await DeviceOrientationEvent.requestPermission(); if (r !== 'granted') { mbtn.textContent = 'Motion blocked'; return; } }
-      sens.on = true; sens.first = false; addEventListener('deviceorientation', onOrient); mbtn.textContent = 'Motion on'; mbtn.setAttribute('aria-pressed', 'true'); gone();
-    } catch (e) { mbtn.textContent = 'Motion unavailable'; }
-  });
+  function tilt(on) {
+    if (on === sens.on) return;
+    sens.on = on; sens.first = false; (on ? addEventListener : removeEventListener)('deviceorientation', onOrient);
+    mbtn.setAttribute('aria-pressed', String(on)); if (on) gone();
+  }
+  // iOS silently drops the permission prompt unless requestPermission() runs synchronously inside the tap:
+  // call this FIRST in a click handler, never after an await (dynamic import, walkTo, fetch).
+  const backup = () => askMotion();                                                   // click/touchend, not pointerdown: iOS ignores it as a gesture
+  const stopBackup = () => ['click', 'touchend'].forEach(t => view.removeEventListener(t, backup, true));
+  function askMotion(force) {
+    if (!canTilt() || !force && (reduce || asked)) return;
+    asked = true;
+    if (D.requestPermission) D.requestPermission().then(r => { granted = r === 'granted'; if (granted) tilt(true); stopBackup(); }, () => { asked = false; });   // denied: stay on drag, silently; rejected (no gesture): the backup stays armed
+    else { tilt(true); stopBackup(); }
+  }
+  mbtn.hidden = !canTilt();
+  mbtn.addEventListener('click', () => { if (sens.on) tilt(false); else askMotion(true); });
+  ['click', 'touchend'].forEach(t => view.addEventListener(t, backup, true));
+  if (canTilt() && !reduce && (granted || !D.requestPermission)) tilt(true);       // Android and the like: listen from the start
 
   // ---------- history ----------
   const roomFromHash = () => { const h = location.hash.slice(1); return R[h] ? h : null; };
@@ -438,20 +437,27 @@ export async function createWalk({ root, motion, hooks }) {
   return {
     async start() {
       const id = roomFromHash() || cfg.start;
+      if (id !== cfg.start) root.classList.remove('arrive');                  // deep links skip the doors
       try { await show(id, undefined, 'replace'); } catch (e) { hooks.onFail && hooks.onFail(e); return; }
       hooks.onReady && hooks.onReady();
+      if (root.classList.contains('arrive')) {                                // the doors were the loader: open them, then the popup at about 60%
+        const t = reduce ? 200 : 1100;
+        root.classList.add('open');
+        setTimeout(() => { if (!disposed) showIntro(); }, t * 0.6);
+        setTimeout(() => root.classList.remove('arrive', 'open'), t + 60);
+      }
     },
     get room() { return cur; },
-    setMotion(on) { reduce = !on; },
+    setMotion(on) { reduce = !on; if (reduce) tilt(false); },
     go: walkTo,
-    state: () => ({ room: cur, yaw: +Y.toFixed(2), pitch: +P.toFixed(2), fov: cam.fov, big, phone, kind: R[cur] && R[cur].kind, hotspots: hs.map(h => ({ id: h.id || h.ref, off: h.el.classList.contains('off'), rect: h.el.getBoundingClientRect().toJSON() })), props: props.length }),
+    state: () => ({ room: cur, yaw: +Y.toFixed(2), pitch: +P.toFixed(2), fov: cam.fov, big, phone, kind: R[cur] && R[cur].kind, hotspots: hs.map(h => ({ id: h.id || h.ref, off: h.el.classList.contains('off'), rect: h.el.getBoundingClientRect().toJSON() })), props: props.length, sheet: sheet.dataset.s, card: !!card, intro: intro.classList.contains('on'), tilt: sens.on, doors: root.className }),
     setView, setFov,
     dispose() {
       disposed = true; cancelAnimationFrame(raf); ro.disconnect(); removeEventListener('popstate', onPop); removeEventListener('deviceorientation', onOrient);
       document.removeEventListener('keydown', onKey);
       clearRoom(); if (mesh) { mesh.geometry.dispose(); mesh.material.dispose(); }
       texP.forEach(p => p.then(t => t.dispose()).catch(() => {})); spriteTex.forEach(p => p.then(t => t.dispose()).catch(() => {}));
-      renderer.dispose(); fade.classList.remove('on'); closeMap();
+      renderer.dispose(); root.classList.remove('arrive', 'open'); root.innerHTML = pristine; $('#wnotice').hidden = true;
     },
   };
 }

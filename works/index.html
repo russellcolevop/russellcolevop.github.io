@@ -407,36 +407,47 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
   <header class="wbar">
     <a class="wbrand" href="#reception" id="w-brand">Russell Cole</a>
     <nav class="wnav" aria-label="Walkthrough">
-      <button type="button" class="chip" id="w-rooms" aria-haspopup="dialog">Rooms</button>
-      <a class="chip" href="../">R&eacute;sum&eacute;</a>
+      <button type="button" class="chip" id="w-rooms" aria-haspopup="dialog">Map</button>
       <button type="button" class="chip" id="w-contact">Contact</button>
       <button type="button" class="chip chip-solid" id="w-page">One-page<span class="lg"> version</span></button>
     </nav>
   </header>
-  <div class="wmain">
-    <div class="wview" id="wview">
-      <canvas id="gl" aria-hidden="true"></canvas>
-      <div class="whs" id="whs"></div>
-      <button type="button" class="chip wmotion" id="w-motion" hidden>Use motion</button>
-      <div class="wfade" id="wfade" aria-hidden="true"></div>
-      <p class="whint" id="whint" aria-hidden="true">Drag to look around. Tap the glowing doorway to walk.</p>
-      <p class="wnotice" id="wnotice" role="status" hidden>The visual tour is still loading. <a href="?view=page" id="w-notice-page">Open the one-page version</a>, which is ready now.</p>
-      <p class="wcap">Concept rendering of a fictional place, with stylized figures. Not premises, and not photographs.</p>
-    </div>
-    <section class="wsheet" id="wsheet" aria-labelledby="ws-h">
-      <button type="button" class="wgrab" id="ws-grab" aria-expanded="false" aria-controls="ws-body"><span class="sr">Show or hide the reading panel</span></button>
-      <div class="ws-head"><p class="ws-eyebrow" id="ws-eyebrow"></p><h2 id="ws-h" tabindex="-1"></h2></div>
-      <div class="ws-body" id="ws-body"></div>
+  <div class="wview" id="wview">
+    <canvas id="gl" aria-hidden="true"></canvas>
+    <div class="whs" id="whs"></div>
+    <button type="button" class="wtag" id="w-tag"><i aria-hidden="true"></i><span id="w-tag-t"></span></button>
+    <button type="button" class="wmotion" id="w-motion" aria-pressed="false" aria-label="Tilt to look" hidden><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="3" width="8" height="13" rx="2"/><path d="M4 19c4.5 2.2 11.5 2.2 16 0M4 19l.5-3.5M20 19l-.5-3.5"/></svg></button>
+    <p class="wcap">Concept rendering of a fictional place<span class="wcap-more">, with stylized figures. Not premises, and not photographs.</span></p>
+    <p class="whint" id="whint" aria-hidden="true">Drag to look around. Tap the glowing doorway to walk.</p>
+    <i class="wlead" id="wlead" aria-hidden="true"></i>
+    <aside class="wcard" id="wcard" aria-label="Details" hidden>
+      <button type="button" class="wx" id="wc-x" aria-label="Close">&times;</button>
+      <div id="wc-body"></div>
+    </aside>
+    <section class="wsheet" id="wsheet" data-s="peek" aria-labelledby="ws-h">
+      <div class="ws-row" id="ws-row">
+        <h2 id="ws-h"><button type="button" class="ws-toggle" id="ws-toggle" aria-expanded="false" aria-controls="ws-body"><span class="ws-eyebrow" id="ws-eyebrow"></span><span class="ws-t" id="ws-t"></span><svg class="ws-chev" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l5-5 5 5"/></svg></button></h2>
+        <button type="button" class="wx" id="ws-x" aria-label="Hide">&times;</button>
+      </div>
+      <div class="ws-body" id="ws-body"><div id="ws-room"></div></div>
     </section>
+    <section class="wintro" id="wintro" aria-labelledby="wi-h">
+      <button type="button" class="wx" id="wi-x" aria-label="Close">&times;</button>
+      <p class="wi-eyebrow">Russell Works</p>
+      <h2 id="wi-h" tabindex="-1">Welcome. Three ways in.</h2>
+      <button type="button" class="wi-go" data-go="reception"><b>Take the tour</b><span>The guided route, room by room.</span></button>
+      <button type="button" class="wi-go" data-go="#page"><b>The one-page version</b><span>Thesis, career, four cases, references, contact.</span></button>
+      <button type="button" class="wi-go" data-go="contact"><b>Downloads and contact</b><span>Contact card, email, LinkedIn.</span></button>
+    </section>
+    <div class="wdoors" aria-hidden="true"><i class="wd l"></i><i class="wd r"></i></div>
+    <div class="wfade" id="wfade" aria-hidden="true"></div>
+    <p class="wnotice" id="wnotice" role="status" hidden>The visual tour is still loading. <a href="?view=page" id="w-notice-page">Open the one-page version</a>, which is ready now.</p>
   </div>
   <div class="wmap" id="wmap" role="dialog" aria-modal="true" aria-labelledby="wm-h" hidden>
     <div class="wmap-in">
-      <div class="wmap-top"><h2 id="wm-h">Rooms</h2><button type="button" class="chip" id="wm-close">Close</button></div>
-      <div class="wmap-grid">
-        <div class="wmap-model" id="wm-model"><img src="img/building-model.webp" width="900" height="552" alt="A model of the building: a courtyard with an olive tree and rooms around it." loading="lazy"></div>
-        <ol class="wmap-list" id="wm-list"></ol>
-      </div>
-      <p class="fine">Dots on the model are approximate.</p>
+      <div class="wmap-top"><h2 id="wm-h">Map</h2><button type="button" class="chip" id="wm-close">Close</button></div>
+      <div class="wmap-pan"><div class="wmap-model" id="wm-model"><img src="img/building-model.webp" width="900" height="552" alt="A model of the building: a courtyard with an olive tree and rooms around it." loading="lazy"></div></div>
+      <p class="fine">Tap a room to walk there. Dots on the model are approximate.</p>
     </div>
   </div>
   <p class="sr" id="wlive" role="status" aria-live="polite"></p>

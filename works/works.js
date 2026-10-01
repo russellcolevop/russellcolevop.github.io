@@ -7,7 +7,7 @@ const html = document.documentElement;
 if (/[?&]debug=raf\b/.test(location.search)) { window.requestAnimationFrame = cb => setTimeout(() => cb(performance.now()), 16); window.cancelAnimationFrame = id => clearTimeout(id); }
 const motionOn = () => !html.classList.contains('reduce');
 
-let walk = null, starting = false, statusTimer = 0;
+let walk = null, starting = false, statusTimer = 0, doorsDone = false;
 // one-page section to land on when leaving the walkthrough from a given room
 const SECTION = { elevator: 'reception', reception: 'reception', curriculum: 'curriculum', customers: 'customers', product: 'product', workshop: 'ai', operations: 'operations', ventures: 'ventures', gallery: 'cases', references: 'references', achievements: 'achievements', contact: 'contact' };
 
@@ -42,6 +42,9 @@ function say(msg) { status.textContent = msg; status.hidden = !msg; }
 async function startTour() {
   if (walk || starting) return;
   starting = true; html.classList.add('tour'); setMode(true);
+  const h = location.hash.slice(1);
+  if (!doorsDone && !(h in SECTION && h !== 'elevator')) $('#walk').classList.add('arrive');     // the elevator doors play on the first load only; deep links skip them
+  doorsDone = true;
   const notice = $('#wnotice');
   statusTimer = setTimeout(() => { notice.hidden = false; }, 5000);
   try {
@@ -63,7 +66,7 @@ function stopTour(room) {
   clearTimeout(statusTimer); $('#wnotice').hidden = true;
   const r = room || (walk && walk.room) || 'reception';
   if (walk) { try { walk.dispose(); } catch (e) {} walk = null; }
-  starting = false;
+  starting = false; $('#walk').classList.remove('arrive', 'open');
   html.classList.remove('tour'); setMode(false);
   const sec = document.getElementById(SECTION[r] || 'reception');
   if (sec && sec.id !== 'reception') sec.scrollIntoView({ block: 'start', behavior: 'instant' }); else scrollTo({ top: 0, behavior: 'auto' });
@@ -72,7 +75,7 @@ function stopTour(room) {
 $('#door-tour').addEventListener('click', e => { e.preventDefault(); if (!html.classList.contains('tour')) { startTour(); scrollTo({ top: 0, behavior: 'auto' }); } });
 $('#door-page').addEventListener('click', e => { e.preventDefault(); if (html.classList.contains('tour')) stopTour(); });
 $('#view-toggle').addEventListener('click', () => { html.classList.contains('tour') ? stopTour() : startTour(); });
-$('#w-notice-page').addEventListener('click', e => { e.preventDefault(); stopTour(); });
+$('#walk').addEventListener('click', e => { if (e.target.closest('#w-notice-page')) { e.preventDefault(); stopTour(); } });   // delegated: the walkthrough markup is rebuilt on each tour
 
 if (html.classList.contains('tour')) { html.classList.remove('tour'); startTour(); }
 else setMode(false);

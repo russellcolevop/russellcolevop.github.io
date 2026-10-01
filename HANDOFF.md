@@ -1,12 +1,13 @@
-push-state: main ahead 0 / behind 0 / dirty 0 after the Russell Works walkthrough push; recheck before writing
-visible-at: https://russellcolevop.github.io/ and https://russellcolevop.github.io/works/ (unlisted, noindex)
-needs-russell: open /works/ on a phone and in Safari (drag, Use motion, doorways) and tell me what feels wrong; run Lighthouse and VoiceOver; confirm the Harrison Lapides portrait is the right person (generation report: identity pending); review /works/ in Safari and on a phone; approve or edit the Walt Duflock quote; decide whether MaryAnn card discloses the McLennan family tie; confirm the Cronk/Content Studio copy
+push-state: main ahead 1 / behind 0 / dirty 0: Russell Works walk-notes rebuild committed, NOT pushed (Russell reviews in the browser, then pushes)
+visible-at: https://russellcolevop.github.io/ and https://russellcolevop.github.io/works/ (unlisted, noindex); live /works/ still serves the previous build, the walk-notes rebuild is local only until pushed
+needs-russell: review the local build, then push (python3 -m http.server from the repo root, open /works/?view=tour); on a real iPhone check the elevator doors, the tilt prompt after the first tap, the peek bar and object cards, and tell me what feels wrong; run Lighthouse and VoiceOver; confirm the Harrison Lapides portrait is the right person (generation report: identity pending); review /works/ in Safari and on a phone; approve or edit the Walt Duflock quote; decide whether MaryAnn card discloses the McLennan family tie; confirm the Cronk/Content Studio copy
 
 # Russell Cole personal site
 
 Updated September 30, 2026. Public job-search portfolio and audience profiles.
 Pushing main deploys GitHub Pages from the repository root. No custom domain.
 
+- October 1 (walk notes): /works/ walkthrough UI rebuilt to Russell's phone-walk notes: elevator doors then a three-choice popup, motion asked on the first tap, thin peek bar, object cards beside the object, no side panel. Committed, not pushed. Evidence: _reports/2026-10-01-russell-works-walk-notes.md.
 - October 1 (later): /works/ tour is now a 360 walkthrough (see below); the one-page version is unchanged.
 - October 1: phones now default to the 3D tour when WebGL2 is available and Save-Data is off; the one-page version remains the fallback and the toggle. Russell saw only the landing page on his phone and asked for the tour.
 
@@ -59,7 +60,7 @@ gallery and contact are 270 degree strips (`cyl-*`) with the view clamped to the
 not the compass text), sprite placement (Russell, seven reference figures on the floor marks), sheet copy and mini-map
 dots; tune it without touching code. Panoramas are WebP in `works/pano/` (phone 4096 wide, desktop 8192 only when
 devicePixelRatio x width > 2048), rebuilt by `works/tools/build_panos.py <design package>/assets/panoramas`.
-Phone: full-screen canvas, bottom drawer sheet; desktop: sheet 380 px on the right. Hash is the room, Back and Forward work.
+UI (walk notes build): the canvas is full-bleed on every screen and all text floats over it. First load plays bronze elevator doors (the loader) then a three-choice popup (tour, one-page, downloads and contact); deep links skip both. One peek bar (phone: bottom strip at most 56 px; desktop: pill bottom-left) shows room and heading, tap or swipe up to read, swipe down or x to hide, the room tag top-left brings it back. Bench pins, plinths and reference figures open a card (desktop: beside the object with a leader line; phone: inside the peek). No lists, no side panel. Tilt-to-look is on by default on touch devices (iOS permission is asked on the first tap, synchronously); arrival frame per room in rooms.json (yaw, yawPhone, pitch). Off-view hotspots stay tabbable and pan into view on focus. Hash is the room, Back and Forward work.
 Plan: RussellLabs/job-search-2026/3d-resume-concept-2026-09-30/ (NARRATIVE-v2.md wins). Evidence:
 _reports/2026-10-01-russell-works-walkthrough.md (current), earlier slices in the same folder.
 The old plates-and-parallax tour, its layer images and `build_images.py` were removed; the one-page images are

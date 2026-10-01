@@ -17,33 +17,32 @@
     "ref-cronk": {"w":280,"h":672,"x0":32,"y0":0,"x1":248,"y1":640}
   },
   "map": {
-    "elevator":[47,64],"reception":[46,55],"curriculum":[68,42],"customers":[79,33],"product":[67,19],
-    "workshop":[44,12],"operations":[22,22],"ventures":[13,38],"gallery":[27,52],"references":[28,43],
-    "achievements":[37,61],"contact":[63,62]
+    "elevator":[47,64,"b"],"reception":[46,55,"t"],"curriculum":[68,42],"customers":[79,33],"product":[67,19],
+    "workshop":[44,12,"l"],"operations":[22,22],"ventures":[13,38,"l"],"gallery":[27,52,"l"],"references":[28,43,"t"],
+    "achievements":[37,61,"l"],"contact":[63,62]
   },
   "rooms": {
     "elevator": {
       "name": "Elevator", "file": "pano-elevator", "kind": "pano", "yaw": 0, "pitch": 0,
-      "sheet": {"h": "Russell Cole", "ask": "Founder, operator and AI builder", "p": "The doors are open. Walk into reception, or drag to look around the lift first.", "proof": "Russell-confirmed.", "a": [{"label": "Walk into reception", "go": "reception"}, {"label": "One-page version", "go": "#page"}]},
       "hotspots": [{"id": "to-reception", "type": "door", "b": 0, "p": 6, "label": "Reception", "go": "reception", "hint": true}],
       "sprites": []
     },
     "reception": {
-      "name": "Reception", "file": "cyl-reception", "kind": "cyl", "yaw": 0, "pitch": -10, "fov": 60,
-      "sheet": {"h": "What I built got paid for, and the clients came back.", "ask": "Who is this?", "p": "Not classically trained. Twenty years beside builders with a sales engineer's instinct for where the revenue is. Since May 2026 I build too, so I can raise profit with fewer people: product, marketing automation, deployment, operations.", "proof": "Russell-confirmed. No revenue, quota or team-size figures are claimed.", "doors": true, "a": [{"label": "Take the tour", "go": "curriculum"}, {"label": "Downloads and contact", "go": "contact"}]},
+      "name": "Reception", "file": "cyl-reception", "kind": "cyl", "yaw": 76, "yawPhone": 99, "pitch": -3, "fov": 60,
+      "sheet": {"h": "What I built got paid for, and the clients came back.", "p": "Not classically trained. Twenty years beside builders with a sales engineer's instinct for where the revenue is. Since May 2026 I build too, so I can raise profit with fewer people: product, marketing automation, deployment, operations.", "proof": "Russell-confirmed. No revenue, quota or team-size figures are claimed.", "a": [{"label": "Take the tour", "go": "curriculum"}, {"label": "Downloads and contact", "go": "contact"}]},
       "hotspots": [
         {"id": "to-curriculum", "type": "door", "b": 62, "p": 2, "label": "Take the tour: the Curriculum", "go": "curriculum"},
         {"id": "to-gallery", "type": "door", "b": -89, "p": 2, "label": "Company gallery", "go": "gallery"},
         {"id": "to-elevator", "type": "door", "b": -121, "p": 3, "label": "The elevator", "go": "elevator"},
         {"id": "model", "type": "pin", "b": 0, "p": -24, "label": "Building model: all rooms", "go": "#map"},
-        {"id": "desk", "type": "pin", "b": 99, "p": 2, "label": "The one-page version", "go": "#page"},
+        {"id": "desk", "type": "pin", "b": 99, "p": 8, "label": "The one-page version", "go": "#page"},
         {"id": "downloads", "type": "pin", "b": 118, "p": 14, "label": "Downloads and contact", "go": "contact"}
       ],
       "sprites": [{"img": "russell-greeting", "b": 99, "dist": 3.6, "crop": 0.66, "h": 1.75}]
     },
     "curriculum": {
       "name": "The Curriculum", "file": "pano-curriculum", "kind": "pano", "yaw": 0, "pitch": 0,
-      "sheet": {"h": "Since May 4: one program, shipped work.", "ask": "Is he spreading himself thin?", "p": "May 4, 2026 is the date I went all in on AI. Everything since is one deliberate program, not a list of side projects: each product taught a different part of building, releasing and running software.", "proof": "Fuwari live, iPhone external beta. Playing for Keeps live. Corbel active. Stonewise live, iOS internal testing. ChildCareOS private release. Signal Engine local tool. Ramara Hub live. KoyaOS my method. Status as it stands today.", "a": [{"label": "Next: Customer Studio", "go": "customers"}, {"label": "Back to reception", "go": "reception"}]},
+      "sheet": {"h": "Since May 4: one program, shipped work.", "p": "May 4, 2026 is the date I went all in on AI. Everything since is one deliberate program, not a list of side projects: each product taught a different part of building, releasing and running software.", "proof": "Fuwari live, iPhone external beta. Playing for Keeps live. Corbel active. Stonewise live, iOS internal testing. ChildCareOS private release. Signal Engine local tool. Ramara Hub live. KoyaOS my method. Status as it stands today.", "a": [{"label": "Next: Customer Studio", "go": "customers"}, {"label": "Back to reception", "go": "reception"}]},
       "hotspots": [
         {"id": "to-customers", "type": "door", "b": 123, "p": 8, "label": "Customer Studio", "go": "customers"},
         {"id": "to-reception", "type": "door", "b": -81, "p": 8, "label": "Reception", "go": "reception"}
@@ -52,7 +51,7 @@
     },
     "customers": {
       "name": "Customer Studio", "file": "pano-customers", "kind": "pano", "yaw": 0, "pitch": 0,
-      "sheet": {"h": "Start with the work people actually do.", "ask": "Can he learn the buyer's problem?", "p": "Fuwari: I observed how a grooming shop schedules, communicates and gets paid before I shaped the product around it. AgXactly: founder-led customer discovery and sales with growers. Corbel: discovery and a systems review inside the client's own workflow, then software built around it.", "proof": "Fuwari, AgXactly and Corbel records.", "a": [{"label": "Next: Product Studio", "go": "product"}, {"label": "Back to the Curriculum", "go": "curriculum"}]},
+      "sheet": {"h": "Start with the work people actually do.", "p": "Fuwari: I observed how a grooming shop schedules, communicates and gets paid before I shaped the product around it. AgXactly: founder-led customer discovery and sales with growers. Corbel: discovery and a systems review inside the client's own workflow, then software built around it.", "proof": "Fuwari, AgXactly and Corbel records.", "a": [{"label": "Next: Product Studio", "go": "product"}, {"label": "Back to the Curriculum", "go": "curriculum"}]},
       "hotspots": [
         {"id": "to-product", "type": "door", "b": 0, "p": 8, "label": "Product Studio", "go": "product"},
         {"id": "to-curriculum", "type": "door", "b": 180, "p": 5, "label": "The Curriculum", "go": "curriculum"}
@@ -61,7 +60,7 @@
     },
     "product": {
       "name": "Product Studio", "file": "pano-product", "kind": "pano", "yaw": 0, "pitch": 0,
-      "sheet": {"h": "Make the next action clear.", "ask": "Can he make the next action clear?", "p": "Fuwari: one screen for booking, messaging and the money side, designed around what a groomer does next. Stonewise: a live care-companion web app where AI-assisted input is checked by a person. No clinical validation or health claims are made.", "proof": "Fuwari live web product; Stonewise live web app.", "a": [{"label": "Next: AI Workshop", "go": "workshop"}, {"label": "Back to Customer Studio", "go": "customers"}]},
+      "sheet": {"h": "Make the next action clear.", "p": "Fuwari: one screen for booking, messaging and the money side, designed around what a groomer does next. Stonewise: a live care-companion web app where AI-assisted input is checked by a person. No clinical validation or health claims are made.", "proof": "Fuwari live web product; Stonewise live web app.", "a": [{"label": "Next: AI Workshop", "go": "workshop"}, {"label": "Back to Customer Studio", "go": "customers"}]},
       "hotspots": [
         {"id": "to-workshop", "type": "door", "b": -91, "p": 6, "label": "AI Workshop", "go": "workshop"},
         {"id": "to-customers", "type": "door", "b": 180, "p": 5, "label": "Customer Studio", "go": "customers"}
@@ -70,7 +69,7 @@
     },
     "workshop": {
       "name": "AI Workshop", "file": "pano-workshop", "kind": "pano", "yaw": 0, "pitch": -4,
-      "sheet": {"h": "AI helps me build. I own the result.", "ask": "Can he direct AI and verify it?", "p": "Research, specification, implementation, checks, release and maintenance stay connected. I direct Claude Code, Codex and MCP-connected tools, and I verify and release what they produce. Select a bench position.", "proof": "The bench illustrates the method. It is not an artifact from a particular product.", "bench": true, "a": [{"label": "Next: Operations Room", "go": "operations"}, {"label": "Back to Product Studio", "go": "product"}]},
+      "sheet": {"h": "AI helps me build. I own the result.", "p": "Research, specification, implementation, checks, release and maintenance stay connected. I direct Claude Code, Codex and MCP-connected tools, and I verify and release what they produce. Select a bench position.", "proof": "The bench illustrates the method. It is not an artifact from a particular product.", "a": [{"label": "Next: Operations Room", "go": "operations"}, {"label": "Back to Product Studio", "go": "product"}]},
       "hotspots": [
         {"id": "b1", "type": "pin", "b": -56.7, "p": -9, "label": "1 Source", "bench": 1},
         {"id": "b2", "type": "pin", "b": -34.2, "p": -9, "label": "2 Spec", "bench": 2},
@@ -85,7 +84,7 @@
     },
     "operations": {
       "name": "Operations Room", "file": "cyl-operations", "kind": "cyl", "yaw": 0, "pitch": 0, "fov": 60,
-      "sheet": {"h": "Owner, next action, way to recover.", "ask": "Can he make work maintainable?", "p": "AIVA Network: as Ecosystem Manager at EMILI, startup outreach, evaluation, pilot routing and Airtable workflows. Fuwari: I own testing, release and maintenance of the live product. KoyaOS: every task has an owner, a next action and a handoff the next person can start from.", "proof": "AIVA, Fuwari and KoyaOS records.", "a": [{"label": "Next: Venture Room", "go": "ventures"}, {"label": "Back to the AI Workshop", "go": "workshop"}]},
+      "sheet": {"h": "Owner, next action, way to recover.", "p": "AIVA Network: as Ecosystem Manager at EMILI, startup outreach, evaluation, pilot routing and Airtable workflows. Fuwari: I own testing, release and maintenance of the live product. KoyaOS: every task has an owner, a next action and a handoff the next person can start from.", "proof": "AIVA, Fuwari and KoyaOS records.", "a": [{"label": "Next: Venture Room", "go": "ventures"}, {"label": "Back to the AI Workshop", "go": "workshop"}]},
       "hotspots": [
         {"id": "to-ventures", "type": "door", "b": -84, "p": 0, "label": "Venture Room", "go": "ventures"},
         {"id": "to-workshop", "type": "door", "b": 100, "p": 0, "label": "AI Workshop", "go": "workshop"}
@@ -94,7 +93,7 @@
     },
     "ventures": {
       "name": "Venture Room", "file": "pano-ventures", "kind": "pano", "yaw": 0, "pitch": -8,
-      "sheet": {"h": "Build the company, learn from what happened.", "ask": "Can he build a company and be honest about it?", "p": "AgXactly: formation, customers, capital, acquisition and wind-down, reported as it happened. I founded it, raised just under US$1M and led it through acquisition by Nighthawk Ag; the combined business later wound down. Vesta.AI is the lesson that came before it: a restaurant voice-ordering venture whose technical delivery failed. It is why I build and verify what I sell.", "proof": "AgXactly: Russell-confirmed; Founder Institute sources linked in the one-page version.", "a": [{"label": "Next: Company gallery", "go": "gallery"}, {"label": "Back to Operations Room", "go": "operations"}]},
+      "sheet": {"h": "Build the company, learn from what happened.", "p": "AgXactly: formation, customers, capital, acquisition and wind-down, reported as it happened. I founded it, raised just under US$1M and led it through acquisition by Nighthawk Ag; the combined business later wound down. Vesta.AI is the lesson that came before it: a restaurant voice-ordering venture whose technical delivery failed. It is why I build and verify what I sell.", "proof": "AgXactly: Russell-confirmed; Founder Institute sources linked in the one-page version.", "a": [{"label": "Next: Company gallery", "go": "gallery"}, {"label": "Back to Operations Room", "go": "operations"}]},
       "hotspots": [
         {"id": "to-operations", "type": "door", "b": 0, "p": 6, "label": "Operations Room", "go": "operations"},
         {"id": "to-gallery", "type": "door", "b": 180, "p": 8, "label": "Company gallery", "go": "gallery"}
@@ -103,7 +102,7 @@
     },
     "gallery": {
       "name": "Company gallery", "file": "cyl-gallery", "kind": "cyl", "yaw": 0, "pitch": -4, "fov": 60,
-      "sheet": {"h": "Different problems. The same responsibility to make it work.", "ask": "What has he shipped, and who paid?", "p": "Four cases, each with a status badge and my part. Select a plinth. The long wall ahead is the reference wall.", "proof": "Fuwari: live customer software. Corbel: paid engagements. AgXactly: raised just under US$1M. Playing for Keeps: live league platform.", "plinths": true, "a": [{"label": "Next: Reference wall", "go": "references"}, {"label": "Back to the Venture Room", "go": "ventures"}]},
+      "sheet": {"h": "Different problems. The same responsibility to make it work.", "p": "Four cases, each with a status badge and my part. Select a plinth. The long wall ahead is the reference wall.", "proof": "Fuwari: live customer software. Corbel: paid engagements. AgXactly: raised just under US$1M. Playing for Keeps: live league platform.", "a": [{"label": "Next: Reference wall", "go": "references"}, {"label": "Back to the Venture Room", "go": "ventures"}]},
       "hotspots": [
         {"id": "p1", "type": "pin", "b": -81, "p": -17, "label": "Fuwari", "plinth": "fuwari"},
         {"id": "p2", "type": "pin", "b": -57, "p": -6, "label": "Corbel", "plinth": "corbel"},
@@ -117,7 +116,7 @@
     },
     "references": {
       "name": "Reference wall", "file": "pano-references", "kind": "pano", "yaw": 0, "pitch": -6,
-      "sheet": {"h": "Ask them.", "ask": "Would anyone vouch for him?", "p": "Seven people who have worked with me, in their words. Introductions go through me: each card opens a note to me, and I connect you. Nothing here contacts them directly.", "proof": "Consented references only. Figures are stylized illustrations; Samantha McLennan and MaryAnn McLennan are generic and Rachael Rose is a neutral stand-in.", "refs": true, "a": [{"label": "Next: Achievements", "go": "achievements"}, {"label": "Back to the gallery", "go": "gallery"}]},
+      "sheet": {"h": "Ask them.", "p": "Seven people who have worked with me, in their words. Introductions go through me: each card opens a note to me, and I connect you. Nothing here contacts them directly.", "proof": "Consented references only. Figures are stylized illustrations; Samantha McLennan and MaryAnn McLennan are generic and Rachael Rose is a neutral stand-in.", "a": [{"label": "Next: Achievements", "go": "achievements"}, {"label": "Back to the gallery", "go": "gallery"}]},
       "hotspots": [
         {"id": "to-reception", "type": "door", "b": 139, "p": 4, "label": "Reception", "go": "reception"},
         {"id": "to-ventures", "type": "door", "b": -146, "p": 4, "label": "Venture Room", "go": "ventures"},
@@ -129,7 +128,7 @@
     },
     "achievements": {
       "name": "Achievements", "file": "pano-achievements", "kind": "pano", "yaw": 0, "pitch": 0,
-      "sheet": {"h": "The work, with its receipts.", "ask": "Receipts?", "p": "A dated proof index with source links lives on its own page. Resume PDFs are in preparation.", "proof": "Every entry is dated and sourced.", "a": [{"label": "Open the achievements page", "href": "../achievements/"}, {"label": "Next: Contact", "go": "contact"}]},
+      "sheet": {"h": "The work, with its receipts.", "p": "A dated proof index with source links lives on its own page. Resume PDFs are in preparation.", "proof": "Every entry is dated and sourced.", "a": [{"label": "Open the achievements page", "href": "../achievements/"}, {"label": "Next: Contact", "go": "contact"}]},
       "hotspots": [
         {"id": "to-reception", "type": "door", "b": 0, "p": 4, "label": "Reception", "go": "reception"},
         {"id": "to-gallery", "type": "door", "b": -134, "p": 3, "label": "Company gallery", "go": "gallery"},
@@ -139,7 +138,7 @@
     },
     "contact": {
       "name": "Contact", "file": "cyl-contact", "kind": "cyl", "yaw": 0, "pitch": -8, "fov": 60,
-      "sheet": {"h": "The future employee, today.", "ask": "What now?", "p": "I built all of this to become the kind of operator companies will need next: someone who finds the customer, shapes the offer, builds the product, verifies it and keeps it running, with AI doing the heavy lifting. I want a challenge, at the cutting edge of AI, full-time or fractional. Tell me what needs to work better.", "proof": "Russell-confirmed.", "contact": true, "a": [{"label": "Email Russell", "href": "mailto:russellcolevop@gmail.com?subject=Re%3A%20Russell%20Works"}, {"label": "Resume overview", "href": "../"}]},
+      "sheet": {"h": "The future employee, today.", "p": "I built all of this to become the kind of operator companies will need next: someone who finds the customer, shapes the offer, builds the product, verifies it and keeps it running, with AI doing the heavy lifting. I want a challenge, at the cutting edge of AI, full-time or fractional. Tell me what needs to work better.", "proof": "Russell-confirmed.", "a": [{"label": "Email Russell", "href": "mailto:russellcolevop@gmail.com?subject=Re%3A%20Russell%20Works"}, {"label": "LinkedIn", "href": "https://www.linkedin.com/in/russellcole/"}, {"label": "Contact card (.vcf)", "href": "../russell.vcf", "download": true}]},
       "hotspots": [
         {"id": "email", "type": "pin", "b": -47, "p": -20, "label": "Email Russell", "href": "mailto:russellcolevop@gmail.com?subject=Re%3A%20Russell%20Works"},
         {"id": "resume", "type": "pin", "b": 0, "p": -20, "label": "Resume overview", "href": "../"},
