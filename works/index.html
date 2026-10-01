@@ -17,7 +17,7 @@ var motion=m==='off'?false:m==='on'?true:!os;
 h.classList.add('js');if(!motion)h.classList.add('reduce');
 try{gl=!!d.createElement('canvas').getContext('webgl2')}catch(e){}
 var save=navigator.connection&&navigator.connection.saveData;
-var v=q.get('view'),tour=gl&&(v==='tour'||(v!=='page'&&innerWidth>=760&&!save));
+var v=q.get('view'),tour=gl&&(v==='tour'||(v!=='page'&&!save));
 h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
 })(document);
 </script>

@@ -7,6 +7,8 @@ needs-russell: review /works/ in Safari and on a phone; approve or edit the Walt
 Updated September 30, 2026. Public job-search portfolio and audience profiles.
 Pushing main deploys GitHub Pages from the repository root. No custom domain.
 
+- October 1: phones now default to the 3D tour when WebGL2 is available and Save-Data is off; the one-page version remains the fallback and the toggle. Russell saw only the landing page on his phone and asked for the tour.
+
 ## Current positioning
 
 “I work at the edge of what is possible with AI, and turn it into working products.”
