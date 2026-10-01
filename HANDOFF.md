@@ -1,6 +1,6 @@
-push-state: main ahead 2 / behind 0 / dirty 0: walk-notes rebuild (3613241) plus review fixes (784d69d) committed and reviewed at 375 and 1440; push was blocked by the agent permission classifier, Russell pushes
-visible-at: https://russellcolevop.github.io/ and https://russellcolevop.github.io/works/ (unlisted, noindex); live /works/ still serves the previous build, the walk-notes rebuild is local only until pushed
-needs-russell: push main (git -C ~/Developer/russellcole-site push origin main); then on a real iPhone check the elevator doors, the tilt prompt on the first tap, the peek bar and object cards; run Lighthouse and VoiceOver; confirm the Harrison Lapides portrait; approve or edit the Walt Duflock quote; decide whether MaryAnn card discloses the McLennan family tie; confirm the Cronk/Content Studio copy
+push-state: main ahead 0 / behind 0 / dirty 0: walk-notes rebuild (3613241) and review fixes (784d69d) pushed October 1 at Russell's request
+visible-at: https://russellcolevop.github.io/ and https://russellcolevop.github.io/works/ (unlisted, noindex; walk-notes rebuild)
+needs-russell: on a real iPhone check the elevator doors, the tilt prompt on the first tap, the peek bar and object cards; run Lighthouse and VoiceOver; confirm the Harrison Lapides portrait; approve or edit the Walt Duflock quote; decide whether MaryAnn card discloses the McLennan family tie; confirm the Cronk/Content Studio copy
 
 # Russell Cole personal site
 
