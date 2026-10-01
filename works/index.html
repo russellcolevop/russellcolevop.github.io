@@ -27,13 +27,6 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
 <a class="skip" href="#contact">Skip to résumé and contact</a>
 <a class="skip skip2" href="#main">Skip to content</a>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    
-    <symbol id="fig" viewBox="0 0 100 200"><ellipse cx="50" cy="193" rx="30" ry="4.5" fill="#182C34" opacity=".2"/><path d="M38 112L36.5 186H48L50 132L52 186H63.5L62 112Z" fill="#2c3a40"/><ellipse cx="42" cy="187.5" rx="8.5" ry="3.4" fill="#182327"/><ellipse cx="58" cy="187.5" rx="8.5" ry="3.4" fill="#182327"/><path d="M33 45Q50 38 67 45L72 80 71 120H29L28 80Z" fill="currentColor"/><path d="M33 46L23 84 24.5 112H31L33 84 38 60Z" fill="currentColor"/><path d="M67 46L77 84 75.5 112H69L67 84 62 60Z" fill="currentColor"/><path d="M43 41L50 62 57 41Z" fill="#f4f0e7"/><rect x="45.5" y="33" width="9" height="10" rx="3" fill="#cdbf9f"/><ellipse cx="50" cy="23" rx="11.5" ry="13.5" fill="#d7caa9"/><circle cx="27.5" cy="114" r="4.2" fill="#cdbf9f"/><circle cx="72.5" cy="114" r="4.2" fill="#cdbf9f"/><path d="M38 22C38 11 44 8 50 8s12 3 12 14c-3-6-7-8-12-8s-9 2-12 8z" fill="#2b2420"/></symbol>
-  </defs>
-</svg>
-
 <header class="bar">
   <a class="brand" href="#reception">Russell Cole</a>
   <nav class="nav" aria-label="Sections">
@@ -67,8 +60,8 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
         <p id="tour-status" class="tour-status" role="status" hidden></p>
       </div>
       <figure class="poster-fig hero-fig">
-        <picture><img class="poster" src="img/reception-m.webp" width="1024" height="768" loading="lazy" alt="A courtyard reception with a limestone plinth holding a model of the building, and Russell standing behind a timber desk, smiling."></picture>
-        <figcaption>Concept rendering of a fictional place and a stylized likeness. Not premises, and not a photograph.</figcaption>
+        <picture><source media="(max-width:759px)" srcset="img/reception-phone.webp" width="1600" height="1200"><img class="poster" src="img/reception.webp" width="2560" height="1440" fetchpriority="high" decoding="async" alt="A courtyard reception with a limestone plinth holding a model of the building, a timber desk at right, and an olive tree in the open courtyard."></picture>
+        <figcaption>Concept rendering of a fictional place. Not premises, and not a photograph.</figcaption>
       </figure>
     </div>
 
@@ -84,6 +77,74 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
         <li class="turn"><button type="button" aria-expanded="false" aria-controls="ev6">May 4, 2026: all in on AI</button><p id="ev6" class="ev" hidden>From this date I build as well as sell, with AI doing the heavy lifting and me owning testing and release.</p></li>
         <li><button type="button" aria-expanded="false" aria-controls="ev7">Fuwari, Corbel, Playing for Keeps, Stonewise, ChildCareOS, Signal Engine, KoyaOS, Ramara</button><p id="ev7" class="ev" hidden>Fuwari: live web product, iPhone external beta. Corbel: active consulting practice. Playing for Keeps: live league platform. Stonewise: live web app, iOS internal testing. ChildCareOS: private web release. Signal Engine: local tool with MCP integration. Ramara Hub: live static information site. KoyaOS: my repository-based method for running venture work.</p></li>
       </ol>
+    </div>
+  </section>
+
+  <section id="curriculum" class="room onepage-only" aria-labelledby="h-curriculum">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">The Curriculum</p>
+        <h2 id="h-curriculum">Since May 4: one program, shipped work.</h2>
+        <p class="ask">Is he spreading himself thin?</p>
+        <p>May 4, 2026 is the date I went all in on AI. Everything since is one deliberate program, not a list of side projects: each product below taught a different part of building, releasing and running software.</p>
+        <ul class="plain">
+          <li><b>Fuwari</b> Live web product, iPhone external beta</li>
+          <li><b>Playing for Keeps</b> Live league platform</li>
+          <li><b>Corbel</b> Active consulting practice</li>
+          <li><b>Stonewise</b> Live web app, iOS internal testing</li>
+          <li><b>ChildCareOS</b> Private web release</li>
+          <li><b>Signal Engine</b> Local tool, MCP integration</li>
+          <li><b>Ramara Hub</b> Live static information site</li>
+          <li><b>KoyaOS</b> My repository-based method for running venture work</li>
+        </ul>
+        <p class="fine">Status is stated as it stands today. Release dates are kept in the repository and release records.</p>
+      </div>
+      <figure class="poster-fig"><picture><source media="(max-width:759px)" srcset="img/curriculum-phone.webp" width="1600" height="1200"><img class="plate" src="img/curriculum.webp" width="2560" height="1440" loading="lazy" decoding="async" alt="A long limestone wall with an empty horizontal timeline rail in petrol-blue enamel, blank oak tabs clipped along it, and a bench below."></picture><figcaption>Concept rendering of a fictional room.</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="customers" class="room onepage-only" aria-labelledby="h-customers">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Customer Studio</p>
+        <h2 id="h-customers">Start with the work people actually do.</h2>
+        <p class="ask">Can he learn the buyer&rsquo;s problem?</p>
+        <dl>
+          <dt>Fuwari</dt><dd>I observed how a grooming shop schedules, communicates and gets paid before I shaped the product around it.</dd>
+          <dt>AgXactly</dt><dd>Founder-led customer discovery and sales with growers.</dd>
+          <dt>Corbel</dt><dd>Discovery and a systems review inside the client&rsquo;s own workflow, then software built around it.</dd>
+        </dl>
+      </div>
+      <figure class="poster-fig"><picture><source media="(max-width:759px)" srcset="img/customers-phone.webp" width="1600" height="1200"><img class="plate" src="img/customers.webp" width="2560" height="1440" loading="lazy" decoding="async" alt="Two angled red armchairs facing an oak table with an open notebook, a felt wall with a blank pinned strip and a standing lamp, with the courtyard beyond."></picture><figcaption>Concept rendering of a fictional room.</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="content" class="room onepage-only" aria-labelledby="h-content">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Content Studio</p>
+        <h2 id="h-content">Say it so people act.</h2>
+        <p class="ask">Can he make the message land?</p>
+        <p>I build the message as carefully as the product. For Jim Cronk&rsquo;s 2026 campaign for Mayor of Ramara I produced the brand pack, 26 branded clips and a 106-slot Facebook and Instagram calendar, wrote the posting runbooks, and scheduled it all. Beyond the campaign: the 5K Engine Substack, the Fuwari and Corbel marketing sites, and cards and reels.</p>
+        <p>Tools: video editing, HeyGen avatars, voice cloning and the studio render engine.</p>
+        <p class="fine">The picture is the Product Studio plate, used as a stand-in. The Content Studio room has not been rendered yet.</p>
+      </div>
+      <figure class="poster-fig"><picture><source media="(max-width:759px)" srcset="img/product-phone.webp" width="1600" height="1200"><img class="plate" src="img/product.webp" width="2560" height="1440" loading="lazy" decoding="async" alt="An oak drawing table with paper, a blank screen on a stand and a brass task lamp, with a pale blue pinboard of blank sheets behind. A stand-in for the Content Studio."></picture><figcaption>Stand-in image: the Product Studio plate. Concept rendering of a fictional room.</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="product" class="room onepage-only" aria-labelledby="h-product">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Product Studio</p>
+        <h2 id="h-product">Make the next action clear.</h2>
+        <p class="ask">Can he make the next action clear?</p>
+        <dl>
+          <dt>Fuwari</dt><dd>One screen for booking, messaging and the money side, designed around what a groomer does next.</dd>
+          <dt>Stonewise</dt><dd>A live care-companion web app where AI-assisted input is checked by a person. No clinical validation or health claims are made.</dd>
+        </dl>
+      </div>
+      <figure class="poster-fig"><picture><source media="(max-width:759px)" srcset="img/product-phone.webp" width="1600" height="1200"><img class="plate" src="img/product.webp" width="2560" height="1440" loading="lazy" decoding="async" alt="An oak drawing table with paper, a blank screen on a stand and a brass task lamp, with a pale blue pinboard of blank sheets behind."></picture><figcaption>Concept rendering of a fictional room.</figcaption></figure>
     </div>
   </section>
 
@@ -104,9 +165,38 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
         <p class="fine">The bench illustrates the method. It is not an artifact from a particular product.</p>
       </div>
       <figure class="poster-fig">
-        <picture><img class="poster" src="img/workshop-m.webp" width="1024" height="768" loading="lazy" alt="A long timber workbench in a daylit workshop with an open book, drawings, a sample tray, a laptop, an instrument stand and a notebook laid out in a row."></picture>
+        <picture><source media="(max-width:759px)" srcset="img/workshop-phone.webp" width="1600" height="1200"><img class="poster" src="img/workshop.webp" width="2560" height="1440" loading="lazy" decoding="async" alt="A long timber workbench in a daylit workshop with an open book, drawings, a sample tray, a laptop, an instrument stand and a closed folio laid out in a row."></picture>
         <figcaption>Concept rendering of a fictional workshop.</figcaption>
       </figure>
+    </div>
+  </section>
+
+  <section id="operations" class="room onepage-only" aria-labelledby="h-operations">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Operations Room</p>
+        <h2 id="h-operations">Owner, next action, way to recover.</h2>
+        <p class="ask">Can he make work maintainable?</p>
+        <dl>
+          <dt>AIVA Network</dt><dd>As Ecosystem Manager at EMILI: startup outreach, evaluation, pilot routing and Airtable workflows.</dd>
+          <dt>Fuwari</dt><dd>I own testing, release and maintenance of the live product.</dd>
+          <dt>KoyaOS</dt><dd>My repository-based method for running venture work: every task has an owner, a next action and a handoff the next person can start from.</dd>
+        </dl>
+      </div>
+      <figure class="poster-fig"><picture><source media="(max-width:759px)" srcset="img/operations-phone.webp" width="1600" height="1200"><img class="plate" src="img/operations.webp" width="2560" height="1440" loading="lazy" decoding="async" alt="A broad oak dispatch table with three open oak trays in a row, deep green upholstered chairs and orderly open shelving of blank folios."></picture><figcaption>Concept rendering of a fictional room.</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="ventures" class="room onepage-only" aria-labelledby="h-ventures">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Venture Room</p>
+        <h2 id="h-ventures">Build the company, learn from what happened.</h2>
+        <p class="ask">Can he build a company and be honest about it?</p>
+        <p>AgXactly: formation, customers, capital, acquisition and wind-down, reported as it happened. I founded it, raised just under US$1M and led it through acquisition by Nighthawk Ag; the combined business later wound down. <a href="#agxactly">See the case</a>.</p>
+        <p>Vesta.AI is the lesson that came before it: a restaurant voice-ordering venture whose technical delivery failed. It is why I build and verify what I sell.</p>
+      </div>
+      <figure class="poster-fig"><picture><source media="(max-width:759px)" srcset="img/ventures-phone.webp" width="1600" height="1200"><img class="plate" src="img/ventures.webp" width="2560" height="1440" loading="lazy" decoding="async" alt="A wide oak folio lying open on a table with blank pages, oxblood shelves with a few bound volumes, and a gallery aperture beyond."></picture><figcaption>Concept rendering of a fictional room.</figcaption></figure>
     </div>
   </section>
 
@@ -153,7 +243,7 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
           </dl>
           <p><a class="btn btn-quiet" href="https://corbelops.com" rel="noopener" target="_blank">Visit Corbel<span class="sr"> (opens in a new tab)</span></a></p>
         </div>
-        <figure class="poster-fig"><picture><img class="poster" src="img/gallery-m.webp" width="1024" height="768" loading="lazy" alt="A long gallery table with blank display screens, a model and a small dog figurine, in a colonnade open to a courtyard."></picture><figcaption>Concept rendering of a fictional gallery.</figcaption></figure>
+        <figure class="poster-fig"><picture><source media="(max-width:759px)" srcset="img/gallery-phone.webp" width="1600" height="1200"><img class="poster" src="img/gallery.webp" width="2560" height="1440" loading="lazy" decoding="async" alt="A colonnaded gallery hall open to the courtyard, with four blank oak display plinths in a row and a bench along the wall."></picture><figcaption>Concept rendering of a fictional gallery.</figcaption></figure>
       </div>
     </article>
 
@@ -204,8 +294,18 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
       <h2 id="h-ref">Ask them.</h2>
       <p>Seven people who have worked with me, in their words. Introductions go through me: each card opens a note to me, and I connect you. Nothing on this page contacts them directly.</p>
       <ul class="refs" aria-label="References">
+        <li class="ref" id="ref-lapides" data-ref="lapides" tabindex="-1">
+          <img class="fig" src="img/ref-lapides.webp" width="64" height="80" loading="lazy" decoding="async" alt="">
+          <div class="ref-body">
+            <h3>Harrison Lapides</h3>
+            <p class="ref-role">Managing Partner, Red Tail Ventures</p>
+            <p class="ref-rel">Investor in AgXactly.</p>
+            <blockquote><p>&ldquo;He set a bold strategy but was quick to seek out advice.&rdquo;</p><footer>From a signed reference letter, March 20, 2024</footer></blockquote>
+            <a class="btn btn-quiet" href="mailto:russellcolevop@gmail.com?subject=Ask%20Russell%20for%20an%20intro%3A%20Harrison%20Lapides">Ask Russell for an intro<span class="sr"> to Harrison Lapides</span></a>
+          </div>
+        </li>
         <li class="ref" id="ref-haddad" data-ref="haddad" tabindex="-1">
-          <svg class="fig" viewBox="0 0 100 200" aria-hidden="true" focusable="false" style="--c:#275565"><use href="#fig"/></svg>
+          <img class="fig" src="img/ref-haddad.webp" width="64" height="80" loading="lazy" decoding="async" alt="">
           <div class="ref-body">
             <h3>Michael Haddad</h3>
             <p class="ref-role">Fractional CFO, AgXactly</p>
@@ -214,8 +314,18 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
             <a class="btn btn-quiet" href="mailto:russellcolevop@gmail.com?subject=Ask%20Russell%20for%20an%20intro%3A%20Michael%20Haddad">Ask Russell for an intro<span class="sr"> to Michael Haddad</span></a>
           </div>
         </li>
+        <li class="ref" id="ref-duflock" data-ref="duflock" tabindex="-1">
+          <img class="fig" src="img/ref-duflock.webp" width="64" height="80" loading="lazy" decoding="async" alt="">
+          <div class="ref-body">
+            <h3>Walt Duflock</h3>
+            <p class="ref-role">Vice President, Innovation, Western Growers</p>
+            <p class="ref-rel">Four years of agtech conversations and collaboration.</p>
+            <blockquote><p>&ldquo;He possesses a remarkable ability to identify emerging trends and translate them into practical, value-driven solutions.&rdquo;</p><footer>From a signed reference letter</footer></blockquote>
+            <a class="btn btn-quiet" href="mailto:russellcolevop@gmail.com?subject=Ask%20Russell%20for%20an%20intro%3A%20Walt%20Duflock">Ask Russell for an intro<span class="sr"> to Walt Duflock</span></a>
+          </div>
+        </li>
         <li class="ref" id="ref-mclennan-s" data-ref="mclennan-s" tabindex="-1">
-          <svg class="fig" viewBox="0 0 100 200" aria-hidden="true" focusable="false" style="--c:#763F3D"><use href="#fig"/></svg>
+          <img class="fig" src="img/ref-mclennan-s.webp" width="64" height="80" loading="lazy" decoding="async" alt="">
           <div class="ref-body">
             <h3>Samantha McLennan</h3>
             <p class="ref-role">Owner, Samantha&#x27;s Grooming</p>
@@ -225,7 +335,7 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
           </div>
         </li>
         <li class="ref" id="ref-mclennan-m" data-ref="mclennan-m" tabindex="-1">
-          <svg class="fig" viewBox="0 0 100 200" aria-hidden="true" focusable="false" style="--c:#6E7C61"><use href="#fig"/></svg>
+          <img class="fig" src="img/ref-mclennan-m.webp" width="64" height="80" loading="lazy" decoding="async" alt="">
           <div class="ref-body">
             <h3>MaryAnn McLennan, RECE</h3>
             <p class="ref-role">Executive Director, Orillia Central Preschool</p>
@@ -235,7 +345,7 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
           </div>
         </li>
         <li class="ref" id="ref-rose" data-ref="rose" tabindex="-1">
-          <svg class="fig" viewBox="0 0 100 200" aria-hidden="true" focusable="false" style="--c:#B98B57"><use href="#fig"/></svg>
+          <img class="fig" src="img/ref-rose.webp" width="64" height="80" loading="lazy" decoding="async" alt="">
           <div class="ref-body">
             <h3>Rachael Rose</h3>
             <p class="ref-role">Founder, RR Personal Chief of Staff</p>
@@ -245,7 +355,7 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
           </div>
         </li>
         <li class="ref" id="ref-cronk" data-ref="cronk" tabindex="-1">
-          <svg class="fig" viewBox="0 0 100 200" aria-hidden="true" focusable="false" style="--c:#182C34"><use href="#fig"/></svg>
+          <img class="fig" src="img/ref-cronk.webp" width="64" height="80" loading="lazy" decoding="async" alt="">
           <div class="ref-body">
             <h3>Jim Cronk</h3>
             <p class="ref-role">Candidate for Mayor, Township of Ramara, 2026</p>
@@ -254,28 +364,21 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
             <a class="btn btn-quiet" href="mailto:russellcolevop@gmail.com?subject=Ask%20Russell%20for%20an%20intro%3A%20Jim%20Cronk">Ask Russell for an intro<span class="sr"> to Jim Cronk</span></a>
           </div>
         </li>
-        <li class="ref" id="ref-duflock" data-ref="duflock" tabindex="-1">
-          <svg class="fig" viewBox="0 0 100 200" aria-hidden="true" focusable="false" style="--c:#275565"><use href="#fig"/></svg>
-          <div class="ref-body">
-            <h3>Walt Duflock</h3>
-            <p class="ref-role">Vice President, Innovation, Western Growers</p>
-            <p class="ref-rel">Four years of agtech conversations and collaboration.</p>
-            <blockquote><p>&ldquo;He possesses a remarkable ability to identify emerging trends and translate them into practical, value-driven solutions.&rdquo;</p><footer>From a signed reference letter</footer></blockquote>
-            <a class="btn btn-quiet" href="mailto:russellcolevop@gmail.com?subject=Ask%20Russell%20for%20an%20intro%3A%20Walt%20Duflock">Ask Russell for an intro<span class="sr"> to Walt Duflock</span></a>
-          </div>
-        </li>
-        <li class="ref" id="ref-lapides" data-ref="lapides" tabindex="-1">
-          <svg class="fig" viewBox="0 0 100 200" aria-hidden="true" focusable="false" style="--c:#763F3D"><use href="#fig"/></svg>
-          <div class="ref-body">
-            <h3>Harrison Lapides</h3>
-            <p class="ref-role">Managing Partner, Red Tail Ventures</p>
-            <p class="ref-rel">Investor in AgXactly.</p>
-            <blockquote><p>&ldquo;He set a bold strategy but was quick to seek out advice.&rdquo;</p><footer>From a signed reference letter, March 20, 2024</footer></blockquote>
-            <a class="btn btn-quiet" href="mailto:russellcolevop@gmail.com?subject=Ask%20Russell%20for%20an%20intro%3A%20Harrison%20Lapides">Ask Russell for an intro<span class="sr"> to Harrison Lapides</span></a>
-          </div>
-        </li>
       </ul>
-      <p class="fine">Figures are stylized stand-ins, not likenesses.</p>
+      <p class="fine">Figures are stylized illustrations. Harrison Lapides, Michael Haddad, Walt Duflock and Jim Cronk are drawn from their portraits. Samantha McLennan and MaryAnn McLennan are generic illustrations, and Rachael Rose is a neutral stand-in, not portraits.</p>
+    </div>
+  </section>
+
+  <section id="achievements" class="room onepage-only" aria-labelledby="h-achievements">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Achievements</p>
+        <h2 id="h-achievements">The work, with its receipts.</h2>
+        <p class="ask">Receipts?</p>
+        <p>A dated proof index with source links lives on its own page. R&eacute;sum&eacute; PDFs are in preparation.</p>
+        <p><a class="btn btn-quiet" href="../achievements/">Open the achievements page</a></p>
+      </div>
+      <figure class="poster-fig"><picture><source media="(max-width:759px)" srcset="img/achievements-phone.webp" width="1600" height="1200"><img class="plate" src="img/achievements.webp" width="2560" height="1440" loading="lazy" decoding="async" alt="An evidence library with oak shelving of chronological bound folios, one reading table, and a sightline back through the courtyard."></picture><figcaption>Concept rendering of a fictional room.</figcaption></figure>
     </div>
   </section>
 
@@ -290,6 +393,7 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
         <a class="btn btn-quiet" href="https://www.linkedin.com/in/russellcole/" rel="noopener" target="_blank">LinkedIn<span class="sr"> (opens in a new tab)</span></a>
         <a class="btn btn-quiet" href="../russell.vcf" download>Contact card (.vcf)</a>
       </p>
+      <figure class="poster-fig contact-fig"><picture><source media="(max-width:759px)" srcset="img/contact-phone.webp" width="1600" height="1200"><img class="plate" src="img/contact.webp" width="2560" height="1440" loading="lazy" decoding="async" alt="A two-chair alcove in oxblood upholstery with a small oak side table, open to the courtyard and olive tree."></picture><figcaption>Concept rendering of a fictional room.</figcaption></figure>
       <p class="fine">Standard résumé overview: <a href="../">russellcolevop.github.io</a> &middot; <a href="../hub/">Choose a profile</a> &middot; <a href="../achievements/">Achievements</a>. Résumé PDFs are in preparation.</p>
     </div>
   </section>
@@ -297,27 +401,30 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
 </main>
 
 <aside class="stage" id="stage" aria-label="Illustrated scene">
+  <div class="frame" id="frame">
   <canvas id="gl" aria-hidden="true"></canvas>
   <div class="hotspots">
     <ul class="hs" id="hs-bench" data-room="workshop" aria-label="Bench positions" hidden>
-      <li><button type="button" class="pin" data-i="1" data-x="395" data-y="478" aria-label="Position 1, Source">1</button></li>
-      <li><button type="button" class="pin" data-i="2" data-x="550" data-y="490" aria-label="Position 2, Spec">2</button></li>
-      <li><button type="button" class="pin" data-i="3" data-x="730" data-y="480" aria-label="Position 3, Bounded task">3</button></li>
-      <li><button type="button" class="pin" data-i="4" data-x="920" data-y="476" aria-label="Position 4, Change">4</button></li>
-      <li><button type="button" class="pin" data-i="5" data-x="1130" data-y="488" aria-label="Position 5, Check">5</button></li>
-      <li><button type="button" class="pin" data-i="6" data-x="1290" data-y="540" aria-label="Position 6, Release">6</button></li>
+      <li><button type="button" class="pin" data-i="1" data-x="460" data-y="836" data-px="250" data-py="648" data-depth="1" aria-label="Position 1, Source">1</button></li>
+      <li><button type="button" class="pin" data-i="2" data-x="810" data-y="828" data-px="481" data-py="650" data-depth="1" aria-label="Position 2, Spec">2</button></li>
+      <li><button type="button" class="pin" data-i="3" data-x="1144" data-y="824" data-px="669" data-py="645" data-depth="1" aria-label="Position 3, Bounded task">3</button></li>
+      <li><button type="button" class="pin" data-i="4" data-x="1480" data-y="696" data-px="881" data-py="578" data-depth="1" aria-label="Position 4, Change">4</button></li>
+      <li><button type="button" class="pin" data-i="5" data-x="1724" data-y="732" data-px="1053" data-py="595" data-depth="1" aria-label="Position 5, Check">5</button></li>
+      <li><button type="button" class="pin" data-i="6" data-x="2170" data-y="828" data-px="1344" data-py="658" data-depth="1" aria-label="Position 6, Release">6</button></li>
     </ul>
     <ul class="hs" id="hs-wall" data-room="wall" aria-label="Reference figures" hidden></ul>
     <ul class="hs" id="hs-fuwari" data-room="fuwari" aria-label="Fuwari exhibit" hidden>
-      <li><a class="pill" data-x="812" data-y="548" href="https://getfuwari.com/#demo" target="_blank" rel="noopener">Open the public demo<span class="sr"> (opens in a new tab)</span></a></li>
+      <li><a class="pill" data-x="670" data-y="1070" data-px="500" data-py="835" data-depth="1" href="https://getfuwari.com/#demo" target="_blank" rel="noopener">Open the public demo<span class="sr"> (opens in a new tab)</span></a></li>
     </ul>
   </div>
+</div>
+  <p class="stage-cap">Concept rendering of a fictional place, with stylized figures. Not premises, and not photographs.</p>
 </aside>
 </div>
 
 <footer class="foot">
   <div class="wrap">
-    <p>Russell Works is a private, unlisted preview. Scenes are concept renderings of a fictional place, not premises. Figures are stylized. Product screens are labelled where they are public demos.</p>
+    <p>Russell Works is a private, unlisted preview. Scenes are concept renderings of a fictional place, not premises. Figures are stylized illustrations. Product screens are labelled where they are public demos.</p>
   </div>
 </footer>
 

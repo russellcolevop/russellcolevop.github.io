@@ -1,6 +1,6 @@
-push-state: main ahead 0 / behind 0 / dirty 0 after Russell Works slice 1 push; recheck before writing
-visible-at: https://russellcolevop.github.io/ and https://russellcolevop.github.io/works/ (unlinked, noindex)
-needs-russell: review /works/ in Safari and on a phone; approve or edit the Walt Duflock quote; decide whether MaryAnn card discloses the McLennan family tie; generate the 2560 px room plates
+push-state: main ahead 0 / behind 0 / dirty 0 after Russell Works slice 2 push; recheck before writing
+visible-at: https://russellcolevop.github.io/ and https://russellcolevop.github.io/works/ (unlisted, noindex)
+needs-russell: confirm the Harrison Lapides portrait is the right person (generation report: identity pending); review /works/ in Safari and on a phone; approve or edit the Walt Duflock quote; decide whether MaryAnn card discloses the McLennan family tie; confirm the Cronk/Content Studio copy
 
 # Russell Cole personal site
 
@@ -47,14 +47,20 @@ Seven routes verified at desktop/mobile sizes, links, card interactions and soci
 Independent Deep review and final live readback are recorded in the dated report.
 Rollback uses a scoped revert, never rewritten history.
 
-## Russell Works (/works/), slice 1, September 30
+## Russell Works (/works/), slices 1 and 2
 
-Unlisted résumé experience in `works/`: one-page version (default on phones, no-WebGL, screen readers)
-plus a Three.js tour on desktop (elevator, reception, AI workshop, Fuwari, reference wall). Rendered
-concept plates are stand-ins; Three.js 0.180.0 is vendored with hashes (`works/vendor/THREE-PIN.txt`).
-Plan: RussellLabs/job-search-2026/3d-resume-concept-2026-09-30/ (NARRATIVE-v2.md wins). Evidence and
-remaining checks: _reports/2026-09-30-russell-works-slice-1.md. Do not link /works/ from root until
-Lighthouse, VoiceOver and device checks pass and Russell approves.
+Unlisted résumé experience in `works/`: one-page version (default for no-WebGL, Save-Data, screen readers)
+plus a Three.js tour (elevator, reception, AI workshop, Fuwari, reference wall); phones default to the tour
+when WebGL2 is available. Slice 2 (October 1) replaced every stand-in plate with the finished 2560 px artwork
+(phones: the 1600 x 1200 plates), hand-split each tour room into background, middle and foreground layers with
+scroll parallax, added Russell's greeting and bench poses, the seven reference likenesses on the eight floor
+marks (eighth mark empty), the building-model prop, and the other seven rooms as one-page-only sections.
+Images are rebuilt by `works/tools/build_images.py` (see its header; source art is read from RussellLabs).
+Still stand-ins: Content Studio uses the Product plate; Fuwari screen is the public demo capture on a drawn
+monitor prop; Rachael Rose, Samantha and MaryAnn are generic figures. Three.js 0.180.0 pinned in `works/vendor/`.
+Plan: RussellLabs/job-search-2026/3d-resume-concept-2026-09-30/ (NARRATIVE-v2.md wins). Evidence:
+_reports/2026-09-30-russell-works-slice-1.md and _reports/2026-10-01-russell-works-slice-2.md. Do not link
+/works/ from root until Lighthouse, VoiceOver and device checks pass and Russell approves.
 
 ## Related work
 
