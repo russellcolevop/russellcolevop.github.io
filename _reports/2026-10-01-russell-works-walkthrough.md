@@ -46,3 +46,7 @@ Budgets (phone 1.2 MB, desktop 2.5 MB) hold on the gzip figures and the raw phon
 
 ## Not verified
 Lighthouse, VoiceOver, Safari, a real iPhone and Pixel, DeviceOrientation (no sensors here), pinch on touch hardware, GPU memory with 8192 textures on low-end phones (phones load 4096), OS reduced-motion emulation (code path only), keyboard-only walk through every room.
+
+## Live readback (after push of 639876d)
+- https://russellcolevop.github.io/works/, walk.js, rooms.json, pano-elevator(-phone), cyl-reception, cyl-contact-phone, pano-references and russell-folio.webp all returned 200 (gzip sizes: page 9.8 KB, walk.js 9.4 KB, rooms.json 5.1 KB).
+- Desktop 1440 live, first room: 990 KB transferred (11 requests, 8192 file chosen), no console errors, scrollWidth 1440. Phone live figure not measured on a real device; the 0.60 MB gzip estimate stands.
