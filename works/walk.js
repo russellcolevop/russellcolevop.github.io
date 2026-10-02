@@ -19,6 +19,7 @@ export async function createWalk({ root, motion, hooks }) {
   const $ = s => root.querySelector(s);
   const view = $('#wview'), hsLayer = $('#whs'), fade = $('#wfade'), sheet = $('#wsheet'), body = $('#ws-body'), tog = $('#ws-toggle'), rtag = $('#w-tag');
   const live = $('#wlive'), hint = $('#whint'), mapEl = $('#wmap'), intro = $('#wintro'), cardEl = $('#wcard'), lead = $('#wlead');
+  const stops = ORDER.filter(x => x !== 'elevator'), back = $('#ws-back'), next = $('#ws-next'), num = $('#ws-num');   // the route: 11 stops, reception is 01
   const UI = '.wsheet,.wcard,.wintro,.wtag,.wmotion';                      // overlays: they must not start a drag, zoom or arrow-key look
   const phone = innerWidth < 760, isPhone = () => matchMedia('(max-width:759px)').matches;
   let reduce = !motion, disposed = false;
@@ -216,12 +217,14 @@ export async function createWalk({ root, motion, hooks }) {
   }
   const setSheet = st => { sheet.dataset.s = st; tog.setAttribute('aria-expanded', String(st === 'open')); };   // peek | open | hide
   function renderSheet(id) {
-    const r = R[id], s = r.sheet;
-    if (!s) return setSheet('hide');                                       // the elevator's card is the arrival popup
-    $('#ws-eyebrow').textContent = r.name; $('#ws-t').textContent = s.h;
+    const r = R[id], s = r.sheet, i = stops.indexOf(id), n = stops[i + 1];
+    if (!s) return setSheet('hide');                                       // the elevator's card is the arrival popup; no rail there
+    num.textContent = String(i + 1).padStart(2, '0'); num.append(el('i', null, ` / ${stops.length}`)); $('#ws-t').textContent = r.name;
+    back.setAttribute('aria-label', 'Back: ' + R[stops[i - 1] || 'elevator'].name);
+    sheet.classList.toggle('last', !n); if (n) next.setAttribute('aria-label', 'Next: ' + R[n].name); else next.removeAttribute('aria-label');   // last stop: the button says One-page version
     const box = $('#ws-room'); box.textContent = '';
     const acts = el('div', 'ws-acts'); s.a.forEach((a, i) => acts.append(actionEl(a, i > 0)));
-    box.append(el('p', null, s.p), el('p', 'ws-proof', 'Proof: ' + s.proof), acts);
+    box.append(el('h3', null, s.h), el('p', null, s.p), el('p', 'ws-proof', 'Proof: ' + s.proof), acts);
     setSheet('peek');
   }
   let card = null;                                                         // { h }: the open object card and its hotspot
@@ -260,7 +263,7 @@ export async function createWalk({ root, motion, hooks }) {
   function placeCard() {                                                   // desktop: right of the hotspot (left near the edge), thin leader line, clamped to the view above the peek pill
     const W = view.clientWidth, H = view.clientHeight, vr = view.getBoundingClientRect(), r = card.h.el.getBoundingClientRect();
     const l = r.left - vr.left, rt = r.right - vr.left, cy = (r.top + r.bottom) / 2 - vr.top, cw = cardEl.offsetWidth, ch = cardEl.offsetHeight, gap = 36;
-    const right = rt + gap + cw + 8 <= W, x = clamp(right ? rt + gap : l - gap - cw, 8, Math.max(8, W - cw - 8)), y = clamp(cy - 28, 70, Math.max(70, H - ch - 84));
+    const right = rt + gap + cw + 8 <= W, x = clamp(right ? rt + gap : l - gap - cw, 8, Math.max(8, W - cw - 8)), y = clamp(cy - 28, 70, Math.max(70, H - ch - 108));
     cardEl.style.transform = `translate(${x}px,${y}px)`;
     const x0 = right ? rt : l, dx = (right ? x : x + cw) - x0, dy = clamp(cy, y + 12, y + ch - 12) - cy;
     lead.style.width = Math.hypot(dx, dy) + 'px'; lead.style.transform = `translate(${x0}px,${cy}px) rotate(${Math.atan2(dy, dx)}rad)`; lead.classList.add('on');
@@ -278,14 +281,17 @@ export async function createWalk({ root, motion, hooks }) {
     const d = sy == null ? 0 : e.clientY - sy; sy = null;
     if (Math.abs(d) > 24) { swipeT = performance.now(); setSheet(d < 0 ? 'open' : 'hide'); if (d > 0) rtag.focus({ preventScroll: true }); }
   });
-  tog.addEventListener('click', () => { if (performance.now() - swipeT > 400) setSheet(sheet.dataset.s === 'open' ? 'peek' : 'open'); });
+  const still = () => performance.now() - swipeT > 400;                   // a swipe that starts on a rail button must not also click it
+  tog.addEventListener('click', () => { if (still()) setSheet(sheet.dataset.s === 'open' ? 'peek' : 'open'); });
   $('#ws-x').addEventListener('click', () => { setSheet('hide'); rtag.focus({ preventScroll: true }); });
+  back.addEventListener('click', () => { if (still()) walkTo(stops[stops.indexOf(cur) - 1] || 'elevator'); });
+  next.addEventListener('click', () => { const n = stops[stops.indexOf(cur) + 1]; if (!still()) return; if (n) walkTo(n); else hooks.onPage && hooks.onPage(cur); });
   rtag.addEventListener('click', () => { if (R[cur].sheet) setSheet(sheet.dataset.s === 'hide' ? 'peek' : 'open'); else showIntro(); });
 
   // ---------- actions ----------
   function activate(h) {
     if (h.ref || h.bench || h.plinth) return openCard(h);
-    go(h.go || h.href, h.b);
+    go(h.go || h.href, h.home ? undefined : h.b);                          // home: that doorway opens the room on its arrival frame
   }
   function go(target, bearing) {
     if (!target) return;
@@ -304,7 +310,7 @@ export async function createWalk({ root, motion, hooks }) {
   // ---------- walking ----------
   const wait = ms => new Promise(r => setTimeout(r, ms));
   async function show(id, face, push) {
-    const r = R[id], from = cur;
+    const r = R[id];
     const tex = await pano(id);
     if (disposed) return;
     const prev = mesh; mesh = panoMesh(r.kind, tex); scene.add(mesh);
@@ -313,12 +319,12 @@ export async function createWalk({ root, motion, hooks }) {
     baseFov = r.fov || (phone ? 75 : 60); cam.fov = baseFov; cam.updateProjectionMatrix();
     await buildRoom(id);
     const arrival = phone && r.yawPhone != null ? r.yawPhone : r.yaw;      // per-room arrival frame from rooms.json
-    setView(face == null || from === 'elevator' && id === 'reception' ? arrival : face, r.pitch || 0);
+    setView(face == null ? arrival : face, r.pitch || 0);
     renderSheet(id); body.scrollTop = 0; $('#w-tag-t').textContent = r.name;
     if (push === 'push') history.pushState({ room: id }, '', `#${id}`); else if (push === 'replace') history.replaceState({ room: id }, '', location.search + `#${id}`);
     hint.classList.toggle('gone', id !== cfg.start || hintGone);
     live.textContent = `${r.name}. Facing ${compass(Y)}.`;
-    if (r.sheet) { hideIntro(); tog.focus({ preventScroll: true }); } else if (!root.classList.contains('arrive')) showIntro();
+    if (r.sheet) { hideIntro(); if (!sheet.contains(document.activeElement)) $('#ws-h').focus({ preventScroll: true }); } else if (!root.classList.contains('arrive')) showIntro();
     renderMap();
     request();
   }

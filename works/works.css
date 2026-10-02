@@ -18,6 +18,7 @@ img{max-width:100%;height:auto;display:block}
 a{color:var(--petrol);text-underline-offset:3px}
 a:hover{color:var(--ox)}
 :focus-visible{outline:3px solid var(--petrol);outline-offset:3px;border-radius:2px}
+[tabindex="-1"]:focus{outline:none}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--ink);color:var(--paper);padding:10px 14px;border-radius:4px;font-size:15px}
 .skip:focus{top:8px}.skip2:focus{top:54px}
@@ -125,7 +126,6 @@ dd{margin:2px 0 0}
 /* references */
 .refs{list-style:none;margin:30px 0 14px;padding:0;display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr))}
 .ref{display:grid;grid-template-columns:64px 1fr;gap:18px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--c,var(--petrol));border-radius:6px;padding:20px 20px 22px;transition:box-shadow .2s,border-color .2s}
-.ref:focus{outline:none}
 .ref.on{box-shadow:0 0 0 3px var(--petrol)}
 .ref .fig{width:64px;height:80px;object-fit:cover;object-position:50% 4%;border-radius:6px;background:var(--stone);margin-top:2px}
 .ref h3{font-size:22px;margin:0 0 2px}
@@ -200,8 +200,8 @@ html.reduce #walk.open .wdoors{opacity:0;transition:opacity .2s linear!important
 .wmotion{position:absolute;right:12px;top:62px;z-index:3;width:44px;height:44px;padding:0;border-radius:50%;border:1px solid #f4f0e799;background:#182c3466;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:var(--paper);display:grid;place-items:center;cursor:pointer}
 .wmotion[hidden]{display:none}
 .wmotion[aria-pressed=true]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
-.wcap{position:absolute;z-index:2;right:16px;bottom:14px;margin:0;max-width:50%;text-align:right;padding:3px 9px;border-radius:10px;background:#182c3459;font:400 11.5px/1.3 var(--sans);color:#fffe;pointer-events:none}
-.whint{position:absolute;left:50%;bottom:56px;transform:translateX(-50%);z-index:3;margin:0;max-width:calc(100% - 32px);text-align:center;background:#182c34cc;color:var(--paper);font:500 14px/1.35 var(--sans);padding:9px 16px;border-radius:20px;pointer-events:none;transition:opacity .4s}
+.wcap{position:absolute;z-index:2;right:16px;bottom:10px;margin:0;max-width:none;white-space:nowrap;text-align:right;padding:3px 9px;border-radius:10px;background:#182c3459;font:400 11.5px/1.3 var(--sans);color:#fffe;pointer-events:none}
+.whint{position:absolute;left:50%;bottom:108px;transform:translateX(-50%);z-index:3;margin:0;max-width:calc(100% - 32px);text-align:center;background:#182c34cc;color:var(--paper);font:500 14px/1.35 var(--sans);padding:9px 16px;border-radius:20px;pointer-events:none;transition:opacity .4s}
 .whint.gone{opacity:0}
 .wnotice{position:absolute;left:16px;right:16px;top:70px;z-index:14;margin:0;max-width:none;background:var(--paper);border-left:4px solid var(--ash);border-radius:0 6px 6px 0;padding:10px 14px;font-size:15px}
 .wnotice[hidden]{display:none}
@@ -217,7 +217,7 @@ html.reduce .hs-door.hint::after{animation:none;inset:-5px;opacity:.9}
 .hs-pin{width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:var(--petrol);border:2px solid var(--paper);color:var(--paper);font:600 16px var(--sans);box-shadow:0 4px 14px #0007;display:grid;place-items:center}
 .hs-pin.dot::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--paper)}
 .hs-pin.on,.hs-pin:hover{background:var(--ox)}
-.hs-pin .hs-lab{top:auto;bottom:100%;margin:0 0 6px}
+.hs-pin .hs-lab,.hs-door .hs-lab{top:auto;bottom:100%;margin:0 0 6px}
 .hs-fig{transform-origin:0 0;background:transparent;border-radius:6px}
 .hs-fig:hover,.hs-fig.on{background:#f4f0e72e;outline:2px solid var(--paper)}
 .hs-lab{position:absolute;left:50%;top:100%;margin-top:6px;transform:translateX(-50%);white-space:nowrap;background:var(--ink);color:var(--paper);font:500 13px var(--sans);padding:5px 10px;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .15s;z-index:2}
@@ -232,30 +232,33 @@ html.reduce .hs-door.hint::after{animation:none;inset:-5px;opacity:.9}
 .wintro.on{visibility:visible;opacity:1}
 .wi-eyebrow{font:600 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ox);margin:0 0 6px}
 .wintro h2{font:italic 400 26px/1.25 var(--serif);color:var(--petrol);margin:0 0 14px}
-.wintro h2:focus{outline:none}
 .wi-go{display:flex;flex-direction:column;gap:2px;width:100%;min-height:56px;margin:0 0 8px;padding:10px 16px;text-align:left;background:#fff9;border:1px solid var(--line);border-left:4px solid var(--petrol);border-radius:3px;color:var(--ink);font:inherit;cursor:pointer}
 .wi-go b{font:600 16px var(--sans)}.wi-go span{font:400 13.5px/1.35 var(--sans);color:var(--muted)}
 .wi-go:hover{background:var(--stone)}
 .wi-go[data-go=reception]{border-left-color:var(--ox)}
-/* reading peek: a thin bar, tap to read, swipe down or x to hide */
-.wsheet{position:absolute;z-index:6;left:0;right:0;bottom:0;max-height:50%;display:flex;flex-direction:column;border-radius:12px 12px 0 0;box-shadow:0 -6px 24px #0004;padding-bottom:env(safe-area-inset-bottom,0px)}
+/* route rail: back, position and room (tap to read), next. Collapsed it is one thin bar; swipe down or x hides it */
+.wsheet{position:absolute;z-index:6;left:0;right:0;bottom:0;max-height:50%;display:flex;flex-direction:column-reverse;border-radius:12px 12px 0 0;box-shadow:0 -6px 24px #0004;padding-bottom:env(safe-area-inset-bottom,0px)}
 .wsheet[data-s=hide]{display:none}
-.ws-row{flex:none;display:flex;align-items:center;min-height:56px;touch-action:none}
+.ws-row{flex:none;display:flex;align-items:center;gap:4px;min-height:56px;padding:0 2px 0 6px;touch-action:none}
+.wsheet[data-s=open] .ws-row{border-top:1px solid var(--line)}
 .ws-row h2{flex:1;min-width:0;margin:0;font:inherit}
-.ws-toggle{width:100%;min-height:56px;display:flex;align-items:center;gap:10px;padding:0 14px 0 16px;border:0;background:none;color:var(--ink);text-align:left;font:inherit;cursor:pointer}
-.ws-eyebrow{flex:none;font:600 10.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ox)}
-.ws-t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:600 15.5px var(--serif)}
-.ws-chev{flex:none;margin:0 2px 0 4px;transition:transform .2s}
+.ws-toggle{width:100%;min-height:44px;display:flex;align-items:center;gap:6px;padding:0 2px;border:0;background:none;color:var(--ink);text-align:left;font:inherit;cursor:pointer}
+.ws-num{flex:none;font:600 17px var(--sans);font-variant-numeric:tabular-nums;color:var(--ox)}
+.ws-num i{font:400 11px var(--sans);color:var(--muted)}
+.ws-t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:600 15px var(--serif)}
+.ws-chev{flex:none;transition:transform .2s}
 .wsheet[data-s=open] .ws-chev{transform:rotate(180deg)}
-.wsheet[data-s=open]:not(.has-card) .ws-toggle{flex-wrap:wrap;align-items:flex-start;gap:2px 10px;padding-top:14px;padding-bottom:6px}
-.wsheet[data-s=open]:not(.has-card) .ws-eyebrow{flex-basis:100%}
-.wsheet[data-s=open]:not(.has-card) .ws-t{white-space:normal;overflow:visible;font-size:21px;line-height:1.2}
-.ws-body{display:none;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:0 18px 18px}
+.ws-nav{flex:none;display:grid;grid-auto-flow:column;place-items:center;gap:8px;min-width:44px;height:44px;padding:0;border:1.5px solid var(--petrol);border-radius:22px;background:none;color:var(--petrol);font:600 13.5px var(--sans);white-space:nowrap;cursor:pointer}
+.ws-next{min-width:52px;background:var(--petrol);color:#fff}
+@media(hover:hover){.ws-nav:hover{background:var(--stone)}.ws-next:hover{background:var(--ink);border-color:var(--ink)}}
+.ws-next span{display:none}.last .ws-next{padding:0 12px}.last .ws-next span{display:inline}.last .ws-next svg,.last .ws-chev{display:none}   /* last stop: the button reads One-page version; the chevron makes room for the title */
+.ws-body{display:none;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:18px 18px 8px}
 .wsheet[data-s=open] .ws-body{display:block}
 .ws-body p{font-size:15.5px;max-width:none;margin:0 0 .8em}
+.ws-body h3{font-size:21px;line-height:1.2;margin:0 0 10px}
 .ws-proof{font-size:13.5px!important;color:var(--muted);border-left:3px solid var(--ash);padding-left:12px}
 .ws-acts{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}
-.wsheet.has-card #ws-room,.wsheet.has-card #ws-x{display:none}
+.wsheet.has-card #ws-room{display:none}.wsheet.has-card #ws-x{visibility:hidden}   /* the card has its own x; keep the slot so Next does not slide */
 /* object card: floats beside its hotspot on desktop (thin leader line), docks into the peek on phones */
 .wcard{position:absolute;left:0;top:0;z-index:7;width:320px;max-width:calc(100% - 16px);max-height:calc(100% - 160px);overflow-y:auto;overscroll-behavior:contain;padding:16px 18px 18px}
 .wcard[hidden]{display:none}
@@ -264,7 +267,6 @@ html.reduce .hs-door.hint::after{animation:none;inset:-5px;opacity:.9}
 .wlead.on{display:block}
 .wlead::before{content:"";position:absolute;left:-3px;top:-2.5px;width:6px;height:6px;border-radius:50%;background:var(--ox);box-shadow:0 0 0 1px #fffb}
 .ws-card h3{font-size:22px;margin:0 0 6px;padding-right:34px}
-.ws-card h3:focus{outline:none}
 .ws-card .ref{display:block;border:0;padding:0;box-shadow:none;background:none}
 .ws-card .ref .fig{float:left;margin:0 14px 6px 0}
 .ws-card .ref blockquote{font-size:16px}
@@ -300,7 +302,8 @@ html.reduce .hs-door.hint::after{animation:none;inset:-5px;opacity:.9}
   .wbar{padding:0 clamp(16px,3vw,40px)}
   .wtag{left:clamp(16px,3vw,40px)}
   .wmotion{right:clamp(16px,3vw,40px)}
-  .wsheet{left:20px;right:auto;bottom:20px;width:360px;max-height:min(70%,560px);border-radius:3px;box-shadow:var(--plate-edge);padding-bottom:0}
+  .wsheet{left:50%;right:auto;bottom:36px;width:min(480px,calc(100% - 40px));transform:translateX(-50%);max-height:min(70%,560px);border-radius:3px;box-shadow:var(--plate-edge);padding-bottom:0}
+  .wsheet[data-s=peek]{border-radius:32px}
   .wintro{left:clamp(20px,4vw,64px);top:auto;bottom:clamp(24px,9vh,90px);transform:none}
 }
 @media(max-width:759px){

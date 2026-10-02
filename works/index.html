@@ -426,7 +426,9 @@ h.classList.add(gl?'cap':'nocap');if(tour)h.classList.add('tour');
     </aside>
     <section class="wsheet" id="wsheet" data-s="peek" aria-labelledby="ws-h">
       <div class="ws-row" id="ws-row">
-        <h2 id="ws-h"><button type="button" class="ws-toggle" id="ws-toggle" aria-expanded="false" aria-controls="ws-body"><span class="ws-eyebrow" id="ws-eyebrow"></span><span class="ws-t" id="ws-t"></span><svg class="ws-chev" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l5-5 5 5"/></svg></button></h2>
+        <button type="button" class="ws-nav" id="ws-back"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <h2 id="ws-h" tabindex="-1"><button type="button" class="ws-toggle" id="ws-toggle" aria-expanded="false" aria-controls="ws-body"><span class="ws-num" id="ws-num"></span><span class="ws-t" id="ws-t"></span><svg class="ws-chev" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l5-5 5 5"/></svg></button></h2>
+        <button type="button" class="ws-nav ws-next" id="ws-next"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>One-page version</span></button>
         <button type="button" class="wx" id="ws-x" aria-label="Hide">&times;</button>
       </div>
       <div class="ws-body" id="ws-body"><div id="ws-room"></div></div>
