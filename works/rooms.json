@@ -86,7 +86,7 @@
         {"id": "product-sheet-3", "aspect": 0.71, "corners": [[13.79, 19.14], [29.04, 18.8], [29.1, -1.64], [13.82, -1.69]], "mt": 1.7, "paint": {"h": "Stonewise", "b": ["A live care-companion web app where AI-assisted input is checked by a person.", "No clinical validation or health claims are made."]}},
         {"id": "product-monitor", "aspect": 1.98, "corners": [[-17.09, -5.45], [20.02, -5.33], [20.52, -23.16], [-17.7, -23.03]], "img": "img/fuwari-public-demo.jpg", "paint": {}, "card": {"h": "Fuwari's public sample-shop demo", "p": ["Capture of the public sample-shop demo at getfuwari.com, September 30, 2026. Made-up clients. A website demo, not a production account or the native app."], "link": {"label": "Try the public demo", "href": "https://getfuwari.com/#demo"}}}
       ],
-      "stops": [{"at": ["product-monitor", "product-monitor-cap"]}, {"at": ["product-sheet-1", "product-sheet-2"], "fill": 0.95}, {"at": ["product-sheet-3"]}],
+      "stops": [{"at": ["product-monitor", "product-monitor-cap"], "up": 7, "upScroll": 4}, {"at": ["product-sheet-1", "product-sheet-2"], "fill": 0.95}, {"at": ["product-sheet-3"]}],
       "sprites": []
     },
     "workshop": {

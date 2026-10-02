@@ -164,7 +164,7 @@ html.tour,html.tour body{overflow:hidden;height:100%}
 .wbar .chip:hover{background:var(--paper);color:var(--ink)}
 .wbar .chip-solid{background:var(--paper);color:var(--ink);border-color:var(--paper)}
 .wbar :focus-visible,.wview :focus-visible{outline-color:#fff}
-.wintro :focus-visible,.wsheet :focus-visible,.wcard :focus-visible,.wmap :focus-visible{outline-color:var(--petrol)}
+.wintro :focus-visible,.wsheet :focus-visible,.wcard :focus-visible,.wmap :focus-visible,.wplate :focus-visible,.wjourney :focus-visible{outline-color:var(--petrol)}
 .lg{display:none}
 @media(min-width:760px){.lg{display:inline;margin-left:.3em}}
 .wview{position:absolute;inset:0;overflow:hidden;overflow:clip;background:#182c34;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
@@ -236,7 +236,7 @@ html.reduce .hs-door.hint::after{animation:none;inset:-5px;opacity:.9}
 .hs-pin.cap .hs-lab{opacity:1;margin-bottom:12px}
 .hs-pin.cap .hs-lab::after{content:"";position:absolute;left:calc(50% - var(--sh,0px));top:100%;width:1px;height:12px;background:var(--paper);box-shadow:0 0 0 .5px #182c3499}
 /* plates: the arrival popup, the reading peek and the object card share one look */
-.wintro,.wsheet,.wcard{background:var(--plate);box-shadow:var(--plate-edge);border-radius:3px;cursor:auto;touch-action:auto;user-select:text;-webkit-user-select:text}
+.wintro,.wsheet,.wcard,.wplate{background:var(--plate);box-shadow:var(--plate-edge);border-radius:3px;cursor:auto;touch-action:auto;user-select:text;-webkit-user-select:text}
 .wx{flex:none;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:none;color:var(--muted);font:300 26px/1 var(--sans);cursor:pointer;display:grid;place-items:center}
 .wx:hover{color:var(--ox)}
 .wcard .wx,.wintro .wx{position:absolute;z-index:1;top:4px;right:4px}
@@ -327,6 +327,33 @@ html.reduce .hs-door.hint::after{animation:none;inset:-5px;opacity:.9}
   .wcap{left:14px;right:auto;top:96px;bottom:auto;max-width:70%;text-align:left;font-size:10px}
   .wcap-more{display:none}
 }
+/* scroll tour (desktop, fine pointer): the page scrolls, a tall spacer gives it length, walk.js maps the scroll position to the camera. Plates and the journey bar are built by walk.js */
+html.tour.scrolltour,html.tour.scrolltour body{overflow:visible;height:auto}
+html.tour.scrolltour{scrollbar-width:thin}
+html.scrolltour .wview,html.scrolltour #gl{touch-action:pan-y}
+html.scrolltour .wsheet{display:none}
+html.scrolltour .wmap{overscroll-behavior:contain}
+.wplate{position:absolute;z-index:5;left:clamp(16px,3vw,40px);top:50%;width:min(380px,38vw);max-height:calc(100% - 230px);overflow-y:auto;overscroll-behavior:auto;transform:translateY(-50%);padding:24px 26px 20px;opacity:0;visibility:hidden;transition:opacity .2s,visibility 0s .2s}
+.wplate.on{opacity:1;visibility:visible;transition:opacity .3s .12s}
+.wview:has(.wcard:not([hidden])) .wplate{opacity:0;visibility:hidden;transition:none}   /* an open object card takes the plate's place on the left */
+.wp-eye{margin:0 0 12px;font:600 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ox)}
+.wplate h2{margin:0 0 12px;font:600 clamp(22px,2vw,27px)/1.18 var(--serif);text-wrap:balance}
+.wplate h3{margin:16px 0 6px;font:600 18px/1.2 var(--serif)}
+.wplate p{margin:0 0 .75em;max-width:none;font-size:15px;line-height:1.5}
+.wjourney{position:absolute;z-index:6;left:clamp(16px,3vw,40px);right:clamp(16px,3vw,40px);bottom:40px;height:52px;display:flex;align-items:center;gap:20px;padding:0 8px 0 16px;background:#f4f0e7e6;border-block:1px solid #a8a08c;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);cursor:auto;user-select:none;-webkit-user-select:none}
+.wjourney[hidden]{display:none}
+.wj-pos{flex:none;min-width:200px;display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+.wj-n{font:600 22px var(--sans);font-variant-numeric:tabular-nums;color:var(--ox)}
+.wj-pos i{font:400 11px var(--sans);font-style:normal;color:var(--muted)}
+.wj-t{margin-left:6px;font:600 14px var(--serif);overflow:hidden;text-overflow:ellipsis}
+.wj-ch{flex:1;display:flex;justify-content:space-between;gap:2px;margin:0;padding:0;list-style:none}
+.wj-ch button{min-width:34px;height:34px;padding:0 4px;border:0;border-radius:3px;background:none;color:var(--muted);font:600 12px var(--sans);font-variant-numeric:tabular-nums;cursor:pointer}
+.wj-ch button[aria-current]{background:var(--ox);color:#fff}
+.wj-ctl{flex:none;display:flex;gap:6px}
+.wj-btn{width:36px;height:36px;display:grid;place-items:center;padding:0;border:1px solid var(--petrol);border-radius:3px;background:none;color:var(--petrol);cursor:pointer}
+.wj-btn:disabled{opacity:.35;cursor:default}
+@media(hover:hover){.wj-ch button:not([aria-current]):hover{background:var(--stone);color:var(--ink)}.wj-btn:not(:disabled):hover{background:var(--petrol);color:#fff}}
+.wj-bar{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--ox)}
 @media(prefers-reduced-motion:reduce){.hs-door.hint::after{animation:none}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 html.reduce *{transition:none!important}

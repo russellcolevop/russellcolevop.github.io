@@ -13,7 +13,8 @@ const compass = y => COMPASS[Math.round(((y % 360) + 360) % 360 / 45) % 8];
 const ang = (a, b) => Math.acos(clamp(a.dot(b), -1, 1)) / D2R;
 const INK = '#182C34', OX = '#763F3D', PAPER = '#F4F0E7', GILT = '#E7C99E';
 const SERIF = '"Source Serif 4", Georgia, serif', SANS = 'Inter, system-ui, sans-serif';
-const PHONE = { w: 375, h: 812, top: 112, bot: 72, fill: 0.88, min: 26 }, DESK = { top: 72, bot: 108, fill: 0.62, min: 36 };   // framing margins: masthead and room tag above, route rail below, share of the width an exhibit may fill
+const PHONE = { w: 375, h: 812, top: 112, bot: 72, fill: 0.88, min: 26, up: 'up' }, DESK = { top: 72, bot: 108, fill: 0.62, min: 36 };   // framing margins: masthead and room tag above, route rail below, share of the width an exhibit may fill
+const SCRL = { ...DESK, left: 0, up: 'upScroll' };                                                                         // scroll tour: the desktop margins plus the plate's right edge (px), which frames must clear
 const ppdAt = (H, fov) => H / (2 * Math.tan(fov * D2R / 2)) * D2R;                                          // CSS px per degree at the centre of a view
 const KIND = { h: ['600', SERIF, 1.2], b: ['400', SANS, 1.32], l: ['600', SANS, 1.32] };
 const wrapText = (g, text, w) => {                                                                          // greedy wrap; a long hyphenated word may break after its hyphen
@@ -70,7 +71,7 @@ export async function createWalk({ root, motion, hooks }) {
   const view = $('#wview'), hsLayer = $('#whs'), fade = $('#wfade'), sheet = $('#wsheet'), body = $('#ws-body'), tog = $('#ws-toggle'), rtag = $('#w-tag');
   const live = $('#wlive'), hint = $('#whint'), mapEl = $('#wmap'), intro = $('#wintro'), cardEl = $('#wcard'), lead = $('#wlead');
   const route = ORDER.filter(x => x !== 'elevator'), back = $('#ws-back'), next = $('#ws-next'), num = $('#ws-num');   // the route: 11 rooms, reception is 01
-  const UI = '.wsheet,.wcard,.wintro,.wtag,.wmotion';                      // overlays: they must not start a drag, zoom or arrow-key look
+  const UI = '.wsheet,.wcard,.wintro,.wtag,.wmotion,.wplate,.wjourney';                      // overlays: they must not start a drag, zoom or arrow-key look
   const phone = innerWidth < 760, isPhone = () => matchMedia('(max-width:759px)').matches;
   let reduce = !motion, disposed = false;
 
@@ -140,6 +141,7 @@ export async function createWalk({ root, motion, hooks }) {
 
   // ---------- state ----------
   let Y = 0, P = 0, dirty = true, raf = 0, busy = false, mesh = null, props = [], surfs = [], hs = [], baseFov = 60, loFov = 37, hiFov = 69, stopIx = -1, panTok = 0;
+  let SM = false, scrollDirty = false;                                      // SM: the scroll tour (desktop, fine pointer); see "scroll tour" below
   const sens = { on: false, y: 0, p: 0, offY: 0, offP: 0 };
   function setView(y, p) { Y = y; P = p; if (sens.on) { sens.offY = Y - sens.y; sens.offP = P - sens.p; } clampView(); request(); }
   function clampView() {
@@ -261,6 +263,7 @@ export async function createWalk({ root, motion, hooks }) {
   function request() { dirty = true; if (!raf && !disposed) raf = requestAnimationFrame(frame); }
   function frame() {
     raf = 0; if (disposed || !dirty) return; dirty = false;
+    if (scrollDirty && cur) place();
     clampView();
     cam.rotation.set(P * D2R, -Y * D2R, 0);
     cam.updateMatrixWorld();
@@ -270,7 +273,7 @@ export async function createWalk({ root, motion, hooks }) {
   const ro = new ResizeObserver(() => {
     const W = view.clientWidth, H = view.clientHeight; if (!W || !H) return;
     renderer.setPixelRatio(Math.min(devicePixelRatio || 1, phone ? 2 : 2)); renderer.setSize(W, H, false);
-    cam.aspect = W / H; cam.updateProjectionMatrix(); request();
+    cam.aspect = W / H; cam.updateProjectionMatrix(); if (SM) relayout(); request();
   });
   ro.observe(view);
 
@@ -354,7 +357,7 @@ export async function createWalk({ root, motion, hooks }) {
   $('#ws-x').addEventListener('click', () => { setSheet('hide'); rtag.focus({ preventScroll: true }); });
   back.addEventListener('click', () => { if (still()) goTo(pos() - 1); });                                 // back through this room's exhibits, then into the last exhibit of the room before
   next.addEventListener('click', () => { if (still()) goTo(stopIx < 0 ? pos() : pos() + 1); });             // stopIx -1: arrived by a doorway, so the first Next is this room's stop 0
-  rtag.addEventListener('click', () => { if (R[cur].sheet) setSheet(sheet.dataset.s === 'hide' ? 'peek' : 'open'); else showIntro(); });
+  rtag.addEventListener('click', () => { if (SM && R[cur].sheet) scrollToStop(first[cur]); else if (R[cur].sheet) setSheet(sheet.dataset.s === 'hide' ? 'peek' : 'open'); else showIntro(); });
 
   // ---------- actions ----------
   function activate(h) {
@@ -385,14 +388,15 @@ export async function createWalk({ root, motion, hooks }) {
   const shots = r => r.stops || [{ at: 'arrival' }];
   const ptsOf = (r, id) => { const u = (r.surfaces || []).find(x => x.id === id); if (u) return u.corners; const h = r.hotspots.find(x => x.id === id); return [[h.b, h.p]]; };
   function framing(r, st, W, H, M) {                                         // the view that composes a stop: centred on its group, zoomed until the group fills M.fill of the width, or the height clear of the rail
-    if (st.at === 'arrival') return { y: M === PHONE && r.yawPhone != null ? r.yawPhone : r.yaw, p: r.pitch || 0, fov: r.fov || (M === PHONE ? 75 : 60) };
+    const L = M.left || 0, sh = f => L ? Math.atan(L / H * Math.tan(f * D2R / 2)) / D2R : 0;   // scroll tour: the plate covers the left L px, so frame for the clear area to its right (yaw shifted that far)
+    if (st.at === 'arrival') { const f = r.fov || (M === PHONE ? 75 : 60); return { y: wrap((M === PHONE && r.yawPhone != null ? r.yawPhone : r.yaw) - sh(f)), p: r.pitch || 0, fov: f }; }
     const q = st.at.flatMap(id => ptsOf(r, id)), b0 = q[0][0], bs = q.map(([b]) => b0 + wrap(b - b0)), ps = q.map(x => x[1]), pad = st.pad || 0;
     const B0 = Math.min(...bs) - pad, B1 = Math.max(...bs) + pad, P0 = Math.min(...ps), P1 = Math.max(...ps), pc = (P0 + P1) / 2;
     const wD = (B1 - B0) * Math.cos(pc * D2R), hD = P1 - P0 + 2 * pad;
-    const fill = M === PHONE && st.fill || M.fill, fov = clamp(2 * Math.atan(Math.max(Math.tan(hD * D2R / 2) * H / (H - M.top - M.bot), Math.tan(wD * D2R / 2) * H / (W * fill))) / D2R, M.min, 85);
-    return { y: wrap((B0 + B1) / 2), p: clamp(pc + (M.top - M.bot) / 2 / ppdAt(H, fov), -85, 85), fov };
+    const fill = M === PHONE && st.fill || M.fill, fov = clamp(2 * Math.atan(Math.max(Math.tan(hD * D2R / 2) * H / (H - M.top - M.bot), Math.tan(wD * D2R / 2) * H / ((W - L) * fill))) / D2R, M.min, 85);
+    return { y: wrap((B0 + B1) / 2 - sh(fov)), p: clamp(pc + (M.top - M.bot) / 2 / ppdAt(H, fov) + (st[M.up] || 0), -85, 85), fov };   // st.up / st.upScroll: degrees to look up on a phone / in the scroll tour (moves the group down), so painted text clears the masthead
   }
-  const frameOf = (r, i) => framing(r, shots(r)[i], view.clientWidth || PHONE.w, view.clientHeight || PHONE.h, isPhone() ? PHONE : DESK);
+  const frameOf = (r, i) => framing(r, shots(r)[i], view.clientWidth || PHONE.w, view.clientHeight || PHONE.h, isPhone() ? PHONE : SM ? SCRL : DESK);
   // The tour: one ordered list of every stop in every room (reception first), so a single index says where you are. Next and Back are goTo(index).
   const tour = route.flatMap(id => shots(R[id]).map((st, i) => ({ room: id, i })));
   const pos = () => tour.findIndex(t => t.room === cur) + Math.max(stopIx, 0);
@@ -415,6 +419,81 @@ export async function createWalk({ root, motion, hooks }) {
     sheet.classList.toggle('last', !n && !more);                           // last stop: the button says One-page version
     if (more) next.setAttribute('aria-label', `Next: view ${stopIx + 2} of ${shots(r).length} in ${r.name}`); else if (n) next.setAttribute('aria-label', 'Next: ' + R[n].name); else next.removeAttribute('aria-label');
   }
+
+  // ---------- scroll tour: desktop with a fine pointer. The page scrolls and the scroll position drives the camera through the stops ----------
+  // One tall spacer gives the page its length: LEAD viewport heights of elevator, then one viewport per stop. s = (scrollY - lead) / viewport height is a stop index plus a fraction.
+  // The stop whose section covers the middle of the viewport (round s) owns the plate, the nav and the room; the camera is between(stop, next stop, fraction) inside the room.
+  const SMQ = matchMedia('(min-width: 900px) and (hover: hover) and (pointer: fine)'), LEAD = 0.8, htmlEl = document.documentElement, hint0 = hint.textContent, sr0 = history.scrollRestoration;
+  const first = Object.fromEntries(route.map(id => [id, tour.findIndex(t => t.room === id)]));         // global index of each room's first stop
+  let track = null, plates = [], jnav = null, jn, jt, jbar, jnext, chs = [], curN = -2, last = null, lastT = 0, aim = null, bad = null, edge = 0;
+  const yOf = n => n < 0 ? 0 : Math.round((LEAD + n) * innerHeight), roomAt = n => n < 0 ? 'elevator' : tour[n].room;
+  const smEv = ['wheel', 'keydown', 'touchstart'], cancelAim = () => { aim = null; };                  // the visitor took over: a click's destination no longer holds
+  const onScroll = () => { bad = null; if (scrollY > 4) gone(); scrollDirty = true; request(); };
+  function scrollToStop(n) {                                               // smooth scroll to stop n (-1: the elevator). A click across rooms shows the target room at once, so the rooms between are not walked through
+    n = clamp(n, -1, tour.length - 1); const y = yOf(n);
+    aim = reduce || Math.abs(scrollY - y) < 2 ? null : { n, y, cross: roomAt(n) !== cur, t: performance.now() + 2500 };
+    scrollTo({ top: y, behavior: reduce ? 'instant' : 'smooth' });
+  }
+  function setStop(n) {                                                    // the plate of this stop fades in; the others are inert and hidden from assistive tech, as in the Corbel journey
+    if (n === curN) return; curN = n;
+    plates.forEach((p, i) => { p.classList.toggle('on', i === n); p.inert = i !== n; p.setAttribute('aria-hidden', String(i !== n)); });
+    jnav.hidden = n < 0; if (n < 0) return;
+    const t = tour[n], i = route.indexOf(t.room);
+    jn.textContent = String(i + 1).padStart(2, '0'); jt.textContent = R[t.room].name;
+    chs.forEach((b, k) => k === i ? b.setAttribute('aria-current', 'step') : b.removeAttribute('aria-current'));
+    jnext.disabled = n === tour.length - 1;
+  }
+  function place() {                                                       // scroll position to world, once per frame: nav, plate, room, then the camera
+    scrollDirty = false; if (!mapEl.hidden) return;                        // behind the map dialog the world stays put
+    const H = innerHeight, now = performance.now();
+    if (aim && (now > aim.t || Math.abs(scrollY - aim.y) < 2)) aim = null;
+    const s = aim && aim.cross ? aim.n : (scrollY - LEAD * H) / H, n = clamp(Math.floor(s + .5), -1, tour.length - 1), room = roomAt(n);
+    jbar.style.width = clamp(s / (tour.length - 1), 0, 1) * 100 + '%'; setStop(n);
+    if (room !== cur) { if (!busy && room !== bad) walkTo(room, { scroll: true, stop: n < 0 ? 0 : tour[n].i, push: 'replace' }); return; }
+    if (n < 0) return;
+    const lo = first[cur], hi = lo + shots(R[cur]).length - 1, sc = clamp(reduce ? n : s, lo, hi), k = Math.min(Math.floor(sc), Math.max(hi - 1, lo)), f = between(k, Math.min(k + 1, hi), sc - k);
+    const d = !last || reduce ? 0 : pts.size ? 1 : Math.exp(-Math.min(now - lastT, 32) / 70);   // what the visitor dragged away since the last frame eases back (about 400 ms) as the page scrolls; held while a pointer is down
+    const dy = last ? wrap(Y - last.y) * d : 0, dp = last ? (P - last.p) * d : 0, df = last ? (cam.fov - last.f) * d : 0;
+    Y = f.y; P = f.p; cam.fov = f.fov; clampView(); last = { y: Y, p: P, f: f.fov }; lastT = now;
+    Y += dy; P += dp; cam.fov = f.fov + df; cam.updateProjectionMatrix(); clampView(); stopIx = n - lo;
+    if (d < 1 && Math.abs(dy) + Math.abs(dp) + Math.abs(df) > .05) { scrollDirty = true; request(); }
+  }
+  function relayout() {                                                    // viewport changed: spacer length, the plate's edge for framing, and stay on the same stop
+    track.style.height = (LEAD + tour.length) * innerHeight + 'px'; edge = Math.round(plates[0].getBoundingClientRect().right + 28); SCRL.left = edge;
+    if (curN >= -1) { scrollTo({ top: yOf(curN), behavior: 'instant' }); last = null; scrollDirty = true; request(); }
+  }
+  function smOn() {
+    SM = true; htmlEl.classList.add('scrolltour'); history.scrollRestoration = 'manual';
+    track = el('div'); track.id = 'wtrack'; track.setAttribute('aria-hidden', 'true'); root.after(track);
+    const cardIn = (r, id) => { const u = (r.surfaces || []).find(x => x.id === id); return u ? cardOf(u) : (r.hotspots.find(x => x.id === id) || {}).card; };
+    plates = tour.map((t, n) => {                                          // a room's first stop carries the room sheet; the others the cards of the exhibits they frame (minus a card that repeats the sheet)
+      const r = R[t.room], sh = r.sheet, i = route.indexOf(t.room), a = el('section', 'wplate'), acts = [];
+      const cards = t.i ? shots(r)[t.i].at.map(id => cardIn(r, id)).filter(c => c && c.h !== sh.h) : [], h = el('h2', null, (cards[0] || sh).h);
+      h.id = `wp${n}`; h.tabIndex = -1; a.setAttribute('aria-labelledby', h.id); a.append(el('p', 'wp-eye', `${String(i + 1).padStart(2, '0')} / ${route.length} · ${r.name}`), h);
+      if (!t.i) { a.append(el('p', null, sh.p), el('p', 'ws-proof', 'Proof: ' + sh.proof)); sh.a.forEach(x => /^(Next:|Back to)/.test(x.label) || acts.push(x)); }   // Next and Back to are the journey bar's job
+      else cards.forEach((c, k) => { if (k) a.append(el('h3', null, c.h)); (c.p || []).forEach(x => a.append(el('p', null, x))); if (c.link) acts.push(c.link); });
+      if (n === tour.length - 1) acts.push({ label: 'One-page version', go: '#page' });                   // the last stop's Next on a phone leads here; the bar's next is disabled
+      if (acts.length) { const d = el('div', 'ws-acts'); acts.forEach((x, k) => d.append(actionEl(x, k > 0))); a.append(d); }
+      a.inert = true; a.setAttribute('aria-hidden', 'true'); view.append(a); return a;
+    });
+    const btn = (label, svg, f) => { const b = el('button', 'wj-btn'); b.type = 'button'; b.setAttribute('aria-label', label); b.append(svg.cloneNode(true)); b.addEventListener('click', f); return b; };
+    const ol = el('ol', 'wj-ch'), jpos = el('div', 'wj-pos'), ctl = el('div', 'wj-ctl');
+    jn = el('span', 'wj-n'); jt = el('span', 'wj-t'); jbar = el('i', 'wj-bar'); jpos.append(jn, el('i', null, ` / ${route.length}`), jt);
+    chs = route.map((id, i) => { const li = el('li'), b = el('button', null, String(i + 1).padStart(2, '0')); b.type = 'button'; b.title = R[id].name; b.setAttribute('aria-label', `${i + 1} of ${route.length}: ${R[id].name}`); b.addEventListener('click', () => walkTo(id, { force: true })); li.append(b); ol.append(li); return b; });
+    jnext = btn('Next stop', next.querySelector('svg'), () => scrollToStop(curN + 1)); ctl.append(btn('Previous stop', back.querySelector('svg'), () => scrollToStop(curN - 1)), jnext);
+    jnav = el('nav', 'wjourney'); jnav.setAttribute('aria-label', 'Rooms'); jnav.hidden = true; jnav.append(jpos, ol, ctl, jbar); view.append(jnav);
+    hint.textContent = 'Scroll to explore ↓';
+    addEventListener('scroll', onScroll, { passive: true }); smEv.forEach(t => addEventListener(t, cancelAim, { passive: true }));
+    relayout();
+    if (cur) { scrollTo({ top: yOf(pos()), behavior: 'instant' }); last = null; curN = -2; scrollDirty = true; request(); }   // switched on mid-visit: stand where the camera is
+  }
+  function smOff() {
+    SM = false; htmlEl.classList.remove('scrolltour'); history.scrollRestoration = sr0;
+    removeEventListener('scroll', onScroll); smEv.forEach(t => removeEventListener(t, cancelAim));
+    [track, jnav, ...plates].forEach(x => x && x.remove()); track = jnav = null; plates = []; chs = [];
+    hint.textContent = hint0; SCRL.left = 0; curN = -2; last = aim = bad = null; scrollDirty = false;
+  }
+  const onSMQ = e => { if (e.matches) smOn(); else { smOff(); scrollTo({ top: 0, behavior: 'instant' }); if (cur) goTo(pos()); } };   // resized or re-docked across the breakpoint
 
   // ---------- painted surfaces: the blank display surfaces of the renders, printed with the room's own copy ----------
   const cardOf = u => u.card || { h: u.paint.h || u.paint.t, p: (u.paint.b || []).map(b => b.l ? `${b.l}: ${b.t}` : b) };
@@ -472,23 +551,29 @@ export async function createWalk({ root, motion, hooks }) {
     const at = stopIx >= 0 ? fr[stopIx] : { y: face, p: r.pitch || 0, fov: baseFov };
     cam.fov = at.fov; cam.updateProjectionMatrix();
     await buildRoom(id);
-    setView(at.y, at.p);
+    if (SM) { last = null; place(); if (!r.sheet) { cam.fov = baseFov; cam.updateProjectionMatrix(); setView(r.yaw, r.pitch || 0); } const nx = route[route.indexOf(id) + 1]; if (nx) pano(nx).catch(() => {}); } else setView(at.y, at.p);   // scroll tour: the view comes from the scroll position (the elevator keeps its own); warm the next room
     renderSheet(id); body.scrollTop = 0; $('#w-tag-t').textContent = r.name;
     if (push === 'push') history.pushState({ room: id }, '', `#${id}`); else if (push === 'replace') history.replaceState({ room: id }, '', location.search + `#${id}`);
     hint.classList.toggle('gone', id !== cfg.start || hintGone);
     live.textContent = `${r.name}. Facing ${compass(Y)}.`;
-    if (r.sheet) { hideIntro(); if (!sheet.contains(document.activeElement)) $('#ws-h').focus({ preventScroll: true }); } else if (!root.classList.contains('arrive')) showIntro();
+    if (r.sheet) { hideIntro(); if (!(SM ? jnav : sheet).contains(document.activeElement)) (SM ? plates[Math.max(curN, 0)].querySelector('h2') : $('#ws-h')).focus({ preventScroll: true }); } else if (!root.classList.contains('arrive')) showIntro();
     renderMap();
     request();
   }
   async function walkTo(id, o = {}) {
+    if (SM && !o.scroll) {                                                 // scroll tour: walking is scrolling to the room's first stop; the scroll handler does the walk
+      if (!R[id] || id === cur && !o.force) return;
+      closeMap(); if (o.push !== false && id !== cur) history.pushState({ room: id }, '', `#${id}`);
+      return scrollToStop(id in first ? first[id] : -1);
+    }
     if (busy || !R[id] || id === cur && !o.force) return;
     busy = true; closeMap();
     try {
       if (!reduce) { fade.classList.add('on'); await wait(250); }
       await show(id, o.face, o.push === undefined ? 'push' : o.push, o.stop);
-    } catch (e) { live.textContent = 'That room could not load. Staying here.'; console.warn(e); }
+    } catch (e) { live.textContent = 'That room could not load. Staying here.'; console.warn(e); bad = id; }
     fade.classList.remove('on'); busy = false;
+    if (SM) { scrollDirty = true; request(); }                             // the scroll may have moved on while the walk ran
   }
 
   // ---------- map dialog ----------
@@ -502,7 +587,7 @@ export async function createWalk({ root, motion, hooks }) {
   }
   let lastFocus = null;
   function openMap() { lastFocus = document.activeElement; mapEl.hidden = false; $('#wm-close').focus(); $('.wmap-dot.here').scrollIntoView({ inline: 'center', block: 'nearest' }); }   // phone: the model is wider than the screen, pan to this room
-  function closeMap() { if (mapEl.hidden) return; mapEl.hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true }); }
+  function closeMap() { if (mapEl.hidden) return; mapEl.hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true }); if (SM) { scrollDirty = true; request(); } }
   $('#wm-close').addEventListener('click', closeMap);
   mapEl.addEventListener('click', e => { if (e.target === mapEl) closeMap(); });
 
@@ -538,13 +623,14 @@ export async function createWalk({ root, motion, hooks }) {
   view.addEventListener('pointerup', up); view.addEventListener('pointercancel', up);
   view.addEventListener('click', e => { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
   view.addEventListener('click', e => { if (sheet.dataset.s === 'open' && !e.target.closest('button,a,' + UI)) setSheet('peek'); });   // a tap on the world folds the card back to the peek
-  view.addEventListener('wheel', e => { if (e.target.closest(UI)) return; e.preventDefault(); setFov(cam.fov * (1 + clamp(e.deltaY, -80, 80) * 0.0012)); }, { passive: false });
+  view.addEventListener('wheel', e => { if (SM || e.target.closest(UI)) return; e.preventDefault(); setFov(cam.fov * (1 + clamp(e.deltaY, -80, 80) * 0.0012)); }, { passive: false });
   const onKey = e => {
     if (e.key === 'Escape') {
       if (!mapEl.hidden) closeMap(); else if (card) closeCard(true); else if (intro.classList.contains('on')) { hideIntro(); rtag.focus({ preventScroll: true }); } else if (sheet.dataset.s === 'open') setSheet('peek');
       return;
     }
     if (e.target.closest && e.target.closest(UI + ',.wmap,.wbar')) return;
+    if (SM && /^Arrow/.test(e.key)) return;                                 // scroll tour: the arrow keys scroll the page
     const s = e.shiftKey ? 12 : 5;
     if (e.key === 'ArrowLeft') Y -= s; else if (e.key === 'ArrowRight') Y += s; else if (e.key === 'ArrowUp') P += s; else if (e.key === 'ArrowDown') P -= s;
     else if (e.key === '+' || e.key === '=') setFov(cam.fov - 5); else if (e.key === '-') setFov(cam.fov + 5);
@@ -593,10 +679,13 @@ export async function createWalk({ root, motion, hooks }) {
   const onPop = () => { walkTo(roomFromHash() || cfg.start, { push: false, force: true, face: undefined }); };
   addEventListener('popstate', onPop);
 
+  SMQ.addEventListener('change', onSMQ); if (SMQ.matches) smOn();
+
   return {
     async start() {
       const id = roomFromHash() || cfg.start;
       if (id !== cfg.start) root.classList.remove('arrive');                  // deep links skip the doors
+      if (SM) scrollTo({ top: yOf(id in first ? first[id] : -1), behavior: 'instant' });   // a deep link opens at that room's first stop
       try { await show(id, undefined, 'replace'); } catch (e) { hooks.onFail && hooks.onFail(e); return; }
       hooks.onReady && hooks.onReady();
       if (root.classList.contains('arrive')) {                                // the doors were the loader: open them, then the popup at about 60%
@@ -609,11 +698,11 @@ export async function createWalk({ root, motion, hooks }) {
     get room() { return cur; },
     setMotion(on) { reduce = !on; if (reduce) tilt(false); },
     go: walkTo, goTo, between, tour,                                       // the one global list of stops, the pure progress helper and the one function Next and Back call
-    state: () => ({ room: cur, yaw: +Y.toFixed(2), pitch: +P.toFixed(2), fov: cam.fov, big, phone, kind: R[cur] && R[cur].kind, hotspots: hs.map(h => ({ id: h.id || h.ref, off: h.el.classList.contains('off'), rect: h.el.getBoundingClientRect().toJSON() })), props: props.length, sheet: sheet.dataset.s, card: !!card, stop: stopIx, stops: shots(R[cur]).length, tour: tour.length, at: pos(), frames: shots(R[cur]).map((x, i) => { const f = frameOf(R[cur], i); return [+f.y.toFixed(1), +f.p.toFixed(1), +f.fov.toFixed(1)]; }), surfs: surfs.map(({ id, W, H, fit, ppd }) => ({ id, W, H, fit, ppd })), texMB: +(surfs.reduce((a, u) => a + u.W * u.H * 16 / 3, 0) / 1e6).toFixed(1), mem: { ...renderer.info.memory }, intro: intro.classList.contains('on'), tilt: sens.on, doors: root.className }),
+    state: () => ({ room: cur, yaw: +Y.toFixed(2), pitch: +P.toFixed(2), fov: cam.fov, big, phone, kind: R[cur] && R[cur].kind, hotspots: hs.map(h => ({ id: h.id || h.ref, off: h.el.classList.contains('off'), rect: h.el.getBoundingClientRect().toJSON() })), props: props.length, sheet: sheet.dataset.s, card: !!card, stop: stopIx, stops: shots(R[cur]).length, tour: tour.length, at: pos(), frames: shots(R[cur]).map((x, i) => { const f = frameOf(R[cur], i); return [+f.y.toFixed(1), +f.p.toFixed(1), +f.fov.toFixed(1)]; }), surfs: surfs.map(({ id, W, H, fit, ppd }) => ({ id, W, H, fit, ppd })), texMB: +(surfs.reduce((a, u) => a + u.W * u.H * 16 / 3, 0) / 1e6).toFixed(1), mem: { ...renderer.info.memory }, intro: intro.classList.contains('on'), tilt: sens.on, doors: root.className, scroll: SM ? { n: curN, y: Math.round(scrollY), h: innerHeight, edge, aim: !!aim } : null }),
     setView, setFov,
     dispose() {
       disposed = true; cancelAnimationFrame(raf); ro.disconnect(); removeEventListener('popstate', onPop); removeEventListener('deviceorientation', onOrient);
-      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('keydown', onKey); SMQ.removeEventListener('change', onSMQ); if (SM) smOff();
       clearRoom(); if (mesh) { mesh.geometry.dispose(); mesh.material.dispose(); }
       texP.forEach(p => p.then(t => t.dispose()).catch(() => {})); spriteTex.forEach(p => p.then(t => t.dispose()).catch(() => {}));
       renderer.dispose(); root.classList.remove('arrive', 'open'); root.innerHTML = pristine; $('#wnotice').hidden = true;
