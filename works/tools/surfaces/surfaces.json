@@ -1,0 +1,1408 @@
+{
+ "curriculum": [
+  {
+   "id": "curriculum-rail-1",
+   "kind": "rail",
+   "corners": [
+    [
+     -44.868,
+     6.913
+    ],
+    [
+     -40.913,
+     7.023
+    ],
+    [
+     -40.913,
+     5.112
+    ],
+    [
+     -44.868,
+     5.044
+    ]
+   ],
+   "occluded": "none",
+   "note": "Navy wall rail, free LEFT END stub (no bracket on its left). Rail runs b -45 to +45 on a wall that is a cylinder round the camera, so each segment is a flat chord; one text line only.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 3.9,
+    "heightDeg": 1.9,
+    "physAspectWoverH": 2.18,
+    "phone30": {
+     "wPx": 49,
+     "hPx": 24,
+     "lines13px": 1,
+     "charsPerLine13px": 6,
+     "approxChars": 6
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.18,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "curriculum-rail-2",
+   "kind": "rail",
+   "corners": [
+    [
+     -37.397,
+     6.989
+    ],
+    [
+     -24.214,
+     7.18
+    ],
+    [
+     -24.214,
+     5.105
+    ],
+    [
+     -37.397,
+     5.076
+    ]
+   ],
+   "occluded": "none",
+   "note": "Navy rail segment between wooden brackets 1 and 2 (rail segments are numbered left to right, brackets sit between them). One text line only.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 13.1,
+    "heightDeg": 2,
+    "physAspectWoverH": 6.93,
+    "phone30": {
+     "wPx": 164,
+     "hPx": 25,
+     "lines13px": 1,
+     "charsPerLine13px": 21,
+     "approxChars": 21
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.194,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "curriculum-rail-3",
+   "kind": "rail",
+   "corners": [
+    [
+     -20.742,
+     7.129
+    ],
+    [
+     -9.229,
+     7.22
+    ],
+    [
+     -9.229,
+     5.073
+    ],
+    [
+     -20.742,
+     5.111
+    ]
+   ],
+   "occluded": "none",
+   "note": "Navy rail segment between brackets 2 and 3. One text line only.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 11.4,
+    "heightDeg": 2.1,
+    "physAspectWoverH": 5.72,
+    "phone30": {
+     "wPx": 143,
+     "hPx": 26,
+     "lines13px": 1,
+     "charsPerLine13px": 18,
+     "approxChars": 18
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.267,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "curriculum-rail-4",
+   "kind": "rail",
+   "corners": [
+    [
+     -5.757,
+     7.191
+    ],
+    [
+     5.625,
+     7.213
+    ],
+    [
+     5.625,
+     5.093
+    ],
+    [
+     -5.757,
+     5.106
+    ]
+   ],
+   "occluded": "none",
+   "note": "Navy rail segment between brackets 3 and 4, centred on b 0 (dead ahead of the entry view). One text line only.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 11.3,
+    "heightDeg": 2.1,
+    "physAspectWoverH": 5.36,
+    "phone30": {
+     "wPx": 141,
+     "hPx": 26,
+     "lines13px": 1,
+     "charsPerLine13px": 18,
+     "approxChars": 18
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.133,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "curriculum-rail-5",
+   "kind": "rail",
+   "corners": [
+    [
+     9.053,
+     7.139
+    ],
+    [
+     18.325,
+     7.174
+    ],
+    [
+     18.325,
+     5.065
+    ],
+    [
+     9.053,
+     5.098
+    ]
+   ],
+   "occluded": "none",
+   "note": "Navy rail segment between brackets 4 and 5. One text line only.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 9.2,
+    "heightDeg": 2.1,
+    "physAspectWoverH": 4.5,
+    "phone30": {
+     "wPx": 115,
+     "hPx": 26,
+     "lines13px": 1,
+     "charsPerLine13px": 14,
+     "approxChars": 14
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.136,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "curriculum-rail-6",
+   "kind": "rail",
+   "corners": [
+    [
+     21.753,
+     7.131
+    ],
+    [
+     32.212,
+     7.116
+    ],
+    [
+     32.212,
+     5.049
+    ],
+    [
+     21.753,
+     5.065
+    ]
+   ],
+   "occluded": "none",
+   "note": "Navy rail segment between brackets 5 and 6. One text line only.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 10.4,
+    "heightDeg": 2.1,
+    "physAspectWoverH": 5,
+    "phone30": {
+     "wPx": 130,
+     "hPx": 26,
+     "lines13px": 1,
+     "charsPerLine13px": 16,
+     "approxChars": 16
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.136,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "curriculum-rail-7",
+   "kind": "rail",
+   "corners": [
+    [
+     35.64,
+     7.053
+    ],
+    [
+     45.352,
+     6.923
+    ],
+    [
+     45.352,
+     4.997
+    ],
+    [
+     35.64,
+     5.075
+    ]
+   ],
+   "occluded": "none",
+   "note": "Navy rail, free RIGHT END stub (no bracket on its right). One text line only.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 9.7,
+    "heightDeg": 2,
+    "physAspectWoverH": 4.98,
+    "phone30": {
+     "wPx": 121,
+     "hPx": 24,
+     "lines13px": 1,
+     "charsPerLine13px": 15,
+     "approxChars": 15
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.132,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "curriculum-whiteboard-far",
+   "kind": "whiteboard",
+   "corners": [
+    [
+     119.592,
+     13.457
+    ],
+    [
+     139.308,
+     14.614
+    ],
+    [
+     139.341,
+     0.85
+    ],
+    [
+     119.538,
+     1.069
+    ]
+   ],
+   "occluded": "none",
+   "note": "Framed whiteboard on the red felt wall of the next room, seen through the right doorway (b about 129). Top edge bows slightly (curved wall). Only visible when looking through the door; do not use as the room's main surface.",
+   "tier": "doorway-far",
+   "size": {
+    "widthDeg": 19.5,
+    "heightDeg": 13.1,
+    "physAspectWoverH": 1.54,
+    "phone30": {
+     "wPx": 243,
+     "hPx": 163,
+     "lines13px": 8,
+     "charsPerLine13px": 31,
+     "approxChars": 248
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.027,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  }
+ ],
+ "workshop": [
+  {
+   "id": "workshop-panel-1",
+   "kind": "panel",
+   "corners": [
+    [
+     -31.861,
+     15.052
+    ],
+    [
+     -23.741,
+     15.247
+    ],
+    [
+     -23.746,
+     4.154
+    ],
+    [
+     -31.847,
+     4.14
+    ]
+   ],
+   "occluded": "none",
+   "note": "Pinned paper panel (top-left of five on the curved navy felt board above the lamp desk). Faint pin marks at the four corners (under 0.3 deg).",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 8,
+    "heightDeg": 11,
+    "physAspectWoverH": 0.72,
+    "phone30": {
+     "wPx": 99,
+     "hPx": 138,
+     "lines13px": 7,
+     "charsPerLine13px": 12,
+     "approxChars": 84
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.038,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "workshop-panel-2",
+   "kind": "panel",
+   "corners": [
+    [
+     -22.295,
+     7.663
+    ],
+    [
+     -15.156,
+     7.824
+    ],
+    [
+     -15.14,
+     -3.36
+    ],
+    [
+     -22.314,
+     -3.365
+    ]
+   ],
+   "occluded": "none",
+   "note": "Pinned paper panel, middle-left, below and right of panel 1. Faint pin marks at the four corners (under 0.3 deg).",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 7.1,
+    "heightDeg": 11.1,
+    "physAspectWoverH": 0.64,
+    "phone30": {
+     "wPx": 89,
+     "hPx": 139,
+     "lines13px": 7,
+     "charsPerLine13px": 11,
+     "approxChars": 77
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.043,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "workshop-panel-3",
+   "kind": "panel",
+   "corners": [
+    [
+     -33.074,
+     2.385
+    ],
+    [
+     -25.431,
+     2.435
+    ],
+    [
+     -25.391,
+     -3.529
+    ],
+    [
+     -33.075,
+     -3.551
+    ]
+   ],
+   "occluded": "none",
+   "note": "Pinned paper panel, small landscape sheet bottom-left of the cluster. Faint pin marks at the four corners (under 0.3 deg).",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 7.7,
+    "heightDeg": 6,
+    "physAspectWoverH": 1.29,
+    "phone30": {
+     "wPx": 96,
+     "hPx": 74,
+     "lines13px": 3,
+     "charsPerLine13px": 12,
+     "approxChars": 36
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.039,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "workshop-panel-4",
+   "kind": "panel",
+   "corners": [
+    [
+     -12.252,
+     16.801
+    ],
+    [
+     5.077,
+     16.798
+    ],
+    [
+     5.082,
+     -3.554
+    ],
+    [
+     -12.237,
+     -3.521
+    ]
+   ],
+   "occluded": "none",
+   "note": "Pinned paper panel, the large centre sheet; the best surface in this room. Faint pin marks at the four corners (under 0.3 deg).",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 16.9,
+    "heightDeg": 20.3,
+    "physAspectWoverH": 0.83,
+    "phone30": {
+     "wPx": 212,
+     "hPx": 254,
+     "lines13px": 13,
+     "charsPerLine13px": 27,
+     "approxChars": 351
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.024,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "workshop-panel-5",
+   "kind": "panel",
+   "corners": [
+    [
+     10.456,
+     13.084
+    ],
+    [
+     22.487,
+     12.881
+    ],
+    [
+     22.482,
+     -4.651
+    ],
+    [
+     10.446,
+     -4.66
+    ]
+   ],
+   "occluded": "none",
+   "note": "Pinned paper panel, tall sheet right of centre. Faint pin marks at the four corners (under 0.3 deg).",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 11.9,
+    "heightDeg": 17.6,
+    "physAspectWoverH": 0.67,
+    "phone30": {
+     "wPx": 148,
+     "hPx": 220,
+     "lines13px": 11,
+     "charsPerLine13px": 19,
+     "approxChars": 209
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.041,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "workshop-panel-6",
+   "kind": "panel",
+   "corners": [
+    [
+     25.197,
+     15.481
+    ],
+    [
+     32.684,
+     15.244
+    ],
+    [
+     32.691,
+     4.382
+    ],
+    [
+     25.212,
+     4.374
+    ]
+   ],
+   "occluded": "none",
+   "note": "Pinned paper panel, small sheet top-right of the cluster. Faint pin marks at the four corners (under 0.3 deg).",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 7.3,
+    "heightDeg": 11,
+    "physAspectWoverH": 0.67,
+    "phone30": {
+     "wPx": 92,
+     "hPx": 137,
+     "lines13px": 7,
+     "charsPerLine13px": 11,
+     "approxChars": 77
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.028,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "workshop-whiteboard-far",
+   "kind": "whiteboard",
+   "corners": [
+    [
+     -89.464,
+     11.725
+    ],
+    [
+     -75.337,
+     12.568
+    ],
+    [
+     -75.395,
+     -0.438
+    ],
+    [
+     -89.475,
+     -0.335
+    ]
+   ],
+   "occluded": "partial: plant foliage over the bottom-right corner (about 1.5 deg)",
+   "note": "Framed whiteboard (thin wood frame) in the next room, seen through the left doorway (b about -83). Bottom-right corner inferred from the two edges.",
+   "tier": "doorway-far",
+   "size": {
+    "widthDeg": 14,
+    "heightDeg": 12.5,
+    "physAspectWoverH": 1.16,
+    "phone30": {
+     "wPx": 174,
+     "hPx": 157,
+     "lines13px": 8,
+     "charsPerLine13px": 22,
+     "approxChars": 176
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.036,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups",
+    "cornersInferred": [
+     "BR"
+    ]
+   }
+  },
+  {
+   "id": "workshop-frame-far-1",
+   "kind": "frame",
+   "corners": [
+    [
+     77.393,
+     9.852
+    ],
+    [
+     83.363,
+     9.551
+    ],
+    [
+     83.867,
+     -2.28
+    ],
+    [
+     77.841,
+     -2.353
+    ]
+   ],
+   "occluded": "none",
+   "note": "Left half of a framed diptych (two white panels in one wood frame) in the next room, seen through the right doorway (b about 80). Panels are separated by a thin slanted gap.",
+   "tier": "doorway-far",
+   "size": {
+    "widthDeg": 6,
+    "heightDeg": 12,
+    "physAspectWoverH": 0.51,
+    "phone30": {
+     "wPx": 74,
+     "hPx": 150,
+     "lines13px": 7,
+     "charsPerLine13px": 9,
+     "approxChars": 63
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.039,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "workshop-frame-far-2",
+   "kind": "frame",
+   "corners": [
+    [
+     83.759,
+     9.527
+    ],
+    [
+     88.835,
+     9.237
+    ],
+    [
+     89.119,
+     -2.07
+    ],
+    [
+     84.154,
+     -2.226
+    ]
+   ],
+   "occluded": "none",
+   "note": "Right half of the same framed diptych. Use together with workshop-frame-far-1 as a two-column surface.",
+   "tier": "doorway-far",
+   "size": {
+    "widthDeg": 5,
+    "heightDeg": 11.5,
+    "physAspectWoverH": 0.47,
+    "phone30": {
+     "wPx": 62,
+     "hPx": 144,
+     "lines13px": 7,
+     "charsPerLine13px": 8,
+     "approxChars": 56
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.033,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  }
+ ],
+ "product": [
+  {
+   "id": "product-sheet-1",
+   "kind": "panel",
+   "corners": [
+    [
+     -28.752,
+     18.501
+    ],
+    [
+     -14.262,
+     18.961
+    ],
+    [
+     -14.426,
+     -1.654
+    ],
+    [
+     -29.053,
+     -1.473
+    ]
+   ],
+   "occluded": "partial: brass pin at top centre (about 0.9 deg across)",
+   "note": "Pinned sheet, left of three on the light blue-grey board behind the monitor. One brass pin (about 0.9 deg across) at top centre, about 0.6 deg below the top edge: start text at least 1.5 deg below the top edge.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 14.2,
+    "heightDeg": 20.3,
+    "physAspectWoverH": 0.69,
+    "phone30": {
+     "wPx": 177,
+     "hPx": 254,
+     "lines13px": 13,
+     "charsPerLine13px": 22,
+     "approxChars": 286
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.072,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "product-sheet-2",
+   "kind": "panel",
+   "corners": [
+    [
+     -8.373,
+     19.169
+    ],
+    [
+     7.882,
+     19.297
+    ],
+    [
+     7.95,
+     -1.776
+    ],
+    [
+     -8.439,
+     -1.778
+    ]
+   ],
+   "occluded": "partial: brass pin at top centre (about 0.9 deg across)",
+   "note": "Pinned sheet, centre of three. One brass pin (about 0.9 deg across) at top centre, about 0.6 deg below the top edge: start text at least 1.5 deg below the top edge.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 15.9,
+    "heightDeg": 21,
+    "physAspectWoverH": 0.74,
+    "phone30": {
+     "wPx": 198,
+     "hPx": 263,
+     "lines13px": 13,
+     "charsPerLine13px": 25,
+     "approxChars": 325
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.086,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "product-sheet-3",
+   "kind": "panel",
+   "corners": [
+    [
+     13.786,
+     19.145
+    ],
+    [
+     29.041,
+     18.796
+    ],
+    [
+     29.096,
+     -1.639
+    ],
+    [
+     13.82,
+     -1.686
+    ]
+   ],
+   "occluded": "partial: brass pin at top centre (about 0.9 deg across)",
+   "note": "Pinned sheet, right of three. One brass pin (about 0.9 deg across) at top centre, about 0.6 deg below the top edge: start text at least 1.5 deg below the top edge.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 14.8,
+    "heightDeg": 20.6,
+    "physAspectWoverH": 0.71,
+    "phone30": {
+     "wPx": 186,
+     "hPx": 258,
+     "lines13px": 13,
+     "charsPerLine13px": 24,
+     "approxChars": 312
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.068,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "product-monitor",
+   "kind": "monitor",
+   "corners": [
+    [
+     -17.092,
+     -5.448
+    ],
+    [
+     20.017,
+     -5.326
+    ],
+    [
+     20.517,
+     -23.16
+    ],
+    [
+     -17.698,
+     -23.027
+    ]
+   ],
+   "occluded": "none",
+   "note": "Curved ultrawide monitor screen (blank white) on the desk, wider than the 30 deg phone view (36 deg). The screen is cylindrical and its bottom edge bows up about 0.9 deg mid-span, so the quad is inscribed: the bottom edge sits on the mid-span edge and the two bottom corners are about 0.9 deg inside the true screen corners (no text lands on the bezel; the bottom corner slivers are lost). Top edge about 0.2 deg high (on the inner bezel line), sides within 0.1 deg.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 36,
+    "heightDeg": 17.7,
+    "physAspectWoverH": 1.98,
+    "phone30": {
+     "wPx": 450,
+     "hPx": 221,
+     "lines13px": 11,
+     "charsPerLine13px": 58,
+     "approxChars": 638
+    }
+   },
+   "fit": {
+    "withinTolerance": false,
+    "delta4096vs8192Deg": 0.079,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups",
+    "exception": "curved screen: bottom corners about 0.9 deg inside the true corners by design (inscribed); everything else within 0.2 deg"
+   }
+  },
+  {
+   "id": "product-desk-sheet-2",
+   "kind": "panel",
+   "corners": [
+    [
+     -26.869,
+     -30.79
+    ],
+    [
+     -9.627,
+     -31.241
+    ],
+    [
+     -11.954,
+     -39.916
+    ],
+    [
+     -33.662,
+     -38.776
+    ]
+   ],
+   "occluded": "none",
+   "note": "Blank paper sheet lying on the desk (middle of three). Foreshortened: you must tilt down to about pitch -35 to read it. Low priority.",
+   "tier": "desk",
+   "size": {
+    "widthDeg": 15.8,
+    "heightDeg": 9.3,
+    "physAspectWoverH": 1.34,
+    "phone30": {
+     "wPx": 197,
+     "hPx": 116,
+     "lines13px": 6,
+     "charsPerLine13px": 25,
+     "approxChars": 150
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.127,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  }
+ ],
+ "customers": [
+  {
+   "id": "customers-frame-1",
+   "kind": "frame",
+   "corners": [
+    [
+     76.102,
+     25.514
+    ],
+    [
+     89.349,
+     27.332
+    ],
+    [
+     89.333,
+     -7.19
+    ],
+    [
+     76.077,
+     -6.619
+    ]
+   ],
+   "occluded": "partial: four brass corner pins (about 0.8 deg across each)",
+   "note": "Tall blank plate hung on the red felt wall right of the bookcase, with four brass pins (about 0.8 deg across, centred about 0.8 deg in from each corner): keep text at least 2 deg inside the corners.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 12.6,
+    "heightDeg": 33.3,
+    "physAspectWoverH": 0.4,
+    "phone30": {
+     "wPx": 157,
+     "hPx": 417,
+     "lines13px": 21,
+     "charsPerLine13px": 20,
+     "approxChars": 420
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.015,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "customers-whiteboard-far",
+   "kind": "whiteboard",
+   "corners": [
+    [
+     -16.235,
+     12.903
+    ],
+    [
+     1.77,
+     13.017
+    ],
+    [
+     1.74,
+     2.372
+    ],
+    [
+     -16.229,
+     2.347
+    ]
+   ],
+   "occluded": "partial: potted plant in front of the lower-left corner (leaves cover about 30 percent of the bottom edge and 15 percent of the height there); three small pins on the top edge",
+   "note": "Whiteboard on a light-blue board in the next room, seen through the centre doorway (b about -7). Three pins on the top edge. Bottom-left corner inferred.",
+   "tier": "doorway-far",
+   "size": {
+    "widthDeg": 17.7,
+    "heightDeg": 10.6,
+    "physAspectWoverH": 1.66,
+    "phone30": {
+     "wPx": 222,
+     "hPx": 133,
+     "lines13px": 6,
+     "charsPerLine13px": 28,
+     "approxChars": 168
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.053,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups",
+    "cornersInferred": [
+     "BL"
+    ]
+   }
+  }
+ ],
+ "ventures": [
+  {
+   "id": "ventures-frame-L1",
+   "kind": "frame",
+   "corners": [
+    [
+     -173.085,
+     22.548
+    ],
+    [
+     -161.609,
+     21.751
+    ],
+    [
+     -161.663,
+     1.312
+    ],
+    [
+     -173.108,
+     1.075
+    ]
+   ],
+   "occluded": "none",
+   "note": "Unframed canvas panel on the pale stone gallery wall under a downlight (bright hot-spot upper centre, edge shadows); pedestal below. Left wall, first full panel left of the seam. Viewed obliquely.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 11.1,
+    "heightDeg": 21,
+    "physAspectWoverH": 0.54,
+    "phone30": {
+     "wPx": 138,
+     "hPx": 262,
+     "lines13px": 13,
+     "charsPerLine13px": 17,
+     "approxChars": 221
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.089,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "ventures-frame-L2",
+   "kind": "frame",
+   "corners": [
+    [
+     -156.573,
+     21.184
+    ],
+    [
+     -146.782,
+     19.923
+    ],
+    [
+     -146.712,
+     1.459
+    ],
+    [
+     -156.597,
+     1.348
+    ]
+   ],
+   "occluded": "none",
+   "note": "Unframed canvas panel on the pale stone gallery wall under a downlight (bright hot-spot upper centre, edge shadows); pedestal below. Left wall, second panel.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 9.6,
+    "heightDeg": 19.2,
+    "physAspectWoverH": 0.53,
+    "phone30": {
+     "wPx": 120,
+     "hPx": 239,
+     "lines13px": 12,
+     "charsPerLine13px": 15,
+     "approxChars": 180
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.089,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "ventures-frame-L3",
+   "kind": "frame",
+   "corners": [
+    [
+     -143.933,
+     19.446
+    ],
+    [
+     -135.62,
+     18.209
+    ],
+    [
+     -135.66,
+     1.764
+    ],
+    [
+     -143.926,
+     1.691
+    ]
+   ],
+   "occluded": "none",
+   "note": "Unframed canvas panel on the pale stone gallery wall under a downlight (bright hot-spot upper centre, edge shadows); pedestal below. Left wall, third panel (nearest the door frame).",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 8.1,
+    "heightDeg": 17.1,
+    "physAspectWoverH": 0.54,
+    "phone30": {
+     "wPx": 101,
+     "hPx": 214,
+     "lines13px": 11,
+     "charsPerLine13px": 13,
+     "approxChars": 143
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.092,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "ventures-frame-R1",
+   "kind": "frame",
+   "corners": [
+    [
+     135.744,
+     18.215
+    ],
+    [
+     143.937,
+     19.504
+    ],
+    [
+     143.912,
+     1.664
+    ],
+    [
+     135.771,
+     1.951
+    ]
+   ],
+   "occluded": "none",
+   "note": "Unframed canvas panel on the pale stone gallery wall under a downlight (bright hot-spot upper centre, edge shadows); pedestal below. Right wall, nearest the door frame. Viewed obliquely.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 8,
+    "heightDeg": 17.1,
+    "physAspectWoverH": 0.56,
+    "phone30": {
+     "wPx": 100,
+     "hPx": 213,
+     "lines13px": 11,
+     "charsPerLine13px": 12,
+     "approxChars": 132
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.046,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "ventures-frame-R2",
+   "kind": "frame",
+   "corners": [
+    [
+     146.678,
+     19.93
+    ],
+    [
+     156.664,
+     21.292
+    ],
+    [
+     156.69,
+     1.417
+    ],
+    [
+     146.832,
+     1.572
+    ]
+   ],
+   "occluded": "none",
+   "note": "Unframed canvas panel on the pale stone gallery wall under a downlight (bright hot-spot upper centre, edge shadows); pedestal below. Right wall, middle panel.",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 9.6,
+    "heightDeg": 19.1,
+    "physAspectWoverH": 0.55,
+    "phone30": {
+     "wPx": 121,
+     "hPx": 239,
+     "lines13px": 12,
+     "charsPerLine13px": 15,
+     "approxChars": 180
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.088,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "ventures-frame-R3",
+   "kind": "frame",
+   "corners": [
+    [
+     162.008,
+     21.882
+    ],
+    [
+     174.545,
+     22.85
+    ],
+    [
+     174.522,
+     1.163
+    ],
+    [
+     162.171,
+     1.205
+    ]
+   ],
+   "occluded": "none",
+   "note": "Unframed canvas panel on the pale stone gallery wall under a downlight (bright hot-spot upper centre, edge shadows); pedestal below. Right wall, last panel before the south seam (b 180).",
+   "tier": "primary",
+   "size": {
+    "widthDeg": 12,
+    "heightDeg": 21.2,
+    "physAspectWoverH": 0.57,
+    "phone30": {
+     "wPx": 150,
+     "hPx": 265,
+     "lines13px": 13,
+     "charsPerLine13px": 19,
+     "approxChars": 247
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.15,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  }
+ ],
+ "references": [],
+ "achievements": [
+  {
+   "id": "achievements-frame-far-R",
+   "kind": "frame",
+   "corners": [
+    [
+     127.577,
+     16.769
+    ],
+    [
+     149.94,
+     18.945
+    ],
+    [
+     149.926,
+     -4.477
+    ],
+    [
+     127.567,
+     -4.042
+    ]
+   ],
+   "occluded": "partial: small vase with foliage over the middle of the bottom edge (about 40 percent of that edge, 7 percent of the height)",
+   "note": "Large blank frame (hairline frame) in the lounge room seen through the right doorway (b about 139). The biggest blank surface in this room, but only visible through the door.",
+   "tier": "doorway-far",
+   "size": {
+    "widthDeg": 21.8,
+    "heightDeg": 22.1,
+    "physAspectWoverH": 1.03,
+    "phone30": {
+     "wPx": 273,
+     "hPx": 276,
+     "lines13px": 14,
+     "charsPerLine13px": 35,
+     "approxChars": 490
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.062,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "achievements-frame-far-L2",
+   "kind": "frame",
+   "corners": [
+    [
+     -130.514,
+     12.805
+    ],
+    [
+     -124.468,
+     14.081
+    ],
+    [
+     -124.465,
+     0.353
+    ],
+    [
+     -130.525,
+     0.493
+    ]
+   ],
+   "occluded": "none",
+   "note": "Blank panel on the right-hand wall of the gallery room (left doorway), viewed obliquely.",
+   "tier": "doorway-far",
+   "size": {
+    "widthDeg": 6,
+    "heightDeg": 13,
+    "physAspectWoverH": 0.67,
+    "phone30": {
+     "wPx": 75,
+     "hPx": 163,
+     "lines13px": 8,
+     "charsPerLine13px": 9,
+     "approxChars": 72
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.035,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  },
+  {
+   "id": "achievements-frame-far-L3",
+   "kind": "frame",
+   "corners": [
+    [
+     -121.706,
+     14.636
+    ],
+    [
+     -113.875,
+     16.239
+    ],
+    [
+     -113.828,
+     0.212
+    ],
+    [
+     -121.729,
+     0.272
+    ]
+   ],
+   "occluded": "none",
+   "note": "Blank panel on the right-hand wall of the gallery room (left doorway), right of L2, viewed obliquely.",
+   "tier": "doorway-far",
+   "size": {
+    "widthDeg": 7.8,
+    "heightDeg": 15.2,
+    "physAspectWoverH": 0.66,
+    "phone30": {
+     "wPx": 98,
+     "hPx": 190,
+     "lines13px": 9,
+     "charsPerLine13px": 12,
+     "approxChars": 108
+    }
+   },
+   "fit": {
+    "withinTolerance": true,
+    "delta4096vs8192Deg": 0.127,
+    "reviewed": "overlay + fov60 + tight crop + 4 corner close-ups"
+   }
+  }
+ ]
+}

@@ -1,5 +1,5 @@
 {
-  "_notes": "Bearings in degrees clockwise from north (b), pitch in degrees above the horizon (p), read from where each doorway or object actually sits in the panorama (not from the compass text in PANORAMA-ORDER.md). Full panoramas: u=0.5 is north, 360 degrees. cyl-* strips: u=0.5 is north, about 270 degrees (spanDeg), vertical field spanPitch. Tune here; no code change needed. Each room opens on its yaw (yawPhone on phones) and pitch for Next, Back and deep links; a doorway walk faces the bearing walked through unless that doorway has home:true (the frame it would give is bare wall or the elevator side), which opens the room on its arrival frame. Sprites: dist is metres from the camera, crop the fraction of the body hidden behind furniture, h the figure's height in metres.",
+  "_notes": "Bearings in degrees clockwise from north (b), pitch in degrees above the horizon (p), read from where each doorway or object actually sits in the panorama (not from the compass text in PANORAMA-ORDER.md). Full panoramas: u=0.5 is north, 360 degrees. cyl-* strips: u=0.5 is north, about 270 degrees (spanDeg), vertical field spanPitch. Tune here; no code change needed. Each room opens on its yaw (yawPhone on phones) and pitch for Next, Back and deep links; a doorway walk faces the bearing walked through unless that doorway has home:true (the frame it would give is bare wall or the elevator side), which opens the room on its arrival frame. Sprites: dist is metres from the camera, crop the fraction of the body hidden behind furniture, h the figure's height in metres. Surfaces: the blank display surfaces of the sphere rooms, printed with the room's own copy (corners are [bearing, pitch] top-left, top-right, bottom-right, bottom-left, copied from tools/surfaces/surfaces.json; aspect is the true width over height; ink is dark by default, light for the navy rail; paint is the text, card the full text behind the surface button; mt and m are minimum margins in degrees to clear pins). Stops: the shots Next steps through before it walks on (surface or hotspot ids, at:arrival keeps the room's arrival frame; fill is the share of a phone's width the group may fill, pad degrees of air). Strip rooms are not surface-mapped: their pins carry always-on labels, and the operations trays carry placards.",
   "spanDeg": 270,
   "spanPitch": 90,
   "order": ["elevator","reception","curriculum","customers","product","workshop","operations","ventures","gallery","references","achievements","contact"],
@@ -47,6 +47,16 @@
         {"id": "to-customers", "type": "door", "b": 123, "p": 8, "label": "Customer Studio", "go": "customers"},
         {"id": "to-reception", "type": "door", "b": -81, "p": 8, "label": "Reception", "go": "reception"}
       ],
+      "surfaces": [
+        {"id": "curriculum-rail-1", "aspect": 2.18, "corners": [[-44.87, 6.91], [-40.91, 7.02], [-40.91, 5.11], [-44.87, 5.04]], "ink": "light", "paint": {"t": "May 4, 2026", "al": "c", "alt": ["May 4"]}, "card": {"h": "May 4, 2026", "p": ["May 4, 2026 is the date I went all in on AI. Everything since is one deliberate program, not a list of side projects: each product taught a different part of building, releasing and running software."]}},
+        {"id": "curriculum-rail-2", "aspect": 6.93, "corners": [[-37.4, 6.99], [-24.21, 7.18], [-24.21, 5.11], [-37.4, 5.08]], "ink": "light", "paint": {"t": "Fuwari · Playing for Keeps", "al": "c"}, "card": {"h": "Fuwari · Playing for Keeps", "p": ["Fuwari: Live web product, iPhone external beta", "Playing for Keeps: Live league platform"]}},
+        {"id": "curriculum-rail-3", "aspect": 5.72, "corners": [[-20.74, 7.13], [-9.23, 7.22], [-9.23, 5.07], [-20.74, 5.11]], "ink": "light", "paint": {"t": "Corbel · Stonewise", "al": "c"}, "card": {"h": "Corbel · Stonewise", "p": ["Corbel: Active consulting practice", "Stonewise: Live web app, iOS internal testing"]}},
+        {"id": "curriculum-rail-4", "aspect": 5.36, "corners": [[-5.76, 7.19], [5.62, 7.21], [5.62, 5.09], [-5.76, 5.11]], "ink": "light", "paint": {"t": "ChildCareOS", "al": "c"}, "card": {"h": "ChildCareOS", "p": ["Private web release"]}},
+        {"id": "curriculum-rail-5", "aspect": 4.5, "corners": [[9.05, 7.14], [18.32, 7.17], [18.32, 5.07], [9.05, 5.1]], "ink": "light", "paint": {"t": "Signal Engine", "al": "c"}, "card": {"h": "Signal Engine", "p": ["Local tool, MCP integration"]}},
+        {"id": "curriculum-rail-6", "aspect": 5, "corners": [[21.75, 7.13], [32.21, 7.12], [32.21, 5.05], [21.75, 5.07]], "ink": "light", "paint": {"t": "Ramara Hub", "al": "c"}, "card": {"h": "Ramara Hub", "p": ["Live static information site"]}},
+        {"id": "curriculum-rail-7", "aspect": 4.98, "corners": [[35.64, 7.05], [45.35, 6.92], [45.35, 5.0], [35.64, 5.08]], "ink": "light", "paint": {"t": "KoyaOS", "al": "c"}, "card": {"h": "KoyaOS", "p": ["My repository-based method for running venture work"]}}
+      ],
+      "stops": [{"at": ["curriculum-rail-1", "curriculum-rail-2"], "fill": 0.95}, {"at": ["curriculum-rail-3", "curriculum-rail-4"], "fill": 0.95}, {"at": ["curriculum-rail-5", "curriculum-rail-6"], "fill": 0.95}, {"at": ["curriculum-rail-7"], "fill": 0.95, "pad": 6}],
       "sprites": []
     },
     "customers": {
@@ -56,6 +66,10 @@
         {"id": "to-product", "type": "door", "b": 0, "p": 8, "label": "Product Studio", "go": "product"},
         {"id": "to-curriculum", "type": "door", "b": 180, "p": 5, "label": "The Curriculum", "go": "curriculum", "home": true}
       ],
+      "surfaces": [
+        {"id": "customers-frame-1", "aspect": 0.4, "corners": [[76.1, 25.51], [89.35, 27.33], [89.33, -7.19], [76.08, -6.62]], "m": 1.4, "paint": {"h": "Start with the work people actually do.", "b": [{"l": "Fuwari", "t": "I observed how a grooming shop schedules, communicates and gets paid before I shaped the product around it."}, {"l": "AgXactly", "t": "Founder-led customer discovery and sales with growers."}, {"l": "Corbel", "t": "Discovery and a systems review inside the client’s own workflow, then software built around it."}]}}
+      ],
+      "stops": [{"at": ["customers-frame-1"]}],
       "sprites": []
     },
     "product": {
@@ -63,8 +77,16 @@
       "sheet": {"h": "Make the next action clear.", "p": "Fuwari: one screen for booking, messaging and the money side, designed around what a groomer does next. Stonewise: a live care-companion web app where AI-assisted input is checked by a person. No clinical validation or health claims are made.", "proof": "Fuwari live web product; Stonewise live web app.", "a": [{"label": "Next: AI Workshop", "go": "workshop"}, {"label": "Back to Customer Studio", "go": "customers"}]},
       "hotspots": [
         {"id": "to-workshop", "type": "door", "b": -91, "p": 6, "label": "AI Workshop", "go": "workshop"},
-        {"id": "to-customers", "type": "door", "b": 180, "p": 5, "label": "Customer Studio", "go": "customers", "home": true}
+        {"id": "to-customers", "type": "door", "b": 180, "p": 5, "label": "Customer Studio", "go": "customers", "home": true},
+        {"id": "product-monitor-cap", "type": "caption", "b": 1.4, "p": -24.4, "of": "product-monitor", "text": "Capture of the public sample-shop demo at getfuwari.com, September 30, 2026. Made-up clients. A website demo, not a production account or the native app."}
       ],
+      "surfaces": [
+        {"id": "product-sheet-1", "aspect": 0.69, "corners": [[-28.75, 18.5], [-14.26, 18.96], [-14.43, -1.65], [-29.05, -1.47]], "mt": 1.7, "paint": {"h": "Make the next action clear."}, "card": {"h": "Make the next action clear.", "p": ["Fuwari: one screen for booking, messaging and the money side, designed around what a groomer does next. Stonewise: a live care-companion web app where AI-assisted input is checked by a person. No clinical validation or health claims are made."]}},
+        {"id": "product-sheet-2", "aspect": 0.74, "corners": [[-8.37, 19.17], [7.88, 19.3], [7.95, -1.78], [-8.44, -1.78]], "mt": 1.7, "paint": {"h": "Fuwari", "b": ["One screen for booking, messaging and the money side, designed around what a groomer does next."]}},
+        {"id": "product-sheet-3", "aspect": 0.71, "corners": [[13.79, 19.14], [29.04, 18.8], [29.1, -1.64], [13.82, -1.69]], "mt": 1.7, "paint": {"h": "Stonewise", "b": ["A live care-companion web app where AI-assisted input is checked by a person.", "No clinical validation or health claims are made."]}},
+        {"id": "product-monitor", "aspect": 1.98, "corners": [[-17.09, -5.45], [20.02, -5.33], [20.52, -23.16], [-17.7, -23.03]], "img": "img/fuwari-public-demo.jpg", "paint": {}, "card": {"h": "Fuwari's public sample-shop demo", "p": ["Capture of the public sample-shop demo at getfuwari.com, September 30, 2026. Made-up clients. A website demo, not a production account or the native app."], "link": {"label": "Try the public demo", "href": "https://getfuwari.com/#demo"}}}
+      ],
+      "stops": [{"at": ["product-monitor", "product-monitor-cap"]}, {"at": ["product-sheet-1", "product-sheet-2"], "fill": 0.95}, {"at": ["product-sheet-3"]}],
       "sprites": []
     },
     "workshop": {
@@ -80,6 +102,15 @@
         {"id": "to-product", "type": "door", "b": 83, "p": 8, "label": "Product Studio", "go": "product"},
         {"id": "to-operations", "type": "door", "b": -84, "p": 8, "label": "Operations Room", "go": "operations"}
       ],
+      "surfaces": [
+        {"id": "workshop-panel-1", "aspect": 0.72, "corners": [[-31.86, 15.05], [-23.74, 15.25], [-23.75, 4.15], [-31.85, 4.14]], "paint": {"n": 1, "h": "Source", "b": ["Start from the real record: the customer’s day, the rules, the existing data."]}, "card": {"h": "1 Source", "p": ["Start from the real record: the customer’s day, the rules, the existing data."]}},
+        {"id": "workshop-panel-3", "aspect": 1.29, "corners": [[-33.07, 2.38], [-25.43, 2.44], [-25.39, -3.53], [-33.08, -3.55]], "paint": {"n": 2, "h": "Spec", "b": ["Write down what done means before anything is built."]}, "card": {"h": "2 Spec", "p": ["Write down what done means before anything is built."]}},
+        {"id": "workshop-panel-2", "aspect": 0.64, "corners": [[-22.3, 7.66], [-15.16, 7.82], [-15.14, -3.36], [-22.31, -3.37]], "paint": {"n": 3, "h": "Bounded task", "b": ["Hand the agent a task small enough to inspect."]}, "card": {"h": "3 Bounded task", "p": ["Hand the agent a task small enough to inspect."]}},
+        {"id": "workshop-panel-4", "aspect": 0.83, "corners": [[-12.25, 16.8], [5.08, 16.8], [5.08, -3.55], [-12.24, -3.52]], "paint": {"n": 4, "h": "Change", "b": ["Read what actually changed, not what was described."], "top": "AI helps me build. I own the result."}, "card": {"h": "4 Change", "p": ["Read what actually changed, not what was described."]}},
+        {"id": "workshop-panel-5", "aspect": 0.67, "corners": [[10.46, 13.08], [22.49, 12.88], [22.48, -4.65], [10.45, -4.66]], "paint": {"n": 5, "h": "Check", "b": ["Run the tests, then try it by hand."]}, "card": {"h": "5 Check", "p": ["Run the tests, then try it by hand."]}},
+        {"id": "workshop-panel-6", "aspect": 0.67, "corners": [[25.2, 15.48], [32.68, 15.24], [32.69, 4.38], [25.21, 4.37]], "paint": {"n": 6, "h": "Release", "b": ["Ship it, then keep it running."]}, "card": {"h": "6 Release", "p": ["Ship it, then keep it running."]}}
+      ],
+      "stops": [{"at": ["workshop-panel-1", "workshop-panel-3", "workshop-panel-2"]}, {"at": ["workshop-panel-4"]}, {"at": ["workshop-panel-5", "workshop-panel-6"]}],
       "sprites": [{"img": "russell-bench", "b": 22, "dist": 2.57, "crop": 0.5, "h": 1.75}]
     },
     "operations": {
@@ -87,8 +118,12 @@
       "sheet": {"h": "Owner, next action, way to recover.", "p": "AIVA Network: as Ecosystem Manager at EMILI, startup outreach, evaluation, pilot routing and Airtable workflows. Fuwari: I own testing, release and maintenance of the live product. KoyaOS: every task has an owner, a next action and a handoff the next person can start from.", "proof": "AIVA, Fuwari and KoyaOS records.", "a": [{"label": "Next: Venture Room", "go": "ventures"}, {"label": "Back to the AI Workshop", "go": "workshop"}]},
       "hotspots": [
         {"id": "to-ventures", "type": "door", "b": -84, "p": 0, "label": "Venture Room", "go": "ventures"},
-        {"id": "to-workshop", "type": "door", "b": 100, "p": 0, "label": "AI Workshop", "go": "workshop"}
+        {"id": "to-workshop", "type": "door", "b": 100, "p": 0, "label": "AI Workshop", "go": "workshop"},
+        {"id": "tray-aiva", "type": "placard", "b": 0.6, "p": -9.7, "label": "AIVA Network", "line": "Startup outreach, evaluation, pilot routing", "card": {"h": "AIVA Network", "p": ["As Ecosystem Manager at EMILI: startup outreach, evaluation, pilot routing and Airtable workflows."]}},
+        {"id": "tray-fuwari", "type": "placard", "b": 0.6, "p": -14.4, "label": "Fuwari", "line": "Testing, release and maintenance", "card": {"h": "Fuwari", "p": ["I own testing, release and maintenance of the live product."]}},
+        {"id": "tray-koya", "type": "placard", "b": 0.5, "p": -22.9, "label": "KoyaOS", "line": "An owner, a next action and a handoff", "card": {"h": "KoyaOS", "p": ["My repository-based method for running venture work: every task has an owner, a next action and a handoff the next person can start from."]}}
       ],
+      "stops": [{"at": ["tray-aiva", "tray-fuwari", "tray-koya"], "pad": 12}],
       "sprites": []
     },
     "ventures": {
@@ -98,6 +133,15 @@
         {"id": "to-operations", "type": "door", "b": 0, "p": 6, "label": "Operations Room", "go": "operations"},
         {"id": "to-gallery", "type": "door", "b": 180, "p": 8, "label": "Company gallery", "go": "gallery"}
       ],
+      "surfaces": [
+        {"id": "ventures-frame-R1", "aspect": 0.56, "corners": [[135.74, 18.21], [143.94, 19.5], [143.91, 1.66], [135.77, 1.95]], "paint": {"h": "Vesta.AI", "kmax": 0.8, "mf": 0.035}, "card": {"h": "Vesta.AI", "p": ["Vesta.AI is the lesson that came before it: a restaurant voice-ordering venture whose technical delivery failed. It is why I build and verify what I sell."]}},
+        {"id": "ventures-frame-R2", "aspect": 0.55, "corners": [[146.68, 19.93], [156.66, 21.29], [156.69, 1.42], [146.83, 1.57]], "paint": {"h": "Formation", "kmax": 0.8, "mf": 0.035}, "card": {"h": "Formation", "p": ["AgXactly: formation, customers, capital, acquisition and wind-down, reported as it happened. I founded it, raised just under US$1M and led it through acquisition by Nighthawk Ag; the combined business later wound down."]}},
+        {"id": "ventures-frame-R3", "aspect": 0.57, "corners": [[162.01, 21.88], [174.54, 22.85], [174.52, 1.16], [162.17, 1.21]], "paint": {"h": "Customers", "kmax": 0.8, "mf": 0.035}, "card": {"h": "Customers", "p": ["Founder-led customer discovery and sales with growers."]}},
+        {"id": "ventures-frame-L1", "aspect": 0.54, "corners": [[-173.09, 22.55], [-161.61, 21.75], [-161.66, 1.31], [-173.11, 1.07]], "paint": {"h": "Capital", "kmax": 0.8, "mf": 0.035}, "card": {"h": "Capital", "p": ["Raised just under US$1M."]}},
+        {"id": "ventures-frame-L2", "aspect": 0.53, "corners": [[-156.57, 21.18], [-146.78, 19.92], [-146.71, 1.46], [-156.6, 1.35]], "paint": {"h": "Acquisition", "kmax": 0.8, "mf": 0.035, "alt": ["Acquired"]}, "card": {"h": "Acquisition", "p": ["Acquired by Nighthawk Ag."]}},
+        {"id": "ventures-frame-L3", "aspect": 0.54, "corners": [[-143.93, 19.45], [-135.62, 18.21], [-135.66, 1.76], [-143.93, 1.69]], "paint": {"h": "Wind-down", "kmax": 0.8, "mf": 0.035}, "card": {"h": "Wind-down", "p": ["The combined business later wound down."]}}
+      ],
+      "stops": [{"at": "arrival"}, {"at": ["ventures-frame-R1", "ventures-frame-R2", "ventures-frame-R3"], "fill": 0.99}, {"at": ["ventures-frame-L1", "ventures-frame-L2", "ventures-frame-L3"], "fill": 0.95}],
       "sprites": [{"img": "russell-folio", "b": 28, "dist": 2.0, "crop": 0, "h": 1.35}]
     },
     "gallery": {

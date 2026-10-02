@@ -10,6 +10,56 @@ const wrap = a => { a = ((a + 180) % 360 + 360) % 360 - 180; return a; };
 const dir = (b, p, r = 1) => new THREE.Vector3(Math.sin(b * D2R) * Math.cos(p * D2R), Math.sin(p * D2R), -Math.cos(b * D2R) * Math.cos(p * D2R)).multiplyScalar(r);
 const COMPASS = ['north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest'];
 const compass = y => COMPASS[Math.round(((y % 360) + 360) % 360 / 45) % 8];
+const ang = (a, b) => Math.acos(clamp(a.dot(b), -1, 1)) / D2R;
+const INK = '#182C34', OX = '#763F3D', PAPER = '#F4F0E7', GILT = '#E7C99E';
+const SERIF = '"Source Serif 4", Georgia, serif', SANS = 'Inter, system-ui, sans-serif';
+const PHONE = { w: 375, h: 812, top: 112, bot: 72, fill: 0.88, min: 26 }, DESK = { top: 72, bot: 108, fill: 0.62, min: 36 };   // framing margins: masthead and room tag above, route rail below, share of the width an exhibit may fill
+const ppdAt = (H, fov) => H / (2 * Math.tan(fov * D2R / 2)) * D2R;                                          // CSS px per degree at the centre of a view
+const KIND = { h: ['600', SERIF, 1.2], b: ['400', SANS, 1.32], l: ['600', SANS, 1.32] };
+const wrapText = (g, text, w) => {                                                                          // greedy wrap; a long hyphenated word may break after its hyphen
+  const out = []; let line = '';
+  for (const word of text.split(' ')) word.split('-').map((x, i, a) => i < a.length - 1 ? x + '-' : x).forEach((part, i) => {
+    const t = line ? line + (i ? '' : ' ') + part : part;
+    if (line && g.measureText(t).width > w) { out.push(line); line = part; } else line = t;
+  });
+  if (line) out.push(line); return out;
+};
+// Print one surface's copy. s = canvas px per CSS px and ppd = CSS px per degree, both at the surface's phone stop frame, so type is sized as it will look on a 375 px phone:
+// body never below 15 px (cap height about 11), headings larger. If the full copy cannot fit at that size the surface carries its title alone.
+function paintCanvas(sp, W, H, s, ppd) {
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  const g = cv.getContext('2d'), light = sp.ink === 'light', P = sp.paint, cw = W / s, ch = H / s;
+  g.fillStyle = light ? '#000' : '#fff'; g.fillRect(0, 0, W, H);                                               // multiply leaves white alone, screen leaves black alone
+  const m = Math.max((P.mf || 0.07) * Math.min(cw, ch), (sp.m || 0) * ppd), mt = Math.max(m, (sp.mt || 0) * ppd), iw = cw - 2 * m, ih = ch - mt - m, ink = light ? PAPER : INK, acc = light ? GILT : OX;
+  const layout = (k, str, body) => {
+    const rows = []; let y = 0, ok = true, tail = 0;
+    const put = (kind, px, text, color, gap) => {
+      const [wt, fam, lh] = KIND[kind]; g.font = `${wt} ${px * s}px ${fam}`;
+      for (const t of wrapText(g, text, iw * s)) { const w = g.measureText(t).width; if (w > iw * s + 1) ok = false; rows.push({ t, f: g.font, c: color, y: y + px, w: w / s }); y += px * lh; }
+      y += gap; tail = gap;
+    }, hp = 20 * k, bp = 15 * k;
+    if (P.top) { put('h', hp, P.top, ink, 5 * k); rows.push({ rule: 1, y, c: acc }); y += 9 * k; }
+    if (P.n != null) put('h', hp * 1.35, String(P.n), acc, 0);
+    put('h', hp, str, ink, 6 * k);
+    if (body) for (const b of P.b) { if (b.l) put('l', bp, b.l, ink, 1 * k); put('b', bp, b.t || b, ink, 7 * k); }
+    return { rows, h: y - tail, ok, k, hp, bp };
+  };
+  let L = null, str = null;
+  find: for (const t of [P.t || P.h, ...(P.alt || [])]) {                                                      // full copy first, then the title alone, then shorter titles
+    for (const body of !!P.b && t === (P.t || P.h) ? [true, false] : [false]) for (const k of (body ? [1.6, 1.4, 1.25, 1.1, 1] : [1.6, 1.4, 1.25, 1.1, 1, .9, .8]).filter(k => k <= (P.kmax || 9))) {     // kmax: cap the type scale so a set of surfaces reads uniformly
+      const l = layout(k, t, body); if (l.ok && l.h <= ih) { L = { ...l, body }; str = t; break find; }
+    }
+  }
+  if (!L) { L = { ...layout(.8, P.t || P.h, false), body: false }; str = P.t || P.h; L.fail = true; }
+  const center = P.al === 'c' || !L.body, y0 = mt + (center ? (ih - L.h) / 2 : 0);
+  g.textBaseline = 'alphabetic'; g.fillStyle = ink;
+  for (const r of L.rows) {
+    if (r.rule) { g.fillStyle = r.c; g.fillRect(m * s, (y0 + r.y) * s, iw * s * .3, Math.max(1, s)); continue; }
+    g.font = r.f; g.fillStyle = r.c; g.fillText(r.t, (m + (center ? (iw - r.w) / 2 : 0)) * s, (y0 + r.y) * s);
+  }
+  return { cv, fit: { text: str, body: L.body, head: +L.hp.toFixed(1), bodyPx: L.body ? +L.bp.toFixed(1) : 0, fail: !!L.fail } };
+}
+const DEBUG = /[?&]debug=quads\b/.test(location.search);
 let asked = false, granted = false;   // module scope: "ask for motion at most once per session" survives stopTour and startTour
 
 export async function createWalk({ root, motion, hooks }) {
@@ -19,7 +69,7 @@ export async function createWalk({ root, motion, hooks }) {
   const $ = s => root.querySelector(s);
   const view = $('#wview'), hsLayer = $('#whs'), fade = $('#wfade'), sheet = $('#wsheet'), body = $('#ws-body'), tog = $('#ws-toggle'), rtag = $('#w-tag');
   const live = $('#wlive'), hint = $('#whint'), mapEl = $('#wmap'), intro = $('#wintro'), cardEl = $('#wcard'), lead = $('#wlead');
-  const stops = ORDER.filter(x => x !== 'elevator'), back = $('#ws-back'), next = $('#ws-next'), num = $('#ws-num');   // the route: 11 stops, reception is 01
+  const route = ORDER.filter(x => x !== 'elevator'), back = $('#ws-back'), next = $('#ws-next'), num = $('#ws-num');   // the route: 11 rooms, reception is 01
   const UI = '.wsheet,.wcard,.wintro,.wtag,.wmotion';                      // overlays: they must not start a drag, zoom or arrow-key look
   const phone = innerWidth < 760, isPhone = () => matchMedia('(max-width:759px)').matches;
   let reduce = !motion, disposed = false;
@@ -89,7 +139,7 @@ export async function createWalk({ root, motion, hooks }) {
   }
 
   // ---------- state ----------
-  let Y = 0, P = 0, dirty = true, raf = 0, busy = false, mesh = null, props = [], hs = [], baseFov = 60;
+  let Y = 0, P = 0, dirty = true, raf = 0, busy = false, mesh = null, props = [], surfs = [], hs = [], baseFov = 60, loFov = 37, hiFov = 69, stopIx = -1, panTok = 0;
   const sens = { on: false, y: 0, p: 0, offY: 0, offP: 0 };
   function setView(y, p) { Y = y; P = p; if (sens.on) { sens.offY = Y - sens.y; sens.offP = P - sens.p; } clampView(); request(); }
   function clampView() {
@@ -101,7 +151,7 @@ export async function createWalk({ root, motion, hooks }) {
       Y = clamp(wrap(Y), -ym, ym); P = clamp(P, -pm, pm);
     } else Y = wrap(Y);
   }
-  function fovRange() { return [baseFov * 0.62, Math.min(85, baseFov * 1.15)]; }
+  function fovRange() { return [loFov, hiFov]; }                                  // pinch range: the room's own, widened to include every exhibit stop
   function setFov(f) { const [a, b] = fovRange(); cam.fov = clamp(f, a, b); cam.updateProjectionMatrix(); clampView(); request(); }
 
   // ---------- sprites and hotspots ----------
@@ -109,6 +159,7 @@ export async function createWalk({ root, motion, hooks }) {
   function clearRoom() {
     closeCard();
     props.forEach(m => { scene.remove(m); m.geometry.dispose(); m.material.dispose(); }); props = [];
+    surfs.forEach(u => { u.objs.forEach(m => { scene.remove(m); m.geometry.dispose(); m.material.dispose(); }); u.tex && u.tex.dispose(); }); surfs = [];
     hs.forEach(h => h.el.remove()); hs = []; hsLayer.textContent = '';
   }
   async function addSprite(s, D = 400) {
@@ -129,14 +180,17 @@ export async function createWalk({ root, motion, hooks }) {
   const refName = key => refCard(key).querySelector('h3').textContent;
   function mkHS(h) {
     const el = document.createElement('button'); el.type = 'button';
-    el.className = `hs hs-${h.type === 'fig' ? 'fig' : h.type}${h.hint ? ' hint near' : ''}`;
+    el.className = `hs hs-${h.type === 'fig' ? 'fig' : h.type}${h.hint ? ' hint near' : ''}${h.type === 'pin' && R[cur].kind === 'cyl' ? ' cap' : ''}`;   // strip rooms: object labels stay on
     let aria = h.label;
     if (h.go && R[h.go]) aria = `Walk to ${h.label}`; else if (h.href) aria = `Open ${h.label}`;
     if (h.bench) aria = `Position ${h.label}`;
     if (h.ref) aria = `Read the reference from ${h.label}`;
+    if (h.card) aria = `Read: ${h.label}`;
     el.setAttribute('aria-label', aria);
     if (h.type === 'pin') { if (h.bench) el.textContent = h.bench; else el.classList.add('dot'); }
-    const lab = document.createElement('span'); lab.className = 'hs-lab'; lab.setAttribute('aria-hidden', 'true'); lab.textContent = h.label; el.append(lab);
+    if (h.type === 'placard') { const b = document.createElement('b'), l = document.createElement('span'); b.textContent = h.label; l.textContent = h.line; el.append(b, l); }
+    else if (h.type === 'caption') el.textContent = h.text;
+    else if (h.type !== 'surf') { const lab = document.createElement('span'); lab.className = 'hs-lab'; lab.setAttribute('aria-hidden', 'true'); lab.textContent = h.label; el.append(lab); }
     const o = { ...h, el };
     el.addEventListener('click', () => activate(o));
     el.addEventListener('focus', () => { if (el.classList.contains('off')) panTo(o.b, o.p); });       // off-view hotspots stay tabbable
@@ -145,8 +199,9 @@ export async function createWalk({ root, motion, hooks }) {
   async function buildRoom(id) {
     const r = R[id];
     clearRoom();
+    if (r.surfaces) { await buildSurfaces(id, r); if (disposed || cur !== id) return; }
     r.hotspots.forEach(h => {
-      const o = mkHS(h); o.dir = dir(h.b, h.p, 300); hs.push(o);
+      const u = h.of && r.surfaces.find(x => x.id === h.of), o = mkHS(u ? { ...h, label: cardOf(u).h, card: cardOf(u) } : h); o.dir = dir(h.b, h.p, 300); hs.push(o);
     });
     for (const s of r.sprites || []) { const m = await addSprite(s); if (s.img === 'russell-greeting' || s.img === 'russell-bench' || s.img === 'russell-folio') m.userData.russell = true; }
     if (r.wall) {
@@ -168,6 +223,13 @@ export async function createWalk({ root, motion, hooks }) {
     for (const h of hs) {
       const el = h.el;
       let ok;
+      if (h.quad) {                                                           // painted surface: a transparent button over its projected box, off-view unless every corner is in front
+        let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9; ok = h.quad.every(d => d.dot(fwd) > 0);
+        if (ok) for (const d of h.quad) { const v = vTmp.copy(d).project(cam), x = (v.x + 1) / 2 * W, y = (1 - v.y) / 2 * H; x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }
+        ok = ok && x1 > 0 && x0 < W && y1 > 0 && y0 < H;
+        if (ok) { const w = Math.max(44, x1 - x0), hh = Math.max(44, y1 - y0); el.style.width = w + 'px'; el.style.height = hh + 'px'; el.style.transform = `translate(${((x0 + x1) / 2 - w / 2).toFixed(1)}px,${((y0 + y1) / 2 - hh / 2).toFixed(1)}px)`; }
+        el.classList.toggle('off', !ok); continue;
+      }
       if (h.sprite) {
         const u = h.sprite.userData, a = vTmp.copy(u.top).project(cam), ax = (a.x + 1) / 2 * W, ay = (1 - a.y) / 2 * H;
         const b = vTmp.copy(u.bot).project(cam), by = (1 - b.y) / 2 * H;
@@ -181,6 +243,9 @@ export async function createWalk({ root, motion, hooks }) {
         ok = front && x > -40 && x < W + 40 && y > -40 && y < H + 40;
         el.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`;
         if (!h.hint) el.classList.toggle('near', ok && Math.hypot(x - W / 2, y - H / 2) < 16 * pxPerDeg);
+        if (h.lab === undefined) h.lab = el.classList.contains('cap') ? el.querySelector('.hs-lab') : null;
+        if (h.lab && ok) { const lw = h.lab.offsetWidth, sh = clamp(x - lw / 2, 6, W - lw - 6) - (x - lw / 2); h.lab.style.marginLeft = sh.toFixed(1) + 'px'; h.lab.style.setProperty('--sh', sh.toFixed(1) + 'px'); }   // always-on labels stay on screen; the leader stays on the pin
+        if (h.type === 'placard') el.classList.toggle('sm', ppdAt(H, cam.fov) < 22);          // name tag until the view is close; then the line under it joins
       }
       el.classList.toggle('off', !ok);
     }
@@ -217,11 +282,9 @@ export async function createWalk({ root, motion, hooks }) {
   }
   const setSheet = st => { sheet.dataset.s = st; tog.setAttribute('aria-expanded', String(st === 'open')); };   // peek | open | hide
   function renderSheet(id) {
-    const r = R[id], s = r.sheet, i = stops.indexOf(id), n = stops[i + 1];
+    const r = R[id], s = r.sheet, i = route.indexOf(id);
     if (!s) return setSheet('hide');                                       // the elevator's card is the arrival popup; no rail there
-    num.textContent = String(i + 1).padStart(2, '0'); num.append(el('i', null, ` / ${stops.length}`)); $('#ws-t').textContent = r.name;
-    back.setAttribute('aria-label', 'Back: ' + R[stops[i - 1] || 'elevator'].name);
-    sheet.classList.toggle('last', !n); if (n) next.setAttribute('aria-label', 'Next: ' + R[n].name); else next.removeAttribute('aria-label');   // last stop: the button says One-page version
+    num.textContent = String(i + 1).padStart(2, '0'); num.append(el('i', null, ` / ${route.length}`)); $('#ws-t').textContent = r.name; railState();
     const box = $('#ws-room'); box.textContent = '';
     const acts = el('div', 'ws-acts'); s.a.forEach((a, i) => acts.append(actionEl(a, i > 0)));
     box.append(el('h3', null, s.h), el('p', null, s.p), el('p', 'ws-proof', 'Proof: ' + s.proof), acts);
@@ -230,7 +293,8 @@ export async function createWalk({ root, motion, hooks }) {
   let card = null;                                                         // { h }: the open object card and its hotspot
   function cardNode(h) {
     const n = el('div', 'ws-card');
-    if (h.bench) {
+    if (h.card) { n.append(el('h3', null, h.card.h)); (h.card.p || []).forEach(t => n.append(el('p', null, t))); if (h.card.link) n.append(actionEl(h.card.link, true)); }
+    else if (h.bench) {
       const li = document.querySelector(`#bench li[data-i="${h.bench}"]`);
       n.append(el('h3', null, li.querySelector('b').textContent), el('p', null, li.childNodes[li.childNodes.length - 1].textContent.trim()));
     } else if (h.plinth) {
@@ -249,7 +313,11 @@ export async function createWalk({ root, motion, hooks }) {
     closeCard();
     const box = $('#wc-body'); box.textContent = ''; box.append(cardNode(h));
     card = { h }; h.el.classList.add('on'); cardEl.hidden = false;
-    if (isPhone()) { body.append(cardEl); sheet.classList.add('has-card'); setSheet('open'); panTo(h.b, h.p - 0.25 * cam.fov); }   // phone: the card sits in the drawer; lift the object above it
+    if (isPhone()) {                                                       // phone: the card sits in the drawer; lift the object above it
+      body.append(cardEl); sheet.classList.add('has-card'); setSheet('open');
+      if (h.quad) { const vh = view.clientHeight, f = framing(R[cur], { at: [h.id] }, view.clientWidth, vh, { top: PHONE.top, bot: vh - sheet.getBoundingClientRect().top + 8, fill: 1e9, min: cam.fov }); panTo(f.y, f.p, f.fov); }   // a painted surface: centred in the clear space above the drawer, zoomed out if it is taller
+      else panTo(h.b, h.p - 0.25 * cam.fov);
+    }
     else { const r = h.el.getBoundingClientRect(), vr = view.getBoundingClientRect(); if (r.left < vr.left || r.right > vr.right) panTo(h.b, P); placeCard(); }   // half off-screen: bring it in, the card follows
     const t = box.querySelector('h3'); t.tabIndex = -1; t.focus({ preventScroll: true });
   }
@@ -284,13 +352,13 @@ export async function createWalk({ root, motion, hooks }) {
   const still = () => performance.now() - swipeT > 400;                   // a swipe that starts on a rail button must not also click it
   tog.addEventListener('click', () => { if (still()) setSheet(sheet.dataset.s === 'open' ? 'peek' : 'open'); });
   $('#ws-x').addEventListener('click', () => { setSheet('hide'); rtag.focus({ preventScroll: true }); });
-  back.addEventListener('click', () => { if (still()) walkTo(stops[stops.indexOf(cur) - 1] || 'elevator'); });
-  next.addEventListener('click', () => { const n = stops[stops.indexOf(cur) + 1]; if (!still()) return; if (n) walkTo(n); else hooks.onPage && hooks.onPage(cur); });
+  back.addEventListener('click', () => { if (still()) goTo(pos() - 1); });                                 // back through this room's exhibits, then into the last exhibit of the room before
+  next.addEventListener('click', () => { if (still()) goTo(stopIx < 0 ? pos() : pos() + 1); });             // stopIx -1: arrived by a doorway, so the first Next is this room's stop 0
   rtag.addEventListener('click', () => { if (R[cur].sheet) setSheet(sheet.dataset.s === 'hide' ? 'peek' : 'open'); else showIntro(); });
 
   // ---------- actions ----------
   function activate(h) {
-    if (h.ref || h.bench || h.plinth) return openCard(h);
+    if (h.ref || h.bench || h.plinth || h.card) return openCard(h);
     go(h.go || h.href, h.home ? undefined : h.b);                          // home: that doorway opens the room on its arrival frame
   }
   function go(target, bearing) {
@@ -300,26 +368,111 @@ export async function createWalk({ root, motion, hooks }) {
     if (R[target]) return walkTo(target, { face: bearing });
     if (/^https?:/.test(target)) window.open(target, '_blank', 'noopener'); else location.href = target;
   }
-  function panTo(b, p) {
-    if (reduce) { setView(b, p); return; }
-    const y0 = Y, dy = wrap(b - Y), p0 = P, t0 = performance.now();
-    const step = now => { const t = clamp((now - t0) / 380, 0, 1), e = t * t * (3 - 2 * t); setView(y0 + dy * e, p0 + (p - p0) * e); if (t < 1 && !disposed) requestAnimationFrame(step); };
+  function panTo(b, p, f) {                                                // f: also ease the zoom (exhibit stops)
+    const tok = ++panTok;                                                  // a newer pan or a room change cancels this one
+    if (reduce) { if (f != null) { cam.fov = f; cam.updateProjectionMatrix(); } setView(b, p); return; }
+    const y0 = Y, dy = wrap(b - Y), p0 = P, f0 = cam.fov, t0 = performance.now();
+    const step = now => {
+      if (tok !== panTok || disposed) return;
+      const t = clamp((now - t0) / 380, 0, 1), e = t * t * (3 - 2 * t);
+      if (f != null) { cam.fov = f0 + (f - f0) * e; cam.updateProjectionMatrix(); }
+      setView(y0 + dy * e, p0 + (p - p0) * e); if (t < 1) requestAnimationFrame(step);
+    };
     requestAnimationFrame(step);
+  }
+
+  // ---------- exhibit stops: Next pans through them before it walks on ----------
+  const shots = r => r.stops || [{ at: 'arrival' }];
+  const ptsOf = (r, id) => { const u = (r.surfaces || []).find(x => x.id === id); if (u) return u.corners; const h = r.hotspots.find(x => x.id === id); return [[h.b, h.p]]; };
+  function framing(r, st, W, H, M) {                                         // the view that composes a stop: centred on its group, zoomed until the group fills M.fill of the width, or the height clear of the rail
+    if (st.at === 'arrival') return { y: M === PHONE && r.yawPhone != null ? r.yawPhone : r.yaw, p: r.pitch || 0, fov: r.fov || (M === PHONE ? 75 : 60) };
+    const q = st.at.flatMap(id => ptsOf(r, id)), b0 = q[0][0], bs = q.map(([b]) => b0 + wrap(b - b0)), ps = q.map(x => x[1]), pad = st.pad || 0;
+    const B0 = Math.min(...bs) - pad, B1 = Math.max(...bs) + pad, P0 = Math.min(...ps), P1 = Math.max(...ps), pc = (P0 + P1) / 2;
+    const wD = (B1 - B0) * Math.cos(pc * D2R), hD = P1 - P0 + 2 * pad;
+    const fill = M === PHONE && st.fill || M.fill, fov = clamp(2 * Math.atan(Math.max(Math.tan(hD * D2R / 2) * H / (H - M.top - M.bot), Math.tan(wD * D2R / 2) * H / (W * fill))) / D2R, M.min, 85);
+    return { y: wrap((B0 + B1) / 2), p: clamp(pc + (M.top - M.bot) / 2 / ppdAt(H, fov), -85, 85), fov };
+  }
+  const frameOf = (r, i) => framing(r, shots(r)[i], view.clientWidth || PHONE.w, view.clientHeight || PHONE.h, isPhone() ? PHONE : DESK);
+  // The tour: one ordered list of every stop in every room (reception first), so a single index says where you are. Next and Back are goTo(index).
+  const tour = route.flatMap(id => shots(R[id]).map((st, i) => ({ room: id, i })));
+  const pos = () => tour.findIndex(t => t.room === cur) + Math.max(stopIx, 0);
+  const stopFrame = n => ({ room: tour[n].room, ...frameOf(R[tour[n].room], tour[n].i) });                    // { room, y: bearing, p: pitch, fov } of global stop n at this screen size
+  function between(a, b, t) {                                              // pure: the view at progress t (0 to 1) from global stop a to stop b. Inside one room it is a pan and zoom (yaw the short way round); across rooms there is nothing to pan through, so stop a until t reaches 1
+    const A = stopFrame(a), B = stopFrame(b); if (A.room !== B.room) return t < 1 ? A : B;
+    return { room: A.room, y: wrap(A.y + wrap(B.y - A.y) * t), p: A.p + (B.p - A.p) * t, fov: A.fov + (B.fov - A.fov) * t };
+  }
+  function goTo(n) {                                                       // go to global stop n: past the first, the elevator; past the last, the one-page version
+    if (n < 0) return walkTo('elevator');
+    if (n >= tour.length) return hooks.onPage && hooks.onPage(cur);
+    const t = tour[n]; if (t.room !== cur) return walkTo(t.room, { stop: t.i });
+    closeCard(); setSheet('peek'); stopIx = t.i;
+    const f = between(n, n, 0); panTo(f.y, f.p, f.fov); railState();
+    live.textContent = `${R[cur].name}, view ${t.i + 1} of ${shots(R[cur]).length}.`;
+  }
+  function railState() {
+    const r = R[cur], i = route.indexOf(cur), n = route[i + 1], more = stopIx + 1 < shots(r).length;
+    back.setAttribute('aria-label', stopIx > 0 ? `Back: earlier view in ${r.name}` : 'Back: ' + R[route[i - 1] || 'elevator'].name);
+    sheet.classList.toggle('last', !n && !more);                           // last stop: the button says One-page version
+    if (more) next.setAttribute('aria-label', `Next: view ${stopIx + 2} of ${shots(r).length} in ${r.name}`); else if (n) next.setAttribute('aria-label', 'Next: ' + R[n].name); else next.removeAttribute('aria-label');
+  }
+
+  // ---------- painted surfaces: the blank display surfaces of the renders, printed with the room's own copy ----------
+  const cardOf = u => u.card || { h: u.paint.h || u.paint.t, p: (u.paint.b || []).map(b => b.l ? `${b.l}: ${b.t}` : b) };
+  const loadImg = src => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error('image ' + src)); i.src = src; });
+  const bpOf = ds => { const v = new THREE.Vector3(); ds.forEach(d => v.add(d)); v.normalize(); return [Math.atan2(v.x, -v.z) / D2R, Math.asin(v.y) / D2R]; };
+  function quadGeom(c) {                                                   // 8 x 8 grid: each vertex is the normalised bilinear blend of the four corner directions, just inside the panorama sphere
+    const N = 8, pos = [], uv = [], idx = [], v = new THREE.Vector3();
+    for (let j = 0; j <= N; j++) for (let i = 0; i <= N; i++) {
+      const a = i / N, b = j / N;
+      v.set(0, 0, 0).addScaledVector(c[0], (1 - a) * (1 - b)).addScaledVector(c[1], a * (1 - b)).addScaledVector(c[2], a * b).addScaledVector(c[3], (1 - a) * b).normalize().multiplyScalar(490);
+      pos.push(v.x, v.y, v.z); uv.push(a, 1 - b);
+    }
+    for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) { const a = j * (N + 1) + i; idx.push(a, a + N + 1, a + 1, a + 1, a + N + 1, a + N + 2); }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); return g;
+  }
+  async function buildSurfaces(id, r) {
+    await Promise.all(['600 40px "Source Serif 4"', '400 40px Inter', '600 40px Inter'].map(f => document.fonts.load(f)));
+    const imgs = await Promise.all(r.surfaces.map(u => u.img ? loadImg(u.img) : null));
+    if (disposed || cur !== id) return;
+    const sh = shots(r);
+    r.surfaces.forEach((u, n) => {
+      const c = u.corners.map(([b, p]) => dir(b, p)), wD = (ang(c[0], c[1]) + ang(c[3], c[2])) / 2, hD = (ang(c[0], c[3]) + ang(c[1], c[2])) / 2;
+      const st = sh.find(x => x.at !== 'arrival' && x.at.includes(u.id)), ppd = ppdAt(PHONE.h, framing(r, st || sh[0], PHONE.w, PHONE.h, PHONE).fov);   // CSS px per degree on a 375 x 812 phone at this surface's stop
+      const long = u.img ? 2048 : clamp(Math.round(Math.max(wD, hD) * ppd * 2), 1024, 2048), W = u.aspect >= 1 ? long : Math.round(long * u.aspect), H = u.aspect >= 1 ? Math.round(long / u.aspect) : long;
+      let cv, fit;
+      if (u.img) { cv = document.createElement('canvas'); cv.width = W; cv.height = H; const im = imgs[n], k = Math.max(W / im.width, H / im.height); cv.getContext('2d').drawImage(im, (W - im.width * k) / 2, 0, im.width * k, im.height * k); fit = { img: true }; }   // monitor: cover-fit, kept to the top so the demo's own heading shows
+      else ({ cv, fit } = paintCanvas(u, W, H, W / (wD * ppd), ppd));
+      const tex = new THREE.CanvasTexture(cv); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());   // mipmaps stay on
+      const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthTest: false, depthWrite: false, toneMapped: false, side: THREE.DoubleSide });
+      if (!u.img) {                                                        // printed: dark ink multiplies the board's own light, pale ink on the dark rail screens it. No alpha involved
+        mat.blending = THREE.CustomBlending; mat.blendEquation = THREE.AddEquation;
+        if (u.ink === 'light') { mat.blendSrc = THREE.OneFactor; mat.blendDst = THREE.OneMinusSrcColorFactor; } else { mat.blendSrc = THREE.ZeroFactor; mat.blendDst = THREE.SrcColorFactor; }
+      }
+      const mesh = new THREE.Mesh(quadGeom(c), mat); mesh.renderOrder = 1; scene.add(mesh);                   // above the panorama, below the figures
+      const objs = [mesh];
+      if (DEBUG) { const q = []; for (let e = 0; e < 4; e++) for (let t = 0; t < 8; t++) q.push(new THREE.Vector3().lerpVectors(c[e], c[(e + 1) % 4], t / 8).normalize().multiplyScalar(489)); const ln = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(q), new THREE.LineBasicMaterial({ color: 0xff00ff, depthTest: false })); ln.renderOrder = 3; scene.add(ln); objs.push(ln); }
+      const card = cardOf(u), [b, p] = bpOf(c), o = mkHS({ type: 'surf', id: u.id, label: card.h, card, b, p }); o.quad = c; hs.push(o);
+      surfs.push({ id: u.id, objs, tex, W, H, fit, ppd: +ppd.toFixed(1) });
+    });
   }
 
   // ---------- walking ----------
   const wait = ms => new Promise(r => setTimeout(r, ms));
-  async function show(id, face, push) {
+  async function show(id, face, push, stop) {
     const r = R[id];
     const tex = await pano(id);
     if (disposed) return;
     const prev = mesh; mesh = panoMesh(r.kind, tex); scene.add(mesh);
     if (prev) { scene.remove(prev); prev.geometry.dispose(); prev.material.dispose(); }
-    cur = id;
-    baseFov = r.fov || (phone ? 75 : 60); cam.fov = baseFov; cam.updateProjectionMatrix();
+    cur = id; panTok++;
+    baseFov = r.fov || (phone ? 75 : 60);
+    const fr = shots(r).map((x, i) => frameOf(r, i));                      // arrival is stop 0; a doorway walk keeps the bearing it walked and the next Next goes to stop 0
+    loFov = Math.min(baseFov * 0.62, ...fr.map(f => f.fov)); hiFov = Math.min(85, Math.max(baseFov * 1.15, ...fr.map(f => f.fov)));
+    stopIx = stop != null ? stop : face == null ? 0 : -1;
+    const at = stopIx >= 0 ? fr[stopIx] : { y: face, p: r.pitch || 0, fov: baseFov };
+    cam.fov = at.fov; cam.updateProjectionMatrix();
     await buildRoom(id);
-    const arrival = phone && r.yawPhone != null ? r.yawPhone : r.yaw;      // per-room arrival frame from rooms.json
-    setView(face == null ? arrival : face, r.pitch || 0);
+    setView(at.y, at.p);
     renderSheet(id); body.scrollTop = 0; $('#w-tag-t').textContent = r.name;
     if (push === 'push') history.pushState({ room: id }, '', `#${id}`); else if (push === 'replace') history.replaceState({ room: id }, '', location.search + `#${id}`);
     hint.classList.toggle('gone', id !== cfg.start || hintGone);
@@ -333,7 +486,7 @@ export async function createWalk({ root, motion, hooks }) {
     busy = true; closeMap();
     try {
       if (!reduce) { fade.classList.add('on'); await wait(250); }
-      await show(id, o.face, o.push === undefined ? 'push' : o.push);
+      await show(id, o.face, o.push === undefined ? 'push' : o.push, o.stop);
     } catch (e) { live.textContent = 'That room could not load. Staying here.'; console.warn(e); }
     fade.classList.remove('on'); busy = false;
   }
@@ -455,8 +608,8 @@ export async function createWalk({ root, motion, hooks }) {
     },
     get room() { return cur; },
     setMotion(on) { reduce = !on; if (reduce) tilt(false); },
-    go: walkTo,
-    state: () => ({ room: cur, yaw: +Y.toFixed(2), pitch: +P.toFixed(2), fov: cam.fov, big, phone, kind: R[cur] && R[cur].kind, hotspots: hs.map(h => ({ id: h.id || h.ref, off: h.el.classList.contains('off'), rect: h.el.getBoundingClientRect().toJSON() })), props: props.length, sheet: sheet.dataset.s, card: !!card, intro: intro.classList.contains('on'), tilt: sens.on, doors: root.className }),
+    go: walkTo, goTo, between, tour,                                       // the one global list of stops, the pure progress helper and the one function Next and Back call
+    state: () => ({ room: cur, yaw: +Y.toFixed(2), pitch: +P.toFixed(2), fov: cam.fov, big, phone, kind: R[cur] && R[cur].kind, hotspots: hs.map(h => ({ id: h.id || h.ref, off: h.el.classList.contains('off'), rect: h.el.getBoundingClientRect().toJSON() })), props: props.length, sheet: sheet.dataset.s, card: !!card, stop: stopIx, stops: shots(R[cur]).length, tour: tour.length, at: pos(), frames: shots(R[cur]).map((x, i) => { const f = frameOf(R[cur], i); return [+f.y.toFixed(1), +f.p.toFixed(1), +f.fov.toFixed(1)]; }), surfs: surfs.map(({ id, W, H, fit, ppd }) => ({ id, W, H, fit, ppd })), texMB: +(surfs.reduce((a, u) => a + u.W * u.H * 16 / 3, 0) / 1e6).toFixed(1), mem: { ...renderer.info.memory }, intro: intro.classList.contains('on'), tilt: sens.on, doors: root.className }),
     setView, setFov,
     dispose() {
       disposed = true; cancelAnimationFrame(raf); ro.disconnect(); removeEventListener('popstate', onPop); removeEventListener('deviceorientation', onOrient);
