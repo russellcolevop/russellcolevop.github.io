@@ -223,7 +223,7 @@ PROFILE_TEMPLATE = Template(
     "jobTitle": "AI-Native Builder and Founder-Operator",
     "email": "russellcolevop@gmail.com",
     "telephone": "+16478247898",
-    "affiliation": { "@type": "Organization", "name": "Parallel Human" },
+    "affiliation": { "@type": "Organization", "name": "Corbel Ops" },
     "url": "https://russellcolevop.github.io",
     "alumniOf": [
       { "@type": "Organization", "name": "Founder Institute" }
@@ -310,6 +310,7 @@ PROFILE_TEMPLATE = Template(
           <p class="font-serif text-xl md:text-2xl text-near-black leading-snug mb-3">$tagline</p>
           <p class="font-sans text-base text-mid-gray leading-relaxed mb-8 max-w-lg">$intro</p>
           <a href="mailto:$email" class="inline-block bg-accent text-warm-bg font-sans font-medium text-sm px-6 py-3 rounded-sm hover:bg-accent-hover transition-colors" aria-label="Email Russell Cole at $email">$email</a>
+          <p class="font-sans text-sm mt-5"><a href="/resume/$slug/" class="text-accent underline underline-offset-2">Read or print this resume</a></p>
         </div>
       </div>
     </div>
@@ -457,7 +458,7 @@ $background
       var el = document.getElementById('qr-contact');
       if (!el || typeof QRCode === 'undefined') return;
       new QRCode(el, {
-        text: "BEGIN:VCARD\\r\\nVERSION:3.0\\r\\nFN:Russell Cole\\r\\nN:Cole;Russell;;;\\r\\nORG:Parallel Human\\r\\nTITLE:AI-Native Builder and Founder-Operator\\r\\nEMAIL;TYPE=INTERNET:$email\\r\\nTEL;TYPE=CELL:+16478247898\\r\\nURL:https://russellcolevop.github.io\\r\\nEND:VCARD",
+        text: "BEGIN:VCARD\\r\\nVERSION:3.0\\r\\nFN:Russell Cole\\r\\nN:Cole;Russell;;;\\r\\nORG:Corbel Ops\\r\\nTITLE:AI-Native Builder and Founder-Operator\\r\\nEMAIL;TYPE=INTERNET:$email\\r\\nTEL;TYPE=CELL:+16478247898\\r\\nURL:https://russellcolevop.github.io\\r\\nEND:VCARD",
         width: 240,
         height: 240,
         colorDark: '#1A1A1A',
@@ -675,7 +676,7 @@ ACHIEVEMENTS_TEMPLATE = Template(
     "jobTitle": "AI-Native Builder and Founder-Operator",
     "email": "russellcolevop@gmail.com",
     "telephone": "+16478247898",
-    "affiliation": { "@type": "Organization", "name": "Parallel Human" },
+    "affiliation": { "@type": "Organization", "name": "Corbel Ops" },
     "url": "https://russellcolevop.github.io",
     "alumniOf": [
       { "@type": "Organization", "name": "Founder Institute" }

@@ -1,5 +1,5 @@
 {
-  "_comment": "Source-of-truth content for the audience profile pages. Edited by hand today; designed to be written by the KoyaOS consulting loop later. build-profiles.py renders one static page per entry. The root general page is hand-maintained separately (see PROFILES.md).",
+  "_comment": "Public audience-profile content. Achievements, audience selection and AI practice are maintained here; current resume career facts and their public exports are maintained through the private job-search resume source described in PROFILES.md.",
   "_schema": {
     "slug": "URL path segment, e.g. 'dev' -> /dev/",
     "accent": "primary brand hex, used for buttons, links, card borders, focus",
@@ -26,7 +26,7 @@
     {
       "id": "stonewise",
       "title": "Stonewise: live kidney-stone care companion",
-      "blurb": "Built Stonewise as an installable web app for organizing kidney-stone care: hydration logging and pacing, meal tracking, lab-result trends, daily plans, and backup and restore. AI-assisted report and meal input asks the user to check extracted information before saving. The web app is live; a native iPhone app remains planned. Designed for personal organization and evidence-aware decision support.",
+      "blurb": "Built Stonewise for organizing kidney-stone care: hydration and meal logging, lab-result trends, daily plans, and backup and restore. AI-assisted report and meal input asks the user to check extracted information before saving. The web app is live in a friends-and-family beta; the native iPhone app is in internal TestFlight testing. External beta approval and installation remain unverified. Designed for personal organization and evidence-aware decision support.",
       "audiences": [
         "general",
         "dev",
@@ -34,7 +34,7 @@
         "founders",
         "investors"
       ],
-      "metric": "Live installable web app | native iPhone app planned",
+      "metric": "Live web beta | native iPhone internal TestFlight",
       "link": "https://stonewise.pages.dev"
     },
     {
@@ -104,7 +104,7 @@
     {
       "id": "agxactly",
       "title": "AgXactly: founder, just under US$1M raised",
-      "blurb": "Founded and led an agtech precision-data company across Canada and the US, raising just under US$1M and taking it through acquisition by Nighthawk Ag. Continued working in the combined business, which later wound down. FI included AgXactly in its Select Portfolio and its 2022 Canadian growth list; Loyal VC lists it as an FI-referred investment.",
+      "blurb": "Founded and led an agtech precision-data company across Canada and the US, raising just under US$1M and growing monthly recurring customer revenue to more than US$40,000. Led it through acquisition by Nighthawk Ag and continued working in the combined business, which later wound down. FI included AgXactly in its Select Portfolio and its 2022 Canadian growth list; Loyal VC lists it as an FI-referred investment.",
       "audiences": [
         "general",
         "dev",
@@ -112,13 +112,13 @@
         "investors",
         "sales"
       ],
-      "metric": "Just under US$1M raised | acquired by Nighthawk Ag",
+      "metric": "Just under US$1M raised | more than US$40,000 MRR | acquired",
       "link": "https://fi.co/50-CANADA"
     },
     {
       "id": "fi",
-      "title": "Founder Institute: alumnus and mentor",
-      "blurb": "Finished the FI program with the highest cumulative judge-rated pitch score in a cohort of more than 100 startups and founders. Ryan Micheletti advised me during the program. Later invited to mentor FI's Global Food Ecosystems program, with a Vision session invitation and scheduled founder office hours.",
+      "title": "Founder Institute: alumnus and founder support",
+      "blurb": "Finished the FI program with the highest cumulative judge-rated pitch score at program end in a cohort of more than 100 startups and founders. Ryan Micheletti advised me during the program. Later invited to support FI's Global Food Ecosystems program, with a Vision session invitation and scheduled founder office hours.",
       "audiences": [
         "general",
         "dev",
@@ -126,12 +126,12 @@
         "investors",
         "sales"
       ],
-      "metric": "Highest end-of-program pitch score | returned as mentor"
+      "metric": "Highest cumulative pitch score | invited founder office hours"
     },
     {
       "id": "koya",
-      "title": "KoyaOS: venture workflow architecture",
-      "blurb": "Designed and built venture-scoped context, research and source records, decision logs, agent workflows, review gates, and handoffs. The current studio runs through repositories and maintained evidence. The earlier hosted Mission Control dashboard is retired and retained as historical source, not the current operating authority.",
+      "title": "Venture AI workflows: historical systems build",
+      "blurb": "Designed and built venture-scoped context, research and source records, decision logs, agent workflows, review gates and handoffs. The earlier hosted Mission Control dashboard is retired. Retained as historical systems-building evidence; current product and operating work is presented through Corbel and the selected applications.",
       "audiences": [
         "general",
         "dev",
@@ -139,7 +139,7 @@
         "investors",
         "sales"
       ],
-      "metric": "Agent workflows | evidence and continuity systems"
+      "metric": "Historical build | hosted dashboard retired"
     },
     {
       "id": "corbel",
@@ -170,15 +170,15 @@
     },
     {
       "id": "parallel",
-      "title": "Parallel Human: venture and AI research",
-      "blurb": "Founded Parallel Human as a place to build ventures and study what AI changes about founder work. The public site presents an evidence-led research posture. My product work and operating methods provide practical experience alongside that research.",
+      "title": "Parallel Human: historical venture-studio work",
+      "blurb": "Created a personal venture studio and public research journal exploring human judgment and AI. Developed venture experiments and documented research questions, methods, limitations and corrections. The studio is paused; this is historical portfolio evidence rather than a current employment commitment.",
       "audiences": [
         "general",
         "dev",
         "founders",
         "investors"
       ],
-      "metric": "Founder work | AI research and product execution",
+      "metric": "Historical studio | paused",
       "link": "https://www.parallelhuman.ai"
     },
     {
@@ -293,21 +293,16 @@
         "Inspect the changes, test the workflow, and verify the release. Stay with the work after it ships."
       ],
       "background": [
-        "I founded AgXactly Crop Insights, raised just under US$1M, and led it through acquisition by Nighthawk Ag. I worked in the combined business before it later wound down. Earlier founder work includes OrganicGrow Solutions and Vesta.AI, alongside enterprise sales in infrastructure and cybersecurity.",
-        "I also worked as Ecosystem Manager for the AIVA Network at EMILI, building startup outreach, evaluation, routing, and Airtable workflows. I am a Founder Institute alumnus and later returned as a mentor. Today my work combines AI-assisted product delivery, business operations, and evidence-led research through Corbel and Parallel Human."
+        "I founded AgXactly Crop Insights, raised just under US$1M, grew monthly recurring customer revenue to more than US$40,000, and led it through acquisition by Nighthawk Ag. I worked in the combined business before it later wound down. Earlier founder work includes OrganicGrow Solutions and Vesta.AI, alongside enterprise sales in infrastructure and cybersecurity.",
+        "I worked as Ecosystem Manager for EMILI's AIVA Network, building startup outreach, evaluation, pilot routing and Airtable workflows. I am a Founder Institute alumnus and was later invited to support its Global Food Ecosystems program through founder office hours. Today I combine AI-assisted product delivery and business operations through Corbel and Fuwari."
       ],
       "work_ids": [
         "fuwari",
-        "stonewise",
-        "childcareos",
-        "signal",
         "pfk",
-        "ag ar",
-        "koya",
-        "ramara",
-        "auction",
-        "f1",
-        "life"
+        "stonewise",
+        "signal",
+        "childcareos",
+        "ag ar"
       ],
       "stats": []
     },
@@ -356,19 +351,15 @@
         "Inspect the changes, test the workflow, and verify the release. Stay with the work after it ships."
       ],
       "background": [
-        "I founded AgXactly Crop Insights, raised just under US$1M, and led it through acquisition by Nighthawk Ag. I worked in the combined business before it later wound down. Earlier founder work includes OrganicGrow Solutions and Vesta.AI, alongside enterprise sales in infrastructure and cybersecurity.",
-        "I also worked as Ecosystem Manager for the AIVA Network at EMILI, building startup outreach, evaluation, routing, and Airtable workflows. I am a Founder Institute alumnus and later returned as a mentor. Today my work combines AI-assisted product delivery, business operations, and evidence-led research through Corbel and Parallel Human."
+        "I founded AgXactly Crop Insights, raised just under US$1M, grew monthly recurring customer revenue to more than US$40,000, and led it through acquisition by Nighthawk Ag. I worked in the combined business before it later wound down. Earlier founder work includes OrganicGrow Solutions and Vesta.AI, alongside enterprise sales in infrastructure and cybersecurity.",
+        "I worked as Ecosystem Manager for EMILI's AIVA Network, building startup outreach, evaluation, pilot routing and Airtable workflows. I am a Founder Institute alumnus and was later invited to support its Global Food Ecosystems program through founder office hours. Today I combine AI-assisted product delivery and business operations through Corbel and Fuwari."
       ],
       "work_ids": [
         "agxactly",
         "aiva",
-        "fuwari",
-        "stonewise",
         "corbel",
-        "signal",
-        "fi",
-        "enterprise",
-        "organic"
+        "fuwari",
+        "enterprise"
       ]
     },
     {
@@ -416,21 +407,16 @@
         "Inspect the changes, test the workflow, and verify the release. Stay with the work after it ships."
       ],
       "background": [
-        "I founded AgXactly Crop Insights, raised just under US$1M, and led it through acquisition by Nighthawk Ag. I worked in the combined business before it later wound down. Earlier founder work includes OrganicGrow Solutions and Vesta.AI, alongside enterprise sales in infrastructure and cybersecurity.",
-        "I also worked as Ecosystem Manager for the AIVA Network at EMILI, building startup outreach, evaluation, routing, and Airtable workflows. I am a Founder Institute alumnus and later returned as a mentor. Today my work combines AI-assisted product delivery, business operations, and evidence-led research through Corbel and Parallel Human."
+        "I founded AgXactly Crop Insights, raised just under US$1M, grew monthly recurring customer revenue to more than US$40,000, and led it through acquisition by Nighthawk Ag. I worked in the combined business before it later wound down. Earlier founder work includes OrganicGrow Solutions and Vesta.AI, alongside enterprise sales in infrastructure and cybersecurity.",
+        "I worked as Ecosystem Manager for EMILI's AIVA Network, building startup outreach, evaluation, pilot routing and Airtable workflows. I am a Founder Institute alumnus and was later invited to support its Global Food Ecosystems program through founder office hours. Today I combine AI-assisted product delivery and business operations through Corbel and Fuwari."
       ],
       "work_ids": [
-        "fuwari",
-        "stonewise",
-        "childcareos",
-        "pfk",
-        "signal",
-        "ag ar",
         "agxactly",
-        "fi",
-        "koya",
-        "parallel",
-        "corbel"
+        "corbel",
+        "fuwari",
+        "pfk",
+        "stonewise",
+        "fi"
       ]
     },
     {
@@ -444,10 +430,10 @@
         "url": "family=Source+Sans+3:wght@400;500;600&family=Playfair+Display:wght@400;600;700"
       },
       "title": "Russell Cole | Portfolio Support and AI-Native Operations",
-      "description": "I bring founder-side fundraising, startup ecosystem work, FI alumni and mentoring experience, and hands-on AI product delivery to portfolio support, diligence, and operating roles.",
+      "description": "I bring founder-side fundraising, startup ecosystem work, FI alumni background, and hands-on AI product delivery to portfolio support, diligence, and operating roles.",
       "banner": "Available for the right full-time role. Based in Ontario, Canada; comfortable working across time zones.",
       "tagline": "A founder who can help other founders, and build the systems underneath.",
-      "intro": "I bring founder-side fundraising, startup ecosystem work, FI alumni and mentoring experience, and hands-on AI product delivery to portfolio support, diligence, and operating roles.",
+      "intro": "I bring founder-side fundraising, startup ecosystem work, FI alumni background, and hands-on AI product delivery to portfolio support, diligence, and operating roles.",
       "stats": [],
       "migration": {
         "kicker": "Working proof",
@@ -478,25 +464,20 @@
         "Inspect the changes, test the workflow, and verify the release. Stay with the work after it ships."
       ],
       "background": [
-        "I founded AgXactly Crop Insights, raised just under US$1M, and led it through acquisition by Nighthawk Ag. I worked in the combined business before it later wound down. Earlier founder work includes OrganicGrow Solutions and Vesta.AI, alongside enterprise sales in infrastructure and cybersecurity.",
-        "I also worked as Ecosystem Manager for the AIVA Network at EMILI, building startup outreach, evaluation, routing, and Airtable workflows. I am a Founder Institute alumnus and later returned as a mentor. Today my work combines AI-assisted product delivery, business operations, and evidence-led research through Corbel and Parallel Human."
+        "I founded AgXactly Crop Insights, raised just under US$1M, grew monthly recurring customer revenue to more than US$40,000, and led it through acquisition by Nighthawk Ag. I worked in the combined business before it later wound down. Earlier founder work includes OrganicGrow Solutions and Vesta.AI, alongside enterprise sales in infrastructure and cybersecurity.",
+        "I worked as Ecosystem Manager for EMILI's AIVA Network, building startup outreach, evaluation, pilot routing and Airtable workflows. I am a Founder Institute alumnus and was later invited to support its Global Food Ecosystems program through founder office hours. Today I combine AI-assisted product delivery and business operations through Corbel and Fuwari."
       ],
       "work_ids": [
         "agxactly",
         "aiva",
         "fi",
+        "corbel",
         "fuwari",
-        "stonewise",
-        "childcareos",
-        "signal",
-        "pfk",
-        "ag ar",
-        "koya",
-        "parallel"
+        "signal"
       ]
     }
   ],
-  "updated": "2026-09-30",
+  "updated": "2026-10-02",
   "ai_practice": {
     "title": "How I build with AI",
     "intro": "I use AI across research, product design, development, and operations to build complete applications that work in the real world. Without traditional software-engineering training, I have carried products from customer workflow and architecture through implementation, testing, release, and maintenance. I own the decisions and verify the results.",
