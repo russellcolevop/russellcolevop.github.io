@@ -13,20 +13,16 @@ section, and the generated audience pages. Updated 2026-10-02.
 The root `index.html` is hand-maintained and should only be updated directly when the general-audience wording changes.
 `hub/index.html` is also hand-maintained. The generator does not write the hub.
 Keep root/hub summaries, metadata, and contact-card title aligned during refreshes.
-Current resume career facts live in the private canonical record at
-`/Users/russellcole/Developer/RussellLabs/job-search-2026/resumes/content.json`.
-Its `build_resumes.py --site-dir /Users/russellcole/Developer/russellcole-site`
-exports only public-safe HTML and Markdown into `resume/`. Eight views share the
-same career/education record; summaries and selected evidence change by role.
-The general view is `/resume/`; the seven tailored views are below it. Root,
-hub and the four profile pages link to the relevant view. No PDF link is enabled
-until a PDF exists and its layout has been checked. Current print pagination and
-PDF export are pending the machine resource guard; text/HTML generation is light.
+Current resume exports are in `resume/`: the general view at `/resume/` and
+seven tailored views below it. The separate resume source produces public-safe
+HTML and Markdown only. Keep shared career facts aligned with `profiles.json`.
+Root, hub and the four profiles link to the relevant resume. No PDF download
+link is enabled until a PDF exists and its layout has been checked.
 
-When resume facts change, rebuild the exports and reconcile matching facts in
-`profiles.json` before rendering the profile pages. Preserve already submitted
-application documents in the private job-search home. PH/KoyaOS remain historical
-deep-board evidence only; five overview/profile surfaces select the strongest work.
+Preserve already submitted application records separately. PH/KoyaOS remain
+labelled historical evidence on the deeper achievements board; main profiles
+select the strongest role-relevant work.
+
 Do not carry forward stale test counts, unlabeled currencies, or retired-backend
 claims as current achievements. Evidence for the September refresh is in
 `_reports/2026-09-30-profile-refresh.md`.
