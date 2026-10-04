@@ -47,6 +47,7 @@ remain a separate bounded task.
 ## Release
 
 October 4 product-priority update is a content-only release on main.
-The preceding resume/profile release was read back after publication; keep
-reader-facing checks focused on changed pages and the gallery selection.
+The 22 changed public files matched their reviewed source after publication.
+Chrome confirmed the product order, general resume and Stonewise gallery card.
+Keep reader-facing checks focused on changed pages and the gallery selection.
 Keep further public release notes limited to the published feature state.
