@@ -1,7 +1,7 @@
 # Profile Page Workflow
 
 `profiles.json` is the source of truth for achievements, the shared AI-practice
-section, and the generated audience pages. Updated 2026-10-02.
+section, and the generated audience pages. Updated 2026-10-04.
 
 1. Edit `profiles.json`.
    Achievement `id` values are stable. Each profile selects them with `work_ids`;
@@ -26,3 +26,8 @@ select the strongest role-relevant work.
 Do not carry forward stale test counts, unlabeled currencies, or retired-backend
 claims as current achievements. Evidence for the September refresh is in
 `_reports/2026-09-30-profile-refresh.md`.
+
+Product selections lead with Fuwari, Stonewise, ChildCareOS, Signal Engine and
+AgAR where relevant, then Playing for Keeps. Business achievements remain
+tailored to each audience. The tour features Stonewise in its fourth gallery
+plinth and retains Playing for Keeps as supporting technical evidence.

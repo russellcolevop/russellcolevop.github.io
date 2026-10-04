@@ -49,10 +49,10 @@
       ],
       "surfaces": [
         {"id": "curriculum-rail-1", "aspect": 2.18, "corners": [[-44.87, 6.91], [-40.91, 7.02], [-40.91, 5.11], [-44.87, 5.04]], "ink": "light", "paint": {"t": "May 4, 2026", "al": "c", "alt": ["May 4"]}, "card": {"h": "May 4, 2026", "p": ["May 4, 2026 is the date I went all in on AI. Everything since is one deliberate program, not a list of side projects: each product taught a different part of building, releasing and running software."]}},
-        {"id": "curriculum-rail-2", "aspect": 6.93, "corners": [[-37.4, 6.99], [-24.21, 7.18], [-24.21, 5.11], [-37.4, 5.08]], "ink": "light", "paint": {"t": "Fuwari · Playing for Keeps", "al": "c"}, "card": {"h": "Fuwari · Playing for Keeps", "p": ["Fuwari: Live web product, iPhone external beta", "Playing for Keeps: Live league platform"]}},
-        {"id": "curriculum-rail-3", "aspect": 5.72, "corners": [[-20.74, 7.13], [-9.23, 7.22], [-9.23, 5.07], [-20.74, 5.11]], "ink": "light", "paint": {"t": "Corbel · Stonewise", "al": "c"}, "card": {"h": "Corbel · Stonewise", "p": ["Corbel: Active consulting practice", "Stonewise: Live web app, iOS internal testing"]}},
-        {"id": "curriculum-rail-4", "aspect": 5.36, "corners": [[-5.76, 7.19], [5.62, 7.21], [5.62, 5.09], [-5.76, 5.11]], "ink": "light", "paint": {"t": "ChildCareOS", "al": "c"}, "card": {"h": "ChildCareOS", "p": ["Private web release"]}},
-        {"id": "curriculum-rail-5", "aspect": 4.5, "corners": [[9.05, 7.14], [18.32, 7.17], [18.32, 5.07], [9.05, 5.1]], "ink": "light", "paint": {"t": "Signal Engine", "al": "c"}, "card": {"h": "Signal Engine", "p": ["Local tool, MCP integration"]}},
+        {"id": "curriculum-rail-2", "aspect": 6.93, "corners": [[-37.4, 6.99], [-24.21, 7.18], [-24.21, 5.11], [-37.4, 5.08]], "ink": "light", "paint": {"t": "Fuwari · Stonewise", "al": "c"}, "card": {"h": "Fuwari · Stonewise", "p": ["Fuwari: Live web product, iPhone external beta", "Stonewise: Live web app, iOS internal testing"]}},
+        {"id": "curriculum-rail-3", "aspect": 5.72, "corners": [[-20.74, 7.13], [-9.23, 7.22], [-9.23, 5.07], [-20.74, 5.11]], "ink": "light", "paint": {"t": "Corbel · ChildCareOS", "al": "c"}, "card": {"h": "Corbel · ChildCareOS", "p": ["Corbel: Active consulting practice", "ChildCareOS: Private web release"]}},
+        {"id": "curriculum-rail-4", "aspect": 5.36, "corners": [[-5.76, 7.19], [5.62, 7.21], [5.62, 5.09], [-5.76, 5.11]], "ink": "light", "paint": {"t": "Signal Engine", "al": "c"}, "card": {"h": "Signal Engine", "p": ["Local tool, MCP integration"]}},
+        {"id": "curriculum-rail-5", "aspect": 4.5, "corners": [[9.05, 7.14], [18.32, 7.17], [18.32, 5.07], [9.05, 5.1]], "ink": "light", "paint": {"t": "Playing for Keeps", "al": "c"}, "card": {"h": "Playing for Keeps", "p": ["Live league platform"]}},
         {"id": "curriculum-rail-6", "aspect": 5, "corners": [[21.75, 7.13], [32.21, 7.12], [32.21, 5.05], [21.75, 5.07]], "ink": "light", "paint": {"t": "Ramara Hub", "al": "c"}, "card": {"h": "Ramara Hub", "p": ["Live static information site"]}},
         {"id": "curriculum-rail-7", "aspect": 4.98, "corners": [[35.64, 7.05], [45.35, 6.92], [45.35, 5.0], [35.64, 5.08]], "ink": "light", "paint": {"t": "KoyaOS", "al": "c"}, "card": {"h": "KoyaOS", "p": ["My repository-based method for running venture work"]}}
       ],
@@ -146,12 +146,12 @@
     },
     "gallery": {
       "name": "Company gallery", "file": "cyl-gallery", "kind": "cyl", "yaw": 37, "pitch": -7, "fov": 60,
-      "sheet": {"h": "Different problems. The same responsibility to make it work.", "p": "Four cases, each with a status badge and my part. Select a plinth. The long wall ahead is the reference wall.", "proof": "Fuwari: live customer software. Corbel: paid engagements. AgXactly: raised just under US$1M. Playing for Keeps: live league platform.", "a": [{"label": "Next: Reference wall", "go": "references"}, {"label": "Back to the Venture Room", "go": "ventures"}]},
+      "sheet": {"h": "Different problems. The same responsibility to make it work.", "p": "Four cases, each with a status badge and my part. Select a plinth. The long wall ahead is the reference wall.", "proof": "Fuwari: live customer software. Corbel: paid engagements. AgXactly: raised just under US$1M. Stonewise: live web beta, iPhone internal testing.", "a": [{"label": "Next: Reference wall", "go": "references"}, {"label": "Back to the Venture Room", "go": "ventures"}]},
       "hotspots": [
         {"id": "p1", "type": "pin", "b": -81, "p": -17, "label": "Fuwari", "plinth": "fuwari"},
         {"id": "p2", "type": "pin", "b": -57, "p": -6, "label": "Corbel", "plinth": "corbel"},
         {"id": "p3", "type": "pin", "b": 25, "p": -6, "label": "AgXactly", "plinth": "agxactly"},
-        {"id": "p4", "type": "pin", "b": 48, "p": -17, "label": "Playing for Keeps", "plinth": "pfk"},
+        {"id": "p4", "type": "pin", "b": 48, "p": -17, "label": "Stonewise", "plinth": "stonewise"},
         {"id": "to-references", "type": "door", "b": 0, "p": 0, "label": "Reference wall", "go": "references"},
         {"id": "to-reception", "type": "door", "b": 84, "p": -4, "label": "Reception", "go": "reception"},
         {"id": "to-ventures", "type": "door", "b": -114, "p": 0, "label": "Venture Room", "go": "ventures"}
@@ -196,6 +196,7 @@
     "fuwari": {"title": "Fuwari", "badge": "Live web product, iPhone external beta", "money": "Paid, live customer software, in daily use.", "pull": "I built and operate grooming software around the way a working business schedules, communicates and gets paid.", "stands": "Live customer web software. The iPhone app is in an external beta group and is not on the public App Store.", "link": {"label": "Try the public demo", "href": "https://getfuwari.com/#demo"}},
     "corbel": {"title": "Corbel", "badge": "Active consulting practice", "money": "Paid engagements.", "pull": "I work inside business workflows, then build and maintain useful systems around them.", "stands": "Active practice with a public site. Client deliverables stay private.", "link": {"label": "Visit Corbel", "href": "https://corbelops.com"}},
     "agxactly": {"title": "AgXactly", "badge": "Historical venture, acquired; combined business later wound down", "money": "Raised just under US$1M.", "pull": "I founded AgXactly, raised just under US$1M and led it through acquisition by Nighthawk Ag. I continued in the combined business before it later wound down.", "stands": "Acquired by Nighthawk Ag. The combined business later wound down. I report it that way.", "link": {"label": "Founder Institute feature", "href": "https://fi.co/insight/agxactly-aerial-informatics-for-row-crop-insights"}},
+    "stonewise": {"title": "Stonewise", "badge": "Live web beta, iPhone internal TestFlight", "money": "", "pull": "I built a care-organization app for hydration and meal logging, lab-result trends and user-checked AI input.", "stands": "Live web app in a friends-and-family beta; native iPhone internal TestFlight. External beta approval and installation remain unverified.", "link": {"label": "Explore Stonewise", "href": "https://stonewise.pages.dev"}},
     "pfk": {"title": "Playing for Keeps", "badge": "Live league platform, custom rules", "money": "", "pull": "I built a fantasy-hockey platform around one league's custom contracts, roster rules, salary cap, fees and communication.", "stands": "Live league platform. Member names, finances and chat stay private, so there is no public demo yet.", "link": null}
   }
 }

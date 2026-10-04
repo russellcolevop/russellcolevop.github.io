@@ -36,8 +36,8 @@ October 2025-May 2026
 - Continued across growth, product, partnerships and customer onboarding in the combined business, which later wound down.
 
 ## Selected product evidence
-- Signal Engine: Local video-to-evidence tool with transcription, source provenance and MCP integration for AI workflows. Local operating capability.
 - ChildCareOS: Private childcare operations platform for administration, educator/parent workflows, messaging and access controls. Private web release; mobile and physical acceptance remain separate milestones.
+- Signal Engine: Local video-to-evidence tool with transcription, source provenance and MCP integration for AI workflows. Local operating capability.
 
 ## Earlier experience
 - Nodara, Founder (May 2025-August 2026): enterprise HPC/GPU infrastructure opportunities, requirements, partnerships and deal coordination. Any continuing work now runs through Corbel.

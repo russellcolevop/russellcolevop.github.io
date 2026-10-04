@@ -36,8 +36,8 @@ October 2025-May 2026
 - Continued across growth, product, partnerships and customer onboarding in the combined business, which later wound down.
 
 ## Selected product evidence
-- Playing for Keeps: Fantasy-hockey league application with custom rosters, player contracts, salary-cap accounting, fees, authentication and chat. Live application used by a real league.
 - Stonewise: Care-organization app for hydration and meal logging, lab-result trends and user-checked AI input. Live web app / friends-and-family beta; native iPhone internal TestFlight.
+- Playing for Keeps: Fantasy-hockey league application with custom rosters, player contracts, salary-cap accounting, fees, authentication and chat. Live application used by a real league.
 
 ## Earlier experience
 - Nodara, Founder (May 2025-August 2026): enterprise HPC/GPU infrastructure opportunities, requirements, partnerships and deal coordination. Any continuing work now runs through Corbel.

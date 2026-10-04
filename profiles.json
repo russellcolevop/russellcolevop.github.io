@@ -63,18 +63,6 @@
       "metric": "Local MCP integration | transcript and provenance artifacts"
     },
     {
-      "id": "pfk",
-      "title": "Playing for Keeps: live fantasy-hockey application",
-      "blurb": "Built and operate a complete fantasy-hockey league application with custom roster and contract rules, salary-cap accounting, fee tracking, authentication, and chat. Built using AI throughout development and used by a real league. I own the architecture, implementation, testing, release, and maintenance.",
-      "audiences": [
-        "general",
-        "dev",
-        "founders",
-        "investors"
-      ],
-      "metric": "Live league platform"
-    },
-    {
       "id": "ag ar",
       "title": "AgAR: field and greenhouse scouting prototype",
       "blurb": "Designed and built an agricultural scouting prototype across mobile, web, voice, and workflow dispatch. The current public site explains field and greenhouse use cases with prototype labels. The earlier hosted data backend is retired; this is development evidence, not a claim of a live grower deployment.",
@@ -87,6 +75,18 @@
       ],
       "metric": "Prototype | hosted data backend retired",
       "link": "https://ar-ag.com"
+    },
+    {
+      "id": "pfk",
+      "title": "Playing for Keeps: live fantasy-hockey application",
+      "blurb": "Built and operate a complete fantasy-hockey league application with custom roster and contract rules, salary-cap accounting, fee tracking, authentication, and chat. Built using AI throughout development and used by a real league. I own the architecture, implementation, testing, release, and maintenance.",
+      "audiences": [
+        "general",
+        "dev",
+        "founders",
+        "investors"
+      ],
+      "metric": "Live league platform"
     },
     {
       "id": "aiva",
@@ -298,11 +298,11 @@
       ],
       "work_ids": [
         "fuwari",
-        "pfk",
         "stonewise",
-        "signal",
         "childcareos",
-        "ag ar"
+        "signal",
+        "ag ar",
+        "pfk"
       ],
       "stats": []
     },
@@ -358,8 +358,8 @@
         "agxactly",
         "aiva",
         "corbel",
-        "fuwari",
-        "enterprise"
+        "enterprise",
+        "fuwari"
       ]
     },
     {
@@ -413,10 +413,10 @@
       "work_ids": [
         "agxactly",
         "corbel",
+        "fi",
         "fuwari",
-        "pfk",
         "stonewise",
-        "fi"
+        "pfk"
       ]
     },
     {
@@ -477,7 +477,7 @@
       ]
     }
   ],
-  "updated": "2026-10-02",
+  "updated": "2026-10-04",
   "ai_practice": {
     "title": "How I build with AI",
     "intro": "I use AI across research, product design, development, and operations to build complete applications that work in the real world. Without traditional software-engineering training, I have carried products from customer workflow and architecture through implementation, testing, release, and maintenance. I own the decisions and verify the results.",

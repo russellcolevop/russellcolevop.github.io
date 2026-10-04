@@ -5,7 +5,7 @@ LinkedIn: https://www.linkedin.com/in/russellcole/
 Portfolio: https://russellcolevop.github.io/dev/
 
 ## Profile
-Build at the edge of what is possible with AI, then verify the result. Carry customer workflows through product architecture, AI-assisted implementation, testing, release and maintenance. Built live Fuwari and Playing for Keeps software, a private ChildCareOS release and local MCP evidence tools, without traditional software-engineering training.
+Build at the edge of what is possible with AI, then verify the result. Carry customer workflows through product architecture, AI-assisted implementation, testing, release and maintenance. Built live Fuwari software, Stonewise's web beta, a private ChildCareOS release and local MCP evidence tools, without traditional software-engineering training.
 Available full-time; comfortable supporting distributed teams and working across time zones.
 
 ## Focus
@@ -36,9 +36,9 @@ October 2025-May 2026
 - Continued across growth, product, partnerships and customer onboarding in the combined business, which later wound down.
 
 ## Selected product evidence
-- Playing for Keeps: Fantasy-hockey league application with custom rosters, player contracts, salary-cap accounting, fees, authentication and chat. Live application used by a real league.
-- Signal Engine: Local video-to-evidence tool with transcription, source provenance and MCP integration for AI workflows. Local operating capability.
+- Stonewise: Care-organization app for hydration and meal logging, lab-result trends and user-checked AI input. Live web app / friends-and-family beta; native iPhone internal TestFlight.
 - ChildCareOS: Private childcare operations platform for administration, educator/parent workflows, messaging and access controls. Private web release; mobile and physical acceptance remain separate milestones.
+- Signal Engine: Local video-to-evidence tool with transcription, source provenance and MCP integration for AI workflows. Local operating capability.
 
 ## Earlier experience
 - Nodara, Founder (May 2025-August 2026): enterprise HPC/GPU infrastructure opportunities, requirements, partnerships and deal coordination. Any continuing work now runs through Corbel.
