@@ -19,4 +19,6 @@ Source regeneration passed. All eight public Markdown exports match the shared r
 
 ## Publication
 
-Pending final independent review and default-branch push/readback. Do not treat local edits as already deployed.
+Deep independent specialist review passed with 0 Critical / 0 Important findings. Content committed on main as `3dc4c138ab9af9dd3857cb1694f8b83b8d5eaea1` and pushed. GitHub Pages reports that commit built at 21:45:53 UTC with no error.
+
+All 24 changed public content files returned HTTP200 and exactly matched their reviewed source SHA256. Detailed evidence: `2026-10-06-live-readback.json`. Chrome read the live Portfolio Support resume and confirmed March2018-May2025, the 2024 acquisition, AIVA October2025-May2026 and the FI2021 cohort. No chronology change remains unpublished. Native/device print pagination remains outside this content-only release.
