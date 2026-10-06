@@ -4,7 +4,7 @@ needs-russell: none for published resume content
 
 # Russell Cole public site
 
-Updated October 4, 2026. GitHub Pages serves the repository root from main.
+Updated October 6, 2026. GitHub Pages serves the repository root from main.
 
 ## Published content
 
@@ -22,6 +22,11 @@ Updated October 4, 2026. GitHub Pages serves the repository root from main.
   Historical/paused projects remain labelled on the achievements board.
 - Product status distinguishes live web, external beta, internal testing,
   private releases, local tools, prototypes and historical work.
+- Career chronology uses the combined founder journey March 2018-May 2025,
+  including OrganicGrow, AgXactly and later work with Nighthawk Ag. The
+  acquisition transition is 2024. AIVA/EMILI is October 2025-May 2026. FI is
+  the Toronto Tech Corridor Virtual 2021 cohort. Historical submitted documents
+  are outside this public repository and are not rewritten.
 
 ## Editing
 
@@ -46,8 +51,7 @@ remain a separate bounded task.
 
 ## Release
 
-October 4 product-priority update is a content-only release on main.
-The 22 changed public files matched their reviewed source after publication.
-Chrome confirmed the product order, general resume and Stonewise gallery card.
-Keep reader-facing checks focused on changed pages and the gallery selection.
+October 6 chronology update aligns the eight current resume views, source
+profiles, overview, audience pages, achievements and tour narration. Verification
+and final publication evidence: `_reports/2026-10-06-chronology-alignment.md`.
 Keep further public release notes limited to the published feature state.

@@ -30,9 +30,10 @@ October 2025-May 2026
 - Worked across startup outreach, evaluation and pilot routing for an agricultural innovation, validation and adoption initiative.
 - Built Airtable workflows for founder intake, relationship tracking, operating records and follow-through.
 
-### AgXactly Crop Insights / Nighthawk Ag | Earlier founder experience
-- Founded and led AgXactly as CEO, raised just under US$1M, and grew monthly recurring customer revenue to more than US$40,000.
-- Led customer discovery, product strategy, commercial development, partnerships, fundraising and investor communication through acquisition by Nighthawk Ag.
+### AgXactly Crop Insights / Nighthawk Ag | Founder and commercial work
+March 2018-May 2025
+- Founder journey included OrganicGrow and AgXactly. Led AgXactly as CEO, raised just under US$1M, and grew monthly recurring customer revenue to more than US$40,000.
+- Led customer discovery, product strategy, commercial development, partnerships, fundraising and investor communication through acquisition by Nighthawk Ag in 2024.
 - Continued across growth, product, partnerships and customer onboarding in the combined business, which later wound down.
 
 ## Selected product evidence
@@ -51,5 +52,5 @@ Claude Code, Claude Cowork, OpenAI Codex, MCP, Airtable and Attio. Build with Ty
 
 ## Education and community
 - University of Waterloo.
-- Founder Institute alumnus. Finished with the highest cumulative judge-rated pitch score at program end in a cohort of more than 100 startups and founders. Later invited to support FI's Global Food Ecosystems program with founder office hours.
+- Founder Institute alumnus, Toronto Tech Corridor Virtual 2021 cohort. Finished with the highest cumulative judge-rated pitch score at program end in a cohort of more than 100 startups and founders. Later invited to support FI's Global Food Ecosystems program with founder office hours.
 - Member, Board of Directors, Concerned Citizens of Ramara (May 2025-present): community engagement, transparency and governance.
