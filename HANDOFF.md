@@ -1,6 +1,6 @@
 push-state: main ahead 0 / behind 0 / dirty 0 (scoped product-priority release; default-branch state checked at task exit)
 visible-at: https://russellcolevop.github.io/resume/ and https://russellcolevop.github.io/; /works/ is unlisted and noindex
-needs-russell: none for published resume content
+needs-russell: consent to move the seven /works/ quotes (Lapides, Haddad, Duflock, Samantha and MaryAnn McLennan, Rachael Rose, Jim Cronk) onto indexed pages; then /works/ is retired with a redirect to / (Oct 31)
 
 # Russell Cole public site
 
@@ -27,6 +27,11 @@ Updated October 6, 2026. GitHub Pages serves the repository root from main.
   acquisition transition is 2024. AIVA/EMILI is October 2025-May 2026. FI is
   the Toronto Tech Corridor Virtual 2021 cohort. Historical submitted documents
   are outside this public repository and are not rewritten.
+
+## Oct 31 update
+
+- All resume views (HTML and Markdown) list Keynote Cuts and Influencer Cuts under Corbel and a separate Jim Cronk campaign entry. Figures match keynotecuts.com: `RussellLabs/corbel/ventures/keynote-cuts/_reports/2026-10-31-cronk-insights-read.md`.
+- /works/ stays live, unlisted, until Russell confirms the quote move. Ramara Hub is already on /achievements/ via profiles.json.
 
 ## Editing
 
