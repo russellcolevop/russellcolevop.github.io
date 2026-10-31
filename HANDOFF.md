@@ -45,14 +45,8 @@ Updated October 6, 2026. GitHub Pages serves the repository root from main.
 
 ## Russell Works
 
-`/works/` remains the separate unlisted 360 resume experience. Desktop uses the
-scroll-driven tour; touch devices use the guided room rail, with a one-page
-fallback. Room content is in `works/rooms.json`; movement is in `works/walk.js`.
-The curriculum now puts Stonewise ahead of Playing for Keeps, and the fourth
-gallery plinth features Stonewise. Playing for Keeps remains in the curriculum
-and one-page supporting cases. Room geometry, stops and artwork are unchanged.
-The existing October 1 reports describe implementation. Broader tour improvements
-remain a separate bounded task.
+Retired October 31, 2026 (Russell). `works/index.html` is now a redirect to /. The full 360 tour
+(rooms.json, walk.js, renders) is in Git history at 8926c18 if it is ever revived.
 
 ## Release
 
