@@ -19,6 +19,11 @@ Available full-time; comfortable supporting distributed teams and working across
 May 2026-present
 - Turn business operating problems into practical AI systems, connected workflows and focused automation.
 - Own customer requirements, product design, AI-assisted implementation, testing, release and ongoing operation; leave clear ownership and usable documentation.
+- Run Keynote Cuts and Influencer Cuts, Corbel's short-form video studios for professional speakers and creators: footage in, finished captioned clips and posting schedules out.
+
+### Jim Cronk 2026 Mayoral Campaign, Ramara | Volunteer Content Lead
+September-October 2026
+- Built the campaign's content operation from raw phone footage: brand pack, branded short videos, and the Facebook and Instagram posting schedule. 290,570 Facebook views from September 11 to October 26, 2026, 81.7% from non-followers, $0 ad spend (Meta Business Suite, read October 31, 2026).
 
 ### Fuwari | Founder
 January 2026-present
